@@ -5,14 +5,19 @@ import '../widgets/back_button_text.dart';
 class CustomAppBar extends StatelessWidget {
   final String title;
   final List<Widget> actions;
-  const CustomAppBar(this.title, this.actions);
+  final Function()? onpressed;
+
+  const CustomAppBar(this.title, this.actions, this.onpressed);
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       child: Row(
         children: [
-          Expanded(child: BackButtonText()),
+          IconButton(
+            icon: Icon(Icons.arrow_back_ios_new),
+            onPressed: onpressed,
+          ),
           Text(
             title,
             style: TextStyle(

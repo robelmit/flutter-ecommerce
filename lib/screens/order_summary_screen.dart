@@ -26,6 +26,9 @@ class OrderSummaryScreen extends StatelessWidget {
                     CustomAppBar(
                       'Order Summary',
                       [],
+                           () {
+                Navigator.pop(context);
+              },
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(

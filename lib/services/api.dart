@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
+//import 'dart:html';
 import 'dart:math';
 import 'package:app/models/ads.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,6 +14,7 @@ class Api {
   ///   isSelected: true,
   // ),
   var baseURL = "http://10.0.2.2:5000";
+  //  var baseURL = "http://192.168.43.34:5000";
   static var isnowdistributed = false;
   static var isnowverified = false;
 
@@ -26,6 +30,328 @@ class Api {
           'phoneNumber': phoneNumber,
           'email': email,
           'password': password,
+        }));
+    if (response.statusCode == 201 || response.statusCode == 304) {
+      //return Post.fromJson(jsonDecode(response.body));
+      print('registering user was successful');
+      var miki = jsonDecode(response.body);
+      print(miki['full_name']);
+      print(miki);
+//
+
+      return jsonDecode(response.body);
+      // return jsonDecode(utf8.decode(response.bodyBytes, allowMalformed: true));
+    } else {
+      print(jsonDecode(response.body));
+      throw Exception('Failed to load profile: ');
+    }
+  }
+
+  Future<dynamic> login(phoneNumber, password) async {
+    print('cool');
+    final url = Uri.parse(baseURL + "/api/users/login");
+    final response = await http.post(url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'phoneNumber': phoneNumber,
+          'password': password,
+        }));
+    if (response.statusCode == 200) {
+      print('login was successful');
+
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to distribute: ');
+    }
+  }
+
+  Future<List<Ads>> getadds(String? keyword) async {
+    print('cool is nice');
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    String maurl;
+    if (keyword != '1111111111') {
+      maurl = baseURL + '/api/adds?keyword=$keyword';
+    } else
+      maurl = baseURL + "/api/adds";
+    final url = Uri.parse(maurl);
+    final response = await http.get(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        // 'authorization': 'Bearer ' + token!
+      },
+    );
+
+    if (response.statusCode == 200) {
+      print('bbb');
+
+      var ads = AdsPro(response.body);
+      print(ads);
+
+      return ads;
+    } else {
+      print('hhh');
+
+      throw Exception('Failed to load adds');
+    }
+  }
+
+  Future<dynamic> getrooms() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    String maurl = baseURL + "/api/rooms";
+    final url = Uri.parse(maurl);
+    final response = await http.get(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'authorization': 'Bearer ' + token!
+      },
+    );
+    if (response.statusCode == 200) {
+      print('bbb');
+
+      //var ads = AdsPro(response.body);
+      print(json.decode(response.body));
+
+      return json.decode(response.body);
+    } else {
+      print('hhh');
+
+      throw Exception('Failed to load adds');
+    }
+  }
+
+  Future<dynamic> getroommessage(id) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    String maurl = baseURL + '/api/messages/${id}';
+    final url = Uri.parse(maurl);
+    final response = await http.get(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'authorization': 'Bearer ' + token!
+      },
+    );
+    if (response.statusCode == 200) {
+      print('bbb');
+
+      //var ads = AdsPro(response.body);
+      print(json.decode(response.body));
+
+      return json.decode(response.body);
+    } else {
+      print('hhh');
+
+      throw Exception('Failed to load adds');
+    }
+  }
+
+  Future<dynamic> getaddsbyid(id) async {
+    print(id);
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    String maurl = baseURL + "/api/adds/$id";
+    final url = Uri.parse(maurl);
+    final response = await http.get(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        // 'authorization': 'Bearer ' + token!
+      },
+    );
+    if (response.statusCode == 200) {
+      print('bbb');
+
+      //var ads = AdsPro(response.body);
+      print(json.decode(response.body));
+
+      return json.decode(response.body);
+    } else {
+      print('hhh');
+
+      throw Exception('Failed to load adds');
+    }
+  }
+
+  Future<dynamic> addtofavourites(id) async {
+    print(id);
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    String maurl = baseURL + "/api/users/favourites";
+    final url = Uri.parse(maurl);
+    final response = await http.post(url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'authorization': 'Bearer ' + token!
+        },
+        body: jsonEncode(<String, String>{
+          'favourite': id,
+        }));
+    if (response.statusCode == 200) {
+      print('bbb');
+
+      //var ads = AdsPro(response.body);
+      print(json.decode(response.body));
+
+      return json.decode(response.body);
+    } else {
+      print('hhh');
+
+      throw Exception('Failed to load adds');
+    }
+  }
+
+  Future<dynamic> getfavourites() async {
+    //print(id);
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    String maurl = baseURL + "/api/users/favourites";
+    final url = Uri.parse(maurl);
+    final response = await http.get(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'authorization': 'Bearer ' + token!
+      },
+    );
+    if (response.statusCode == 200) {
+      print('bbb');
+
+      //var ads = AdsPro(response.body);
+      var ads = AdsPro(response.body);
+      print(ads);
+
+      return ads;
+    } else {
+      print('hhh');
+
+      throw Exception('Failed to load adds');
+    }
+  }
+
+  Future<dynamic> uploadphotos(dynamic images) async {
+    print('cool is nice');
+    List<http.MultipartFile> newList = [];
+
+    for (var img in images!) {
+      if (img != "") {
+        var multipartFile = await http.MultipartFile.fromPath(
+          'image',
+          File(img).path,
+          filename: img.split('/').last,
+        );
+        newList.add(multipartFile);
+      }
+    }
+    //print(newList.toList().toString());
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    Map<String, String> headers = {
+      "Accept": "application/json",
+      "Authorization": "Bearer $token"
+    }; // ignore this headers if there is no authentication
+
+//add headers
+    var url = baseURL + "/api/adds/image";
+    var request = http.MultipartRequest("POST", Uri.parse(url));
+
+    request.headers.addAll(headers);
+    request.files.addAll(newList);
+
+//adding params
+//request.fields['id'] = userid;
+// request.fields['firstName'] = 'abc';
+// request.fields['lastName'] = 'efg';
+
+// send
+    //var response = await request.send();
+
+    // print(response.statusCode);
+    //  print(response);
+    http.Response response1 =
+        await http.Response.fromStream(await request.send());
+    print("Result: ${response1.statusCode}");
+    return response1.body;
+    //return response;
+    // var formData = new FormData();
+    // for (var file in images) {
+    //   print(file);
+    //   formData.files.addAll(
+    //     [
+    //       MapEntry(
+    //           "image",
+    //           MultipartFile.fromFileSync(
+    //             file,
+    //             filename: file.toString().split('/').last,
+    //             // contentType: ('image','jpg')
+    //           )),
+    //     ],
+    //   );
+    // }
+    // Dio dio = Dio();
+    // dio.options.connectTimeout = Duration(seconds: 40);
+
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // String? token = prefs.getString('token');
+    // String maurl = "http:/10.0.2.2:5000" + "/api/adds/image";
+    // Response response;
+    // print(formData.toString());
+    // try {
+    //   response = await dio.post(maurl,
+    //       options: Options(headers: {
+    //         //   'Accept': 'application/json',
+    //         'Content-Type': 'Content-Type": "multipart/form-data',
+    //         'authorization': 'Bearer $token'
+    //       }),
+    //       data: formData);
+
+    //   if (response.statusCode == 200) {
+    //     print('bbb');
+
+    //     // var ads = AdsPro(response.data);
+    //     //print(ads);
+
+    //     return 'ads';
+    //   } else {
+    //     print('hhh');
+
+    //     // throw Exception('Failed to upload image');
+    //   }
+    // } on DioError catch (er) {
+    //   if (er.response != null) {
+    //     print(er.response!.data['message']);
+    //   }
+    //   if (er.type == DioErrorType.connectionTimeout) {
+    //     print('connection timed out');
+    //   } else {
+    //     print('object');
+    //   }
+    // }
+  }
+
+  Future<dynamic> uploadadd(title, description, catagory, price, images) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    final response = await http.post(Uri.parse(baseURL + '/api/adds'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          "Authorization": "Bearer $token"
+        },
+        body: jsonEncode(<String, dynamic>{
+          'title': title,
+          'description': description,
+          'catagory': catagory,
+          'price': price,
+          'images': images,
         }));
     if (response.statusCode == 201) {
       //return Post.fromJson(jsonDecode(response.body));
@@ -43,39 +369,20 @@ class Api {
     }
   }
 
-  Future<dynamic> login(email, password) async {
-    print('cool');
-    final url = Uri.parse(baseURL + "/api/users/login");
-    final response = await http.post(url,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(<String, String>{
-          'email': email,
-          'password': password,
-        }));
-    if (response.statusCode == 200) {
-      print('login was successful');
-
-      return jsonDecode(response.body);
-    } else {
-      throw Exception('Failed to distribute: ');
-    }
-  }
-
-  Future<List<Ads>> getadds() async {
-    print('cool is nice');
+  Future<dynamic> getaddsbycatagory(catagory) async {
+    //print(catagory);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
-    final url = Uri.parse(baseURL + "/api/adds");
-    final response = await http.get(
-      url,
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'authorization': 'Bearer ' + token!
-      },
-    );
+    String maurl = baseURL + "/api/adds/catagory?catagory=$catagory";
+    final url = Uri.parse(maurl);
+    http.Request request = http.Request('GET', url);
+    // request.headers['Authorization'] = 'Bearer $token';
+    http.Response response =
+        await http.Response.fromStream(await request.send());
+    print("Result: ${response.statusCode}");
+
+    print('response');
     if (response.statusCode == 200) {
       print('bbb');
 
@@ -87,6 +394,34 @@ class Api {
       print('hhh');
 
       throw Exception('Failed to load adds');
+    }
+  }
+
+  Future<dynamic> createroom(userfrom, userto) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    final response = await http.post(Uri.parse(baseURL + '/api/rooms'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          "Authorization": "Bearer $token"
+        },
+        body: jsonEncode(<String, dynamic>{
+          'userfrom': userfrom,
+          'userto': userto,
+        }));
+    if (response.statusCode == 201) {
+      //return Post.fromJson(jsonDecode(response.body));
+      print('Creating a room was successful');
+      var miki = jsonDecode(response.body);
+      print(miki['full_name']);
+      print(miki);
+//
+
+      return jsonDecode(response.body);
+      // return jsonDecode(utf8.decode(response.bodyBytes, allowMalformed: true));
+    } else {
+      print(jsonDecode(response.body));
+      throw Exception('Failed to load profile: ');
     }
   }
 }

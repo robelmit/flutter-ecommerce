@@ -27,8 +27,8 @@ class SearchScreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    DealCard(),
-                    DealCard(),
+                    //  DealCard(),
+                    // DealCard(),
                   ],
                 ),
               ),

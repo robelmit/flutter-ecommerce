@@ -24,6 +24,9 @@ class VegetableScreen extends StatelessWidget {
                   width: getProportionateScreenWidth(16),
                 ),
               ],
+                   () {
+                Navigator.pop(context);
+              },
             ),
             SizedBox(
               height: getProportionateScreenHeight(10),

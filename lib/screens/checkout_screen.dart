@@ -19,6 +19,9 @@ class CheckoutScreen extends StatelessWidget {
             CustomAppBar(
               'Checkout',
               [],
+                   () {
+                Navigator.pop(context);
+              },
             ),
             Expanded(
               child: Column(

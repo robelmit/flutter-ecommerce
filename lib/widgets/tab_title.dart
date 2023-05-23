@@ -30,12 +30,12 @@ class TabTitle extends StatelessWidget {
               style: Theme.of(context).textTheme.headline4,
             ),
           ),
-          TextButton(
-            onPressed: seeAll,
-            child: Text(
-              actionText,
-            ),
-          ),
+          // TextButton(
+          //   onPressed: seeAll,
+          //   child: Text(
+          //     actionText,
+          //   ),
+          // ),
         ],
       ),
     );

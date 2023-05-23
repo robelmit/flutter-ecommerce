@@ -18,8 +18,7 @@ class CustomTheme {
     return (inputHeight / designHeight) * constraints.maxHeight;
   }
 
-  nunito() => GoogleFonts.nunitoTextTheme(
-        TextTheme(
+  nunito() => TextTheme(
           headline1: TextStyle(
             fontSize: _getProportionateScreenWidth(60),
             fontWeight: FontWeight.normal,
@@ -56,8 +55,8 @@ class CustomTheme {
           bodyText2: TextStyle(
             fontSize: _getProportionateScreenWidth(14),
           ),
-        ),
-      );
+        );
+      
 
   elevatedButtonTheme() => ElevatedButtonThemeData(
         style: ButtonStyle(

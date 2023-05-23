@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 
@@ -29,7 +30,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
               : Image.asset(
                   'assets/images/home_nav_notfill.png',
                 ),
-          label: 'Home',
+          label: 'home'.tr(),
         ),
         BottomNavigationBarItem(
           icon: widget.curTabIndex == 1
@@ -39,17 +40,19 @@ class _CustomNavBarState extends State<CustomNavBar> {
               : Image.asset(
                   'assets/images/star_nav.png',
                 ),
-          label: 'Favorite',
+          label: 'favourite'.tr(),
         ),
         BottomNavigationBarItem(
           icon: widget.curTabIndex == 2
-              ? Image.asset(
-                  'assets/images/cart_nav_fill.png',
+              ? Icon(
+                  Icons.message_rounded,
+                  color: Theme.of(context).primaryColor,
                 )
-              : Image.asset(
-                  'assets/images/cart_nav.png',
+              : Icon(
+                  Icons.message_rounded,
+                  color: const Color.fromARGB(92, 158, 158, 158),
                 ),
-          label: 'Cart',
+          label: 'chats'.tr(),
         ),
         BottomNavigationBarItem(
           icon: widget.curTabIndex == 3
@@ -59,7 +62,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
               : Image.asset(
                   'assets/images/user_nav.png',
                 ),
-          label: 'Profile',
+          label: 'profile'.tr(),
         ),
       ],
     );

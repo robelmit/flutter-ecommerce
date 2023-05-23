@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 import '../utils/screen_utils.dart';
@@ -25,7 +26,7 @@ class OrRow extends StatelessWidget {
             horizontal: getProportionateScreenWidth(16),
           ),
           child: Text(
-            'Welcome',
+            'welcome'.tr(),
             style: Theme.of(context)
                 .textTheme
                 .headline4!

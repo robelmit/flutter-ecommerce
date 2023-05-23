@@ -1,9 +1,12 @@
 import 'package:app/services/api.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../screens/tab_screen.dart';
 import '../screens/home_screen.dart';
 
+import './signup_screen.dart';
 import './signup_screen.dart';
 import '../constants/colors.dart';
 import '../utils/screen_utils.dart';
@@ -24,6 +27,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -32,9 +37,14 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
-  mountask(token) async {
+  mountask(token, name, phonenumber, id) async {
+    print('check');
+    print(id);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('token', token);
+    prefs.setString('name', name);
+    prefs.setString('phone', phonenumber);
+    prefs.setString('id', id);
   }
 
   @override
@@ -46,66 +56,92 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          BackButtonLS(),
+          IconButton(
+            icon: Icon(Icons.arrow_back_ios_new),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: getProportionateScreenWidth(16),
               ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        'Log In Continue!',
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  OrRow(),
-                  TextFields(),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          color: kPrimaryGreen,
-                          fontWeight: FontWeight.bold,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          'logintocontinue'.tr(),
+                          style:
+                              Theme.of(context).textTheme.headline3!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      // print('cool');
-                      // Navigator.of(context).pushNamed(TabScreen.routeName);
-                      var api = new Api();
-                      api
-                          .login(phone.text, password.text)
-                          .then((value) => {mountask(value['token'])});
-                    },
-                    child: Text('Login bro'),
-                  ),
-                  OptionButton(
-                    desc: 'Don\'t have an account? ',
-                    method: 'Sign Up',
-                    onPressHandler: () {
-                      Navigator.of(context).pushNamed(SignupScreen.routeName);
-                    },
-                  ),
-                ],
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    OrRow(),
+                    TextFields(),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'forgotpassword'.tr(),
+                          style: TextStyle(
+                            color: kPrimaryGreen,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // print('cool');
+                        if (_formKey.currentState!.validate()) {
+                          EasyLoading.show(status: 'loading'.tr());
+
+                          var api = new Api();
+                          api.login(phone.text, password.text).then((value) => {
+                                print('value'),
+                                print(value['_id']),
+                                mountask(value['token'], value['name'],
+                                    value['phoneNumber'], value['_id']),
+                                Navigator.of(context)
+                                    .pushNamed(TabScreen.routeName),
+                                EasyLoading.dismiss()
+                              });
+                        }
+                      },
+                      child: Text('login'.tr()),
+                    ),
+                    OptionButton(
+                      desc: 'donthaveaccount'.tr(),
+                      method: 'signup'.tr(),
+                      onPressHandler: () {
+                        Navigator.of(context).pushNamed(SignupScreen.routeName);
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context,TabScreen.routeName);
+                          },
+                          child: Text('skip'.tr())),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -132,11 +168,18 @@ class TextFields extends StatelessWidget {
         ),
         CustomTextField(
           controller1: phone,
-          hint: 'Phone',
+          hint: 'phonenumber'.tr(),
           icon: Icon(
             Icons.keyboard_arrow_down_rounded,
             size: 24,
           ),
+          validator: (val) {
+            var passwordRegExp = RegExp(r"[0-9]{10}$");
+            if (passwordRegExp.hasMatch(val!)) {
+            } else {
+              return 'entervalidphone'.tr();
+            }
+          },
         ),
         SizedBox(
           height: getProportionateScreenHeight(16),
@@ -144,13 +187,49 @@ class TextFields extends StatelessWidget {
 
         CustomTextField(
           controller1: password,
-          hint: 'Password',
+          hint: 'password'.tr(),
           icon: Icon(
             Icons.keyboard_arrow_down_rounded,
             size: 24,
           ),
+          validator: (val) {
+            var passwordRegExp = RegExp(
+                r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\><*~]).{8,}/pre>');
+            if (val!.length >= 5) {
+            } else {
+              return "entervalidpassword".tr();
+            }
+          },
         ),
       ],
     );
+  }
+}
+
+extension extString on String {
+  bool get isValidEmail {
+    final emailRegExp = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+    return emailRegExp.hasMatch(this);
+  }
+
+  bool get isValidName {
+    final nameRegExp =
+        new RegExp(r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$");
+    return nameRegExp.hasMatch(this);
+  }
+
+  bool get isValidPassword {
+    final passwordRegExp = RegExp(
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\><*~]).{8,}/pre>');
+    return passwordRegExp.hasMatch(this);
+  }
+
+  bool get isNotNull {
+    return this != null;
+  }
+
+  bool? get isValidPhone {
+    final phoneRegExp = RegExp(r"^\+?0[0-9]{10}$");
+    return phoneRegExp.hasMatch(this);
   }
 }

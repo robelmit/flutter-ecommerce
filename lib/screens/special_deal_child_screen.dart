@@ -35,6 +35,9 @@ class SpecialDealChildScreen extends StatelessWidget {
                   width: getProportionateScreenWidth(16),
                 ),
               ],
+                   () {
+                Navigator.pop(context);
+              },
             ),
             HorizontalFruitsScroll(),
             Expanded(

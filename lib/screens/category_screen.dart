@@ -1,3 +1,5 @@
+import 'package:app/models/Categorypro.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 import '../models/category.dart';
@@ -11,64 +13,76 @@ class CategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Category> categories = [
       Category(
-        'Vegetables',
-        'assets/images/vegetable.png',
+        'phones'.tr(),
+        'assets/images/phone.svg',
         kAccentGreen,
       ),
       Category(
-        'Fruits',
-        'assets/images/fruit.png',
-        kAccentRed,
-      ),
-      Category(
-        'Milks & egg',
-        'assets/images/egg.png',
+        'electronics'.tr(),
+        'assets/images/television pro.svg',
         kAccentYellow,
       ),
       Category(
-        'Meat',
-        'assets/images/meat.png',
-        kAccentPurple,
-      ),
-      Category(
-        'Bread',
-        'assets/images/bread.png',
+        'vehicles'.tr(),
+        'assets/images/car.svg',
         kAccentTosca,
       ),
       Category(
-        'Fish',
-        'assets/images/seafood.png',
+        'property'.tr(),
+        'assets/images/house.svg',
         kAccentGreen,
       ),
       Category(
-        'Cookies',
-        'assets/images/cereal.png',
-        kAccentRed,
+        'homesupplies'.tr(),
+        'assets/images/sofa.svg',
+        kAccentPurple,
       ),
       Category(
-        'Herbs',
-        'assets/images/herbs.png',
+        'fashion'.tr(),
+        'assets/images/shoe.svg',
+        kAccentPurple,
+      ),
+      Category(
+        'animals'.tr(),
+        'assets/images/dog.svg',
         kAccentYellow,
       ),
-      Category(
-        'Drinks',
-        'assets/images/drinks.png',
-        kAccentPurple,
-      ),
-      Category(
-        'Ice Cream',
-        'assets/images/cannedfood.png',
-        kAccentTosca,
-      ),
-      Category(
-        'Cheese',
-        'assets/images/dairy.png',
+    ];
+    final List<Categorypro> categoriestosend = [
+      Categorypro(
+        'phones',
+        'assets/images/phone.svg',
         kAccentGreen,
       ),
-      Category(
-        'Chips',
-        'assets/images/cereal.png',
-        kAccentRed,
+      Categorypro(
+        'electronics',
+        'assets/images/television pro.svg',
+        kAccentYellow,
+      ),
+      Categorypro(
+        'vehicles',
+        'assets/images/car.svg',
+        kAccentTosca,
+      ),
+      Categorypro(
+        'property',
+        'assets/images/house.svg',
+        kAccentGreen,
+      ),
+      Categorypro(
+        'homesupplies',
+        'assets/images/sofa.svg',
+        kAccentPurple,
+      ),
+      Categorypro(
+        'fashion',
+        'assets/images/shoe.svg',
+        kAccentPurple,
+      ),
+      Categorypro(
+        'animals',
+        'assets/images/dog.svg',
+        kAccentYellow,
       ),
     ];
     ScreenUtils().init(context);
@@ -77,19 +91,24 @@ class CategoryScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBar(
-              'Categories',
+              'Categories'.tr(),
               [
-                Icon(
-                  Icons.search,
-                  color: kPrimaryGreen,
-                ),
+                // Icon(
+                //   Icons.search,
+                //   color: kPrimaryGreen,
+                // ),
+                // i am called robel and i am a senior software engineer with over 5 years
+                // and i am trying to build an app called 
                 SizedBox(
-                  width: getProportionateScreenWidth(16),
+                  width: getProportionateScreenWidth(100),
                 ),
               ],
+              () {
+               Navigator.of(context, rootNavigator: true).pop(context);
+              },
             ),
             SizedBox(
-              height: getProportionateScreenHeight(50),
+              height: getProportionateScreenHeight(60),
             ),
             Expanded(
                 child: GridView(
@@ -98,9 +117,8 @@ class CategoryScreen extends StatelessWidget {
               ),
               children: List.generate(
                 categories.length,
-                (index) => CategoryCard(
-                  categories[index],
-                ),
+                (index) =>
+                    CategoryCard(categories[index], categoriestosend[index]),
               ),
             ))
           ],

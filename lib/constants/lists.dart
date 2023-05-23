@@ -1,0 +1,416 @@
+import 'package:app/models/Categorypro.dart';
+import 'package:app/models/category.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+import 'colors.dart';
+
+final List<Category> phone = [
+  Category(
+    'Samsung'.tr(),
+    'assets/images/samsung.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'iphone'.tr(),
+    'assets/images/apple.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Nokia'.tr(),
+    'assets/images/nokia.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Huawei'.tr(),
+    'assets/images/huaweipro.svg',
+    kAccentYellow,
+  ),
+  Category(
+    'Xiaomi'.tr(),
+    'assets/images/xiaomi.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> phonepro = [
+  Categorypro(
+    'Samsung',
+    'assets/images/samsung.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'iphone',
+    'assets/images/apple.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Nokia',
+    'assets/images/nokia.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Huawei',
+    'assets/images/huaweipro.svg',
+    kAccentYellow,
+  ),
+  Categorypro(
+    'Xiaomi',
+    'assets/images/xiaomi.svg',
+    kAccentPurple,
+  ),
+];
+
+final List<Category> electronics = [
+  Category(
+    'Tv'.tr(),
+    'assets/images/television pro.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Video Cameras'.tr(),
+    'assets/images/videocamera.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Laptops'.tr(),
+    'assets/images/laptop.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Desktops'.tr(),
+    'assets/images/computer1.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Computer Accessory'.tr(),
+    'assets/images/harddisk.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Headphones'.tr(),
+    'assets/images/headphone.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Router'.tr(),
+    'assets/images/router.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> electronicspro = [
+  Categorypro(
+    'Tv',
+    'assets/images/television pro.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Video Cameras',
+    'assets/images/video.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Laptops',
+    'assets/images/laptop.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Desktops',
+    'assets/images/desktop.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Computer Accessory',
+    'assets/images/harddisk.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Headphones',
+    'assets/images/headphone.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Router',
+    'assets/images/router.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> homesupply = [
+  Category(
+    'Sofa'.tr(),
+    'assets/images/sofa.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Fridge'.tr(),
+    'assets/images/fridge.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Bed'.tr(),
+    'assets/images/bed.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Microwave'.tr(),
+    'assets/images/microwave.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Table'.tr(),
+    'assets/images/table.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Chair'.tr(),
+    'assets/images/chair.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> homesupplypro = [
+  Categorypro(
+    'Sofa',
+    'assets/images/sofa.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Fridge',
+    'assets/images/fridge.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Bed',
+    'assets/images/bed.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Microwave',
+    'assets/images/microwave.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Table',
+    'assets/images/table.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Chair',
+    'assets/images/chair.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> cloth = [
+  Category(
+    'Cloths'.tr(),
+    'assets/images/sofa.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Shoe'.tr(),
+    'assets/images/shoe.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Watch'.tr(),
+    'assets/images/watch.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Bags'.tr(),
+    'assets/images/bag.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> clothpro = [
+  Categorypro(
+    'Cloths',
+    'assets/images/sofa.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Shoe',
+    'assets/images/shoe.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Watch',
+    'assets/images/watch.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Bags',
+    'assets/images/bag.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> vehicles = [
+  Category(
+    'Toyota'.tr(),
+    'assets/images/toyota.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Hyundai'.tr(),
+    'assets/images/hyundai.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Suzuki'.tr(),
+    'assets/images/suzuki.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Nissan'.tr(),
+    'assets/images/nissan.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Ford'.tr(),
+    'assets/images/ford.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Volswagen'.tr(),
+    'assets/images/buses.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Buses'.tr(),
+    'assets/images/buses.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Truck'.tr(),
+    'assets/images/truck.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Heavy Equipment'.tr(),
+    'assets/images/excavator.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> vehiclespro = [
+  Categorypro(
+    'Toyota'.tr(),
+    'assets/images/toyota.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Hyundai'.tr(),
+    'assets/images/hyundai.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Suzuki'.tr(),
+    'assets/images/suzuki.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Nissan'.tr(),
+    'assets/images/nissan.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Ford'.tr(),
+    'assets/images/ford.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Volswagen'.tr(),
+    'assets/images/buses.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Buses'.tr(),
+    'assets/images/buses.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Truck',
+    'assets/images/truck.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Heavy Equipment',
+    'assets/images/excavator.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> house = [
+  Category(
+    'Apartment'.tr(),
+    'assets/images/apartment.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'House'.tr(),
+    'assets/images/house.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Condominium'.tr(),
+    'assets/images/apartment.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Villa'.tr(),
+    'assets/images/villa.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> housepro = [
+  Categorypro(
+    'Apartment',
+    'assets/images/apartment.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'House',
+    'assets/images/house.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Condominium',
+    'assets/images/apartment.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Villa',
+    'assets/images/villa.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> animals = [
+  Category(
+    'Dogs'.tr(),
+    'assets/images/dog.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Cats'.tr(),
+    'assets/images/cat.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Birds'.tr(),
+    'assets/images/bird.svg',
+    kAccentPurple,
+  ),
+];
+
+final List<Categorypro> animalspro = [
+  Categorypro(
+    'Dogs',
+    'assets/images/dog.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Cats',
+    'assets/images/cat.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Birds',
+    'assets/images/bird.svg',
+    kAccentPurple,
+  ),
+];

@@ -61,7 +61,7 @@ class AddAddressScreen extends StatelessWidget {
                     SizedBox(
                       height: getProportionateScreenHeight(10),
                     ),
-                    SearchBarpro('Enter Address'),
+                  //  SearchBarpro('Enter Address'),
                     SizedBox(
                       height: getProportionateScreenHeight(10),
                     ),

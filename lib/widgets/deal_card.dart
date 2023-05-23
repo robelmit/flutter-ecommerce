@@ -5,17 +5,28 @@ import '../utils/screen_utils.dart';
 class DealCard extends StatelessWidget {
   final bool isHorizontalScrolling;
   final void Function()? onTap;
+  final String? title;
+  final String? description;
+  final String? price;
+  final String? imageurl;
   //final Function onTap;
 //this.onTap,
-  const DealCard({this.isHorizontalScrolling = true,  this.onTap});
+  const DealCard(
+      {this.isHorizontalScrolling = true,
+      this.onTap,
+      required this.title,
+      required this.description,
+      required this.price,
+      required this.imageurl});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        //height:300,
         alignment: Alignment.bottomLeft,
         width: getProportionateScreenWidth(280),
-        height: getProportionateScreenHeight(170),
+        height: getProportionateScreenHeight(210),
         margin: EdgeInsets.only(
           left: isHorizontalScrolling
               ? getProportionateScreenWidth(16)
@@ -25,22 +36,23 @@ class DealCard extends StatelessWidget {
               : getProportionateScreenHeight(0),
         ),
         decoration: ShapeDecoration(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              getProportionateScreenWidth(
-                8,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                getProportionateScreenWidth(
+                  8,
+                ),
               ),
             ),
-          ),
-          gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-            colors: [
-              kGradientColor,
-              kGradientColor.withOpacity(0),
-            ],
-          ),
-        ),
+            gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              colors: [
+                kGradientColor,
+                kGradientColor.withOpacity(0),
+              ],
+            ),
+            image: DecorationImage(
+                image: NetworkImage(imageurl!), fit: BoxFit.cover)),
         child: Padding(
           padding: EdgeInsets.all(
             getProportionateScreenWidth(8),
@@ -50,19 +62,20 @@ class DealCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Fresh Fruit for You',
+                '$title',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: getProportionateScreenWidth(20),
-                  fontWeight: FontWeight.w700,
-                ),
+                    color: Colors.white,
+                    fontSize: getProportionateScreenWidth(20),
+                    fontWeight: FontWeight.w700,
+                    shadows: [
+                      Shadow(color: Colors.black),
+                      Shadow(color: Color.fromARGB(255, 154, 110, 68)),
+                    ]),
               ),
               Text(
-                'Fresh fruit Everyday we Serve to You',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
+                '$price',
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              )
             ],
           ),
         ),

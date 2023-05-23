@@ -58,6 +58,9 @@ class _FruitScreenState extends State<FruitScreen> {
                   width: getProportionateScreenWidth(16),
                 ),
               ],
+                   () {
+                Navigator.pop(context);
+              },
             ),
             SizedBox(
               height: getProportionateScreenHeight(16.0),

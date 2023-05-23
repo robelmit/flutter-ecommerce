@@ -1,4 +1,11 @@
+import 'package:app/screens/chats.dart';
+import 'package:app/screens/chatscreen.dart';
+import 'package:app/screens/tab_screen.dart';
+import 'package:app/services/api.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/colors.dart';
 import '../screens/order_summary_screen.dart';
@@ -12,10 +19,15 @@ import '../widgets/indi_deal_card.dart';
 import '../widgets/price_tag.dart';
 import '../widgets/quantity_input.dart';
 import '../widgets/tab_title.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:app/screens/dragon_fruit_screen.dart';
+import 'package:photo_view/photo_view.dart';
 
 class DragonFruitScreen extends StatefulWidget {
   static const routeName = '/dragonFruit';
-
+  String id;
+  DragonFruitScreen({required this.id});
   @override
   _DragonFruitScreenState createState() => _DragonFruitScreenState();
 }
@@ -23,448 +35,243 @@ class DragonFruitScreen extends StatefulWidget {
 class _DragonFruitScreenState extends State<DragonFruitScreen> {
   final textController = TextEditingController(text: '1');
   bool isReviewTab = false;
+  var api = Api();
+  var userid;
+  @override
+  void initState() {
+    mountask();
+
+    super.initState();
+  }
+
+  mountask() async {
+    print('hi there ');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    userid = prefs.getString('id');
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
+        body: SafeArea(
+            child: SingleChildScrollView(
+      child: Column(
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomAppBar(
-                      'Dragon Fruit',
-                      [
-                        SizedBox(
-                          width: getProportionateScreenWidth(24),
-                          child: Image.asset(
-                            'assets/images/cart_nav_fill.png',
-                            fit: BoxFit.cover,
+            CustomAppBar(
+              'adddetails'.tr(),
+              [
+                SizedBox(
+                  width: getProportionateScreenWidth(16),
+                ),
+                SizedBox(
+                  width: getProportionateScreenWidth(16),
+                ),
+              ],
+              () {
+                Navigator.of(context, rootNavigator: true).pop(context);
+              },
+            ),
+            FutureBuilder(
+                future: api.getaddsbyid(widget.id),
+                builder:
+                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                  var images = snapshot.data['images'];
+                  print('this is cool');
+                  print(images);
+                  if (snapshot.hasData) {
+                    return Column(
+                      children: [
+                        CarouselSlider.builder(
+                          itemCount: images.length,
+                          options: CarouselOptions(
+                            enlargeCenterPage: true,
+                            height: 300,
+                            autoPlay: true,
+                            autoPlayInterval: Duration(seconds: 2),
+                            reverse: false,
+                            aspectRatio: 5.0,
                           ),
-                        ),
-                        SizedBox(
-                          width: getProportionateScreenWidth(16),
-                        ),
-                        Icon(
-                          Icons.share,
-                          color: kPrimaryGreen,
-                        ),
-                        SizedBox(
-                          width: getProportionateScreenWidth(16),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(10),
-                    ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(300),
-                      width: double.infinity,
-                      child: ImagePlaceholder(),
-                    ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(10),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: getProportionateScreenWidth(16.0),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          DiscoutText(),
-                          SizedBox(
-                            height: getProportionateScreenHeight(8),
-                          ),
-                          FruitTitle(title: 'Fruit\'s Bundle'),
-                          SizedBox(
-                            height: getProportionateScreenHeight(8),
-                          ),
-                          Text(
-                            '200gr',
-                            style:
-                                Theme.of(context).textTheme.headline4!.copyWith(
-                                      color: kTextColorAccent,
+                          itemBuilder: (context, i, id) {
+                            //for onTap to redirect to another screen
+                            return GestureDetector(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    border: Border.all(
+                                      color: Colors.white,
+                                    )),
+                                //ClipRRect for image border radius
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: PhotoView(
+                                    imageProvider: NetworkImage(
+                                      images[i]['url'],
+                                      // width: 500,
+                                      // fit: BoxFit.cover,
                                     ),
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                var url = images[i];
+                                print(url.toString());
+                              },
+                            );
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Row(
                             children: [
-                              PreviousPriceTag(),
-                              SizedBox(
-                                width: getProportionateScreenWidth(8),
-                              ),
-                              PriceTag(),
+                              Text(snapshot.data!['title'],
+                                  style: TextStyle(fontSize: 20)),
+                              SizedBox(height: 10),
                               Spacer(),
-                              CustomIconButton(Icons.remove, () {
-                                setState(() {
-                                  int quantity = int.parse(textController.text);
-                                  quantity--;
-                                  textController.text = quantity.toString();
-                                });
-                              }),
-                              SizedBox(
-                                width: getProportionateScreenWidth(4),
+                              Text(
+                                '${snapshot.data!["price"]} birr',
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor),
                               ),
-                              QuantityInput(textController: textController),
-                              SizedBox(
-                                width: getProportionateScreenWidth(4),
-                              ),
-                              CustomIconButton(Icons.add, () {
-                                setState(() {
-                                  int quantity = int.parse(textController.text);
-                                  quantity++;
-                                  textController.text = quantity.toString();
-                                });
-                              }),
                             ],
                           ),
-                          SizedBox(
-                            height: getProportionateScreenHeight(8.0),
+                        ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              snapshot.data!['description'],
+                              style: TextStyle(color: Colors.grey),
+                            ),
                           ),
-                          Container(
-                            height: getProportionateScreenHeight(
-                              32,
-                            ),
-                            padding: EdgeInsets.symmetric(
-                              vertical: getProportionateScreenHeight(2),
-                              horizontal: getProportionateScreenWidth(4),
-                            ),
-                            decoration: ShapeDecoration(
-                              color: kFillColorThird,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  getProportionateScreenWidth(8.0),
-                                ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Text(
+                              'Posted by',
+                              style: TextStyle(
+                                color: Colors.grey[800],
+                                decoration: TextDecoration.underline,
                               ),
                             ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Expanded(
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      if (!isReviewTab) {
-                                        return;
-                                      }
-
-                                      setState(() {
-                                        isReviewTab = !isReviewTab;
-                                      });
-                                    },
-                                    child: DetailSelection(
-                                      'Detail Items',
-                                      !isReviewTab,
-                                    ),
-                                  ),
-                                ),
-                                VerticalDivider(
-                                  endIndent: getProportionateScreenHeight(4),
-                                  indent: getProportionateScreenHeight(4),
-                                ),
-                                Expanded(
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      if (isReviewTab) {
-                                        return;
-                                      }
-
-                                      setState(() {
-                                        isReviewTab = !isReviewTab;
-                                      });
-                                    },
-                                    child: DetailSelection(
-                                      'Reviews',
-                                      isReviewTab,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
                           ),
-                          SizedBox(
-                            height: getProportionateScreenHeight(16),
-                          ),
-                          !isReviewTab
-                              ? Text(
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline4!
-                                      .copyWith(
-                                        color: kTextColorAccent,
-                                      ),
-                                )
-                              : Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    ReviewCard(),
-                                    ReviewCard(),
-                                    OutlinedButton(
-                                        onPressed: () {},
-                                        child: Text('See All Reviews'))
-                                  ],
-                                ),
-                          Divider(
-                            height: getProportionateScreenHeight(48),
-                          ),
-                          TabTitle(
-                            title: 'More Like this',
-                            padding: 0,
-                          ),
-                          SizedBox(
-                            height: getProportionateScreenHeight(220),
-                            child: Row(
-                              children: [
-                                // Expanded(
-                                //  child: IndiDealCard(
-                                //    noPadding: true,
-                                //    isSelected: true,
-                                //  ),
-                                // ),
-                                SizedBox(
-                                  width: getProportionateScreenWidth(8),
-                                ),
-                                //  Expanded(
-                                //  child: IndiDealCard(
-                                //    noPadding: true,
-                                //    isSelected: false,
-                                //  ),
-                                //   ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: getProportionateScreenHeight(48),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(16.0),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(OrderSummaryScreen.routeName);
-                      },
-                      child: SizedBox(
-                        width: getProportionateScreenWidth(32),
-                        child: Image.asset(
-                          'assets/images/cart_nav_fill.png',
-                          fit: BoxFit.cover,
                         ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: getProportionateScreenWidth(16),
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Buy Now'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ReviewCard extends StatelessWidget {
-  const ReviewCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        bottom: getProportionateScreenHeight(8.0),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: kGreyShade5,
-                      radius: getProportionateScreenWidth(24.0),
-                    ),
-                    SizedBox(
-                      width: getProportionateScreenWidth(8),
-                    ),
-                    UserDetails(),
-                  ],
-                ),
-                Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
-                  style: Theme.of(context).textTheme.headline4!.copyWith(
-                        color: kTextColorAccent,
-                      ),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class UserDetails extends StatelessWidget {
-  const UserDetails({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Shoo Thar Mien',
-                style: TextStyle(
-                  fontSize: getProportionateScreenWidth(17.0),
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              Icon(Icons.more_vert_rounded),
-            ],
-          ),
-          Row(
-            children: [
-              Image.asset(
-                'assets/images/star_rating.png',
-              ),
-              SizedBox(
-                width: getProportionateScreenWidth(4),
-              ),
-              Image.asset(
-                'assets/images/star_rating.png',
-              ),
-              SizedBox(
-                width: getProportionateScreenWidth(4),
-              ),
-              Image.asset(
-                'assets/images/star_rating.png',
-              ),
-              SizedBox(
-                width: getProportionateScreenWidth(4),
-              ),
-              Image.asset(
-                'assets/images/star_rating.png',
-              ),
-              SizedBox(
-                width: getProportionateScreenWidth(4),
-              ),
-              Image.asset(
-                'assets/images/star_rating.png',
-              ),
-              Text(
-                '29 February, 2099',
-                style: TextStyle(
-                  color: kTextColorAccent,
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class DetailSelection extends StatelessWidget {
-  final String text;
-  final bool isSelected;
-
-  const DetailSelection(this.text, this.isSelected);
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: Duration(milliseconds: 500),
-      decoration: isSelected
-          ? ShapeDecoration(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                  getProportionateScreenWidth(8.0),
-                ),
-              ),
-              shadows: [
-                  BoxShadow(
-                    color: kShadowColor,
-                    offset: Offset(0, 3),
-                    blurRadius: 8,
-                  )
-                ])
-          : null,
-      alignment: Alignment.center,
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-}
-
-class PreviousPriceTag extends StatelessWidget {
-  const PreviousPriceTag({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/Divider2.png'),
-        ),
-      ),
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: getProportionateScreenWidth(16),
-          vertical: getProportionateScreenHeight(8),
-        ),
-        decoration: ShapeDecoration(
-          color: kFailColor.withOpacity(0.15),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              getProportionateScreenWidth(8.0),
-            ),
-          ),
-        ),
-        child: Text(
-          '\$126',
-          style: TextStyle(
-            color: kFailColor,
-          ),
-        ),
-      ),
-    );
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 2,
+                            margin: EdgeInsets.symmetric(horizontal: 12),
+                            decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(10)),
+                            padding: EdgeInsets.all(5),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 12),
+                              child: Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 25,
+                                    backgroundImage:
+                                        AssetImage('assets/images/person5.jpg'),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '${snapshot.data!["postedBy"]['name']}',
+                                          style: TextStyle(
+                                              color: Theme.of(context)
+                                                  .primaryColor),
+                                        ),
+                                        Text(
+                                            '${snapshot.data!["postedBy"]['phoneNumber']}')
+                                      ]),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        //  Spacer(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 12.0),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  FilledButton(
+                                      onPressed: () {
+                                        print('we are on the line ' +
+                                            snapshot.data!["postedBy"]['_id']
+                                                .toString());
+                                        if (userid != null) {
+                                          api.createroom(
+                                              userid,
+                                              snapshot.data!["postedBy"]["_id"]
+                                                  .toString());
+                                          Navigator.of(context)
+                                              .pushAndRemoveUntil(
+                                                  MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          TabScreen(
+                                                            tab: "2",
+                                                          )),
+                                                  ModalRoute.withName(
+                                                      "/tab_screen"));
+                                        }
+                                      },
+                                      child: Text(
+                                        'messageuser'.tr(),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.normal),
+                                      )),
+                                  SizedBox(width: 10),
+                                  FilledButton(
+                                      onPressed: () {
+                                        var phone = 'tel://' +
+                                            snapshot.data!["postedBy"]
+                                                ['phoneNumber'];
+                                        launch(phone);
+                                      },
+                                      child: Text(
+                                        'calluser'.tr(),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.normal),
+                                      ))
+                                ])),
+                      ],
+                    );
+                  } else
+                    return CircularProgressIndicator();
+                })
+          ]),
+    )));
   }
 }

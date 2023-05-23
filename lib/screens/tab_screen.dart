@@ -1,3 +1,5 @@
+import 'package:app/screens/chats.dart';
+import 'package:app/screens/chatscreen.dart';
 import 'package:app/services/api.dart';
 import 'package:flutter/material.dart';
 import '../screens/cart_screen.dart';
@@ -8,14 +10,23 @@ import '../widgets/custom_nav_bar.dart';
 
 class TabScreen extends StatefulWidget {
   static const routeName = '/tabScreen';
-
+  String? tab;
   @override
+  TabScreen({this.tab});
   _TabScreenState createState() => _TabScreenState();
 }
 
 class _TabScreenState extends State<TabScreen> {
   int curTab = 0;
-
+  @override
+  void initState() {
+    if (widget.tab != null) {
+      print('Tab' + widget.tab!);
+      curTab = int.parse(widget.tab!);
+      setState(() {});
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +42,7 @@ class _TabScreenState extends State<TabScreen> {
         }),
       },
       {
-        'widget': CartScreen(),
+        'widget': ChatScreenPro(),
       },
       {
         'widget': UserScreen(),

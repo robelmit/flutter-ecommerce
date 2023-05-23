@@ -56,7 +56,7 @@ class OrderSuccessScreen extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context)
-                      .pushReplacementNamed(TabScreen.routeName);
+                      .pushNamed(TabScreen.routeName);
                 },
                 child: Text('Continue Shopping'),
               ),

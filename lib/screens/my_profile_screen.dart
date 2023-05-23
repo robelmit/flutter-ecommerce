@@ -12,7 +12,9 @@ class MyProfileScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            CustomAppBar('My Profile', []),
+            CustomAppBar('My Profile', [],     () {
+                Navigator.pop(context);
+              },),
             SizedBox(
               height: getProportionateScreenHeight(16.0),
             ),

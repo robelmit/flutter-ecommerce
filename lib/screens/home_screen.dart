@@ -1,8 +1,14 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'dart:async';
+
+import 'package:app/models/Categorypro.dart';
 import 'package:app/models/ads.dart';
+import 'package:app/screens/dragon_fruit_screen.dart';
+import 'package:app/screens/postad.dart';
 import 'package:app/services/api.dart';
 import 'package:app/widgets/search_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
@@ -12,13 +18,15 @@ import '../widgets/custom_nav_bar.dart';
 import '../widgets/deal_card.dart';
 import '../widgets/indi_deal_card.dart';
 import '../widgets/tab_title.dart';
-import '../widgets/category_card.dart';
+import '../widgets/category_card_home.dart';
 import './search_screen.dart';
 import './category_screen.dart';
 import './popular_deals_screen.dart';
 import './special_deal_screen.dart';
+import './MyApp.dart';
 
 var api = new Api();
+String? search = '1111111111';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home_screen';
@@ -28,6 +36,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Timer? _debounce;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -39,95 +49,244 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final List<Category> categories = [
       Category(
-        'Vegetables',
-        'assets/images/vegetable_home.png',
+        'phones'.tr(),
+        'assets/images/phone.svg',
         kAccentGreen,
       ),
       Category(
-        'Fruits',
-        'assets/images/fruit_home.png',
+        'cameras'.tr(),
+        'assets/images/camera.svg',
+        kAccentYellow,
+      ),
+      Category(
+        'tv'.tr(),
+        'assets/images/tele.svg',
+        kAccentYellow,
+      ),
+      Category(
+        'laptop'.tr(),
+        'assets/images/laptop.svg',
+        kAccentYellow,
+      ),
+      Category(
+        'electronics'.tr(),
+        'assets/images/fridge.svg',
+        kAccentPurple,
+      ),
+      Category(
+        'books'.tr(),
+        'assets/images/book.svg',
+        kAccentTosca,
+      ),
+      Category(
+        'motorbike'.tr(),
+        'assets/images/motorcycle.svg',
+        kAccentGreen,
+      ),
+      Category(
+        'cars'.tr(),
+        'assets/images/car.svg',
         kAccentRed,
       ),
       Category(
-        'Milks & Egg',
-        'assets/images/egg_home.png',
-        kAccentYellow,
+        'houses'.tr(),
+        'assets/images/house.svg',
+        kAccentRed,
       ),
       Category(
-        'Meat',
-        'assets/images/meat_home.png',
-        kAccentPurple,
-      ),
-      Category(
-        'Milks & Egg',
-        'assets/images/egg_home.png',
-        kAccentYellow,
-      ),
-      Category(
-        'Meat',
-        'assets/images/meat_home.png',
+        'others'.tr(),
+        'assets/images/laptop.svg',
         kAccentPurple,
       ),
     ];
+    final List<Categorypro> categoriestosend = [
+      Categorypro(
+        'Phones',
+        'assets/images/phone.svg',
+        kAccentGreen,
+      ),
+      Categorypro(
+        'Cameras',
+        'assets/images/camera.svg',
+        kAccentYellow,
+      ),
+      Categorypro(
+        'Tv',
+        'assets/images/tele.svg',
+        kAccentYellow,
+      ),
+      Categorypro(
+        'Laptop',
+        'assets/images/laptop.svg',
+        kAccentYellow,
+      ),
+      Categorypro(
+        'Electronics',
+        'assets/images/fridge.svg',
+        kAccentPurple,
+      ),
+      Categorypro(
+        'Books',
+        'assets/images/book.svg',
+        kAccentTosca,
+      ),
+      Categorypro(
+        'Motor Bike',
+        'assets/images/motorcycle.svg',
+        kAccentGreen,
+      ),
+      Categorypro(
+        'Cars',
+        'assets/images/car.svg',
+        kAccentRed,
+      ),
+      Categorypro(
+        'Houses',
+        'assets/images/house.svg',
+        kAccentRed,
+      ),
+      Categorypro(
+        'Others',
+        'assets/images/laptop.svg',
+        kAccentPurple,
+      ),
+    ];
+
     ScreenUtils().init(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        //   Spacer(),
-        //HomeAppBar(),
-        SearchBarpro('Search an item'),
-        //  Spacer(),
-        CategoryTab(categories: categories),
-        //  Spacer(),
-        DealsTab(),
-        //  Spacer(),
-        PopularDealTab(),
-      ],
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          //  crossAxisAlignment: CrossAxisAlignment.,
+          children: [
+            //   Spacer(),
+            //HomeAppBar(),
+            TextField(
+              onChanged: ((value) => {
+                    if (_debounce?.isActive ?? false) {_debounce!.cancel()},
+                    _debounce = Timer(const Duration(milliseconds: 1000), () {
+                      search = value.toString();
+                      setState(() {});
+                    })
+                  }),
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: kFillColorThird,
+                prefixIcon: Icon(Icons.search),
+                suffixIcon: Icon(Icons.filter_alt),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(
+                    getProportionateScreenWidth(4),
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(
+                    getProportionateScreenWidth(8),
+                  ),
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(
+                    getProportionateScreenWidth(8),
+                  ),
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                  ),
+                ),
+                hintText: 'searchanadd'.tr(),
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: getProportionateScreenHeight(
+                    10,
+                  ),
+                ),
+                hintStyle: TextStyle(
+                  color: kGreyShade2,
+                  //fontSize: getProportionateScreenWidth(17),
+                ),
+              ),
+              style: TextStyle(
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+            //  Spacer(),
+            CategoryTab(categories: categories, categories1: categoriestosend),
+            //  Spacer(),
+            //DealsTab(),
+            //  Spacer(),
+            PopularDealTab(),
+          ],
+        ),
+      ),
     );
   }
 }
 
-class PopularDealTab extends StatelessWidget {
+class PopularDealTab extends StatefulWidget {
+  @override
+  State<PopularDealTab> createState() => _PopularDealTabState();
+}
+
+class _PopularDealTabState extends State<PopularDealTab> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 10,
-      child: Column(
-        children: [
-          TabTitle(
-              title: 'New Ads ',
-              seeAll: () {
-                Navigator.of(context).pushNamed(PopularDealsScreen.routeName);
-              }),
-          FutureBuilder<List<Ads>?>(
-            future: api.getadds(),
+    return Column(
+      children: [
+        TabTitle(
+            title: 'New Ads ',
+            seeAll: () {
+              Navigator.of(context).pushNamed(PopularDealsScreen.routeName);
+            }),
+        RefreshIndicator(
+          //Just add this to your screen
+          color: Colors.green,
+          // key: _con.refreshIndicatorKey,
+          strokeWidth: 4,
+          displacement: 80,
+          onRefresh: refresh,
+          child: FutureBuilder<List<Ads>?>(
+            future: api.getadds(search),
             builder: (context, snapshot) {
-              return snapshot.hasData
-                  ? GridView.builder(
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2),
-                      itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
-                          child: IndiDealCard(
-                              isLeft: false,
-                              isSelected: true,
-                              title: snapshot.data![index].title!,
-                              catagory: snapshot.data![index].catagory!,
-                              price: snapshot.data![index].price!,
-                              imageurl:
-                                  snapshot.data![index].images!.first.url),
-                          onTap: () => {},
-                        );
+              if (snapshot.hasData) {
+                return GridView.builder(
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  // physics: RangeMaintainingScrollPhysics,
+                  itemCount: snapshot.data!.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                DragonFruitScreen(
+                                    id: snapshot.data![index].id!)));
                       },
-                    )
-                  : Center(child: CircularProgressIndicator());
+                      child: IndiDealCard(
+                          isLeft: false,
+                          isSelected: true,
+                          title: snapshot.data![index].title!,
+                          id: snapshot.data![index].id!,
+                          catagory: snapshot.data![index].catagory!,
+                          price: snapshot.data![index].price!,
+                          imageurl: snapshot.data![index].images!.first.url),
+                      //onTap: () => {},
+                    );
+                  },
+                );
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
             },
           ),
-        ],
-      ),
+        ),
+      ],
     );
+  }
+
+  Future<void> refresh() async {
+    api.getadds('1111111111');
   }
 }
 
@@ -144,6 +303,7 @@ class DealsTab extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (BuildContext context) => SpecialDealScreen(
                             catagory: 'phone',
+                            catagory1: 'phone',
                           )),
                   ModalRoute.withName("/special_deal"));
             }),
@@ -154,8 +314,8 @@ class DealsTab extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              DealCard(),
-              DealCard(),
+              // DealCard(),
+              // DealCard(),
             ],
           ),
         ),
@@ -168,9 +328,11 @@ class CategoryTab extends StatelessWidget {
   const CategoryTab({
     Key? key,
     required this.categories,
+    required this.categories1,
   }) : super(key: key);
 
   final List<Category> categories;
+  final List<Categorypro> categories1;
 
   @override
   Widget build(BuildContext context) {
@@ -184,16 +346,18 @@ class CategoryTab extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  'Categories',
+                  'categories'.tr(),
                   style: Theme.of(context).textTheme.headline4,
                 ),
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(CategoryScreen.routeName);
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => CategoryScreen()));
+                  // Navigator.of(context).pushNamed(CategoryScreen.routeName);
                 },
                 child: Text(
-                  'See All',
+                  'seeall'.tr(),
                 ),
               )
             ],
@@ -205,7 +369,7 @@ class CategoryTab extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: List.generate(
                 categories.length,
-                (index) => CategoryCard(categories[index]),
+                (index) => CategoryCardhome(categories[index], categories1[index]),
               ),
             ),
           )

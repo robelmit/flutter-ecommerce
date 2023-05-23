@@ -35,6 +35,9 @@ class _PopularDealsScreenState extends State<PopularDealsScreen> {
                       width: getProportionateScreenWidth(16),
                     ),
                   ],
+                       () {
+                Navigator.pop(context);
+              },
                 ),
                 CustomStaggerGrid(() {
                   setState(() {

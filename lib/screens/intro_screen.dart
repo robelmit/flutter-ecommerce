@@ -1,3 +1,5 @@
+import 'package:app/screens/tab_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 import '../screens/login_screen.dart';
@@ -44,23 +46,69 @@ class TextView extends StatelessWidget {
   const TextView(this.pageCount);
   @override
   Widget build(BuildContext context) {
-    List<Map<String, String>> data = [
-      {
-        'title': 'Fresh Vegetables',
-        'desc':
-            'Vegetables that are directly picked by farmers and guaranteed quality and freshness',
-      },
-      {
-        'title': 'Easy Shopping',
-        'desc':
-            'Grab your items only need to order from home, click pay and wait for the courier to arrive',
-      },
-      {
-        'title': 'Fast Delivery',
-        'desc':
-            'Courier will send the groceries you buy in just 1 day, very fast like a flash!',
-      },
-    ];
+    List<Map<String, String>>  data;
+    if (context.locale == Locale('en', 'US')) {
+      data = [
+        {
+          'title': 'Easy',
+          'desc': 'Using this app you can buy reused products easily',
+        },
+        {
+          'title': 'Interactive',
+          'desc': 'Connect with sellers around your area interactively',
+        },
+        {
+          'title': 'Modern',
+          'desc': 'find all of the products that you want in your phone',
+        },
+      ];
+    } else if (context.locale == Locale('en', 'ER')) {
+      data = [
+        {
+          'title': 'ቀሊል',
+          'desc': 'በዚ መተግበሪ ተጠቂሞም ዘገልገሉ ኣቁሑት ይግዝኡ',
+        },
+        {
+          'title': 'መራከቢ',
+          'desc': 'ምስ ኣብ ከባቢኦም ዘለዉ ሽየጥቲ ይራከቡ',
+        },
+        {
+          'title': 'ዘመናዊ',
+          'desc': 'ዝደለይዎ ኣቁሑት ብሞባይሎም ተጠቂሞም ዝደልይዎ ኣቁሑት ይግዝኡ',
+        },
+      ];
+    } else if (context.locale == Locale('am', 'ET')) {
+      data = [
+        {
+          'title': 'ቀላል',
+          'desc': 'ይሄን መተግበርያ በመጠቀም በቀላሉ ያገለገሉ እቃዎች መግዛት እና መሽጥ ይችላሉ ',
+        },
+        {
+          'title': 'አገናኝ',
+          'desc': 'በኣከባቢዎ ካሉ ሻጮች በቀላሉ መገናኘት ይችላሉ',
+        },
+        {
+          'title': 'ዘመናዊ',
+          'desc': 'የሚፈሉግትን ዕቃ ሞባይልዎን በመጠቀም በቀላሉ ይግዙ',
+        },
+      ];
+    } else {
+      data = [
+        {
+          'title': 'Easy',
+          'desc': 'Using this app you can buy reused products easily',
+        },
+        {
+          'title': 'Interactive',
+          'desc': 'Connect with sellers around your area interactively',
+        },
+        {
+          'title': 'Modern',
+          'desc': 'find all of the products that you want in your phone',
+        },
+      ];
+    }
+
     return Expanded(
       flex: 2,
       child: Padding(
@@ -103,10 +151,10 @@ class TextView extends StatelessWidget {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(SignupScreen.routeName);
+                Navigator.of(context).pushNamed(TabScreen.routeName);
               },
               child: Text(
-                'Get Started',
+                'getstarted'.tr(),
               ),
             ),
             Spacer(),
@@ -173,7 +221,7 @@ class IllustrationPageView extends StatelessWidget {
                     Navigator.of(context).pushNamed(LoginScreen.routeName);
                   },
                   child: Text(
-                    'Skip',
+                    'skip'.tr(),
                     style: Theme.of(context).textTheme.headline4!.copyWith(
                           color: kTextColor,
                         ),
@@ -195,13 +243,13 @@ class IllustrationPageView extends StatelessWidget {
                 },
                 children: [
                   Image.asset(
-                    'assets/images/illu1.png',
+                    'assets/images/bro1.png',
                   ),
                   Image.asset(
-                    'assets/images/illu2.png',
+                    'assets/images/bro2.png',
                   ),
                   Image.asset(
-                    'assets/images/illu3.png',
+                    'assets/images/bro5.png',
                   )
                 ],
               ),

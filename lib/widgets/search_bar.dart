@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 import '../utils/screen_utils.dart';
 
-class SearchBarpro extends StatelessWidget {
+class SearchBarpro extends StatefulWidget {
   final String hint;
+  final Function onChanged; 
 
-  const SearchBarpro(this.hint);
 
+  const SearchBarpro({required this.hint,required this.onChanged});
+
+  @override
+  State<SearchBarpro> createState() => _SearchBarproState();
+}
+
+class _SearchBarproState extends State<SearchBarpro> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+    //  onChanged:onChanged ,
       decoration: InputDecoration(
         filled: true,
         fillColor: kFillColorThird,
@@ -36,7 +44,7 @@ class SearchBarpro extends StatelessWidget {
             color: Colors.transparent,
           ),
         ),
-        hintText: hint,
+        hintText: widget.hint,
         contentPadding: EdgeInsets.symmetric(
           vertical: getProportionateScreenHeight(
             10,

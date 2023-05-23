@@ -1,4 +1,8 @@
+import 'package:app/screens/chatscreen.dart';
+import 'package:app/screens/chooselanguage.dart';
 import 'package:app/screens/home_screen.dart';
+import 'package:app/screens/landing_screen.dart';
+import 'package:app/screens/postad.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/intro_screen.dart';
@@ -24,6 +28,7 @@ import '../screens/my_profile_screen.dart';
 class Route {
   Map<String, Widget Function(BuildContext)> routes = {
     IntroScreen.routeName: (ctx) => IntroScreen(),
+    ChooseLanguage.routeName: (ctx) => ChooseLanguage(),
     LoginScreen.routeName: (ctx) => LoginScreen(),
     SignupScreen.routeName: (ctx) => SignupScreen(),
     AddAddressScreen.routeName: (ctx) => AddAddressScreen(),
@@ -34,14 +39,17 @@ class Route {
     FruitScreen.routeName: (ctx) => FruitScreen(),
     CategoryScreen.routeName: (ctx) => CategoryScreen(),
     PopularDealsScreen.routeName: (ctx) => PopularDealsScreen(),
-   // SpecialDealScreen.routeName: (ctx) => SpecialDealScreen(),
+    //SpecialDealScreen.routeName: (ctx) => SpecialDealScreen(),
     SpecialDealChildScreen.routeName: (ctx) => SpecialDealChildScreen(),
     SearchFruitScreen.routeName: (ctx) => SearchFruitScreen(),
-    DragonFruitScreen.routeName: (ctx) => DragonFruitScreen(),
+    //  DragonFruitScreen.routeName: (ctx,id) => DragonFruitScreen(),
     OrderSummaryScreen.routeName: (ctx) => OrderSummaryScreen(),
     CheckoutScreen.routeName: (ctx) => CheckoutScreen(),
     OrderSuccessScreen.routeName: (ctx) => OrderSuccessScreen(),
     MyProfileScreen.routeName: (ctx) => MyProfileScreen(),
-    //TabScreen.routeName: (ctx) => TabScreen(),
+    TabScreen.routeName: (ctx) => TabScreen(),
+    LandingScreen.routeName: (ctx) => LandingScreen(),
+    MyNewApp.routeName: (ctx) => MyNewApp(),
+    // ChatDetail.routeName: (ctx) => ChatDetail(),
   };
 }
