@@ -42,10 +42,13 @@ class _ChooseLanguageScreenState extends State<ChooseLanguage> {
               print(index);
               if (index == 0) {
                 context.setLocale(Locale('en', 'US'));
+                setState(() {});
               } else if (index == 1) {
                 context.setLocale(Locale('en', 'ER'));
+                setState(() {});
               } else if (index == 2) {
                 context.setLocale(Locale('am', 'ET'));
+                setState(() {});
               }
             },
           ),
@@ -53,7 +56,8 @@ class _ChooseLanguageScreenState extends State<ChooseLanguage> {
             padding: const EdgeInsets.all(20.0),
             child: FilledButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, IntroScreen.routeName);
+                  Navigator.pushReplacementNamed(
+                      context, IntroScreen.routeName);
                 },
                 child: Text('continue'.tr())),
           )

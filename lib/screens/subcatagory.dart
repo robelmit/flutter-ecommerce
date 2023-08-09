@@ -23,6 +23,8 @@ class SubCategoryScreen extends StatefulWidget {
 class _SubCategoryScreenState extends State<SubCategoryScreen> {
   @override
   Widget build(BuildContext context) {
+    print("this is cool and nice ");
+
     // final List<Category> categories = [
     //   Category(
     //     'phones'.tr(),
@@ -130,7 +132,7 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                 ),
               ],
               () {
-               Navigator.of(context, rootNavigator: true).pop(context);
+                Navigator.of(context, rootNavigator: true).pop(context);
               },
             ),
             SizedBox(

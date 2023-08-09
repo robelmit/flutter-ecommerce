@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 import 'colors.dart';
 
+
 List<String> phone = [
   'Samsung'.tr(),
   'iphone'.tr(),

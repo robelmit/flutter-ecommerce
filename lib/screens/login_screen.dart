@@ -2,6 +2,7 @@ import 'package:app/services/api.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../screens/tab_screen.dart';
 import '../screens/home_screen.dart';
@@ -37,6 +38,13 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    phone.clear();
+    password.clear();
+    super.dispose();
+  }
+
   mountask(token, name, phonenumber, id) async {
     print('check');
     print(id);
@@ -59,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
           IconButton(
             icon: Icon(Icons.arrow_back_ios_new),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, TabScreen.routeName);
             },
           ),
           Expanded(
@@ -112,15 +120,29 @@ class _LoginScreenState extends State<LoginScreen> {
                           EasyLoading.show(status: 'loading'.tr());
 
                           var api = new Api();
-                          api.login(phone.text, password.text).then((value) => {
-                                print('value'),
-                                print(value['_id']),
-                                mountask(value['token'], value['name'],
-                                    value['phoneNumber'], value['_id']),
-                                Navigator.of(context)
-                                    .pushNamed(TabScreen.routeName),
-                                EasyLoading.dismiss()
-                              });
+                          api
+                              .login(phone.text, password.text)
+                              .then((value) => {
+                                    print('value'),
+                                    print(value['_id']),
+                                    mountask(value['token'], value['name'],
+                                        value['phoneNumber'], value['_id']),
+                                    Navigator.of(context).pushReplacementNamed(
+                                        TabScreen.routeName),
+                                    EasyLoading.dismiss()
+                                  })
+                              .onError((error, stackTrace) => {
+                                    EasyLoading.dismiss(),
+                                    Fluttertoast.showToast(
+                                        msg: "an error occured during login"
+                                            .tr(),
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.SNACKBAR,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Colors.red,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0)
+                                  });
                         }
                       },
                       child: Text('login'.tr()),
@@ -129,14 +151,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       desc: 'donthaveaccount'.tr(),
                       method: 'signup'.tr(),
                       onPressHandler: () {
-                        Navigator.of(context).pushNamed(SignupScreen.routeName);
+                        Navigator.of(context)
+                            .pushReplacementNamed(SignupScreen.routeName);
                       },
                     ),
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: TextButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context,TabScreen.routeName);
+                            Navigator.pushReplacementNamed(
+                                context, TabScreen.routeName);
                           },
                           child: Text('skip'.tr())),
                     )

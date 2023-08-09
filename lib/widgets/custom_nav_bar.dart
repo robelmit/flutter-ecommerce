@@ -24,43 +24,49 @@ class _CustomNavBarState extends State<CustomNavBar> {
       items: [
         BottomNavigationBarItem(
           icon: widget.curTabIndex == 0
-              ? Image.asset(
-                  'assets/images/home_nav.png',
+              ? Icon(
+                  Icons.home_filled,
+                  color: Theme.of(context).primaryColor,
                 )
-              : Image.asset(
-                  'assets/images/home_nav_notfill.png',
+              : Icon(
+                  Icons.home_filled,
+                  color: const Color.fromARGB(92, 158, 158, 158),
                 ),
           label: 'home'.tr(),
         ),
         BottomNavigationBarItem(
           icon: widget.curTabIndex == 1
-              ? Image.asset(
-                  'assets/images/star_nav_fill.png',
+              ? Icon(
+                  Icons.favorite_border_sharp,
+                  color: Theme.of(context).primaryColor,
                 )
-              : Image.asset(
-                  'assets/images/star_nav.png',
+              : Icon(
+                  Icons.favorite_border_sharp,
+                  color: const Color.fromARGB(92, 158, 158, 158),
                 ),
           label: 'favourite'.tr(),
         ),
         BottomNavigationBarItem(
           icon: widget.curTabIndex == 2
               ? Icon(
-                  Icons.message_rounded,
+                  Icons.send_sharp,
                   color: Theme.of(context).primaryColor,
                 )
               : Icon(
-                  Icons.message_rounded,
+                  Icons.send_sharp,
                   color: const Color.fromARGB(92, 158, 158, 158),
                 ),
           label: 'chats'.tr(),
         ),
         BottomNavigationBarItem(
           icon: widget.curTabIndex == 3
-              ? Image.asset(
-                  'assets/images/profile_nav_fill.png',
+              ? Icon(
+                  Icons.person_2_outlined,
+                  color: Theme.of(context).primaryColor,
                 )
-              : Image.asset(
-                  'assets/images/user_nav.png',
+              : Icon(
+                  Icons.person_2_outlined,
+                  color: const Color.fromARGB(92, 158, 158, 158),
                 ),
           label: 'profile'.tr(),
         ),
@@ -68,3 +74,10 @@ class _CustomNavBarState extends State<CustomNavBar> {
     );
   }
 }
+
+// Image.asset(
+//                   'assets/images/profile_nav_fill.png',
+//                 )
+//               : Image.asset(
+//                   'assets/images/user_nav.png',
+//                 ),

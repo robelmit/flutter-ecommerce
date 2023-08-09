@@ -13,14 +13,15 @@ class Api {
   //     isLeft: false,
   ///   isSelected: true,
   // ),
+  // var baseURL = "http://des.eu-4.evennode.com";
   var baseURL = "http://10.0.2.2:5000";
-  //  var baseURL = "http://192.168.43.34:5000";
+
+  // var baseURL = "http://192.168.43.34:5000";
   static var isnowdistributed = false;
   static var isnowverified = false;
 
-//  http://192.168.43.59:8000/api/master_list/1
   Future<dynamic> Register(name, phoneNumber, email, password) async {
-    final url = Uri.parse(baseURL + '/api/users');
+    final url = Uri.parse('$baseURL/api/users');
     final response = await http.post(url,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -49,7 +50,7 @@ class Api {
 
   Future<dynamic> login(phoneNumber, password) async {
     print('cool');
-    final url = Uri.parse(baseURL + "/api/users/login");
+    final url = Uri.parse("$baseURL/api/users/login");
     final response = await http.post(url,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -67,18 +68,18 @@ class Api {
     }
   }
 
-  Future<List<Ads>> getadds(String? keyword) async {
+  Future<List<Ads>> getadds(String? keyword, int page) async {
     print('cool is nice');
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
     String maurl;
-    if (keyword != '1111111111') {
-      maurl = baseURL + '/api/adds?keyword=$keyword';
+    if (keyword != null && page != null) {
+      maurl = baseURL + '/api/adds/getadd?keyword=$keyword&pageNumber=$page';
     } else
-      maurl = baseURL + "/api/adds";
+      maurl = baseURL + "/api/adds/getadd?pageNumber=$page";
     final url = Uri.parse(maurl);
-    final response = await http.get(
+    final response = await http.post(
       url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -87,10 +88,136 @@ class Api {
     );
 
     if (response.statusCode == 200) {
+      //print(response.body);
+      var res = jsonDecode(response.body);
+      print('cool');
+      print(res['adds']);
+
+      var ads = AdsPro(jsonEncode(res['adds']));
+      print(ads);
+
+      return ads;
+    } else {
+      print('hhh');
+      print(response);
+      throw Exception('Failed to load adds');
+    }
+  }
+
+  Future<List<Ads>> getaddsbytags(String? keyword, List tags, int page) async {
+    print('cool is nice');
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    String maurl;
+    if (keyword != null) {
+      maurl = baseURL + '/api/adds/getadd?keyword=$keyword&pageNumber=$page';
+    } else
+      maurl = baseURL + "/api/adds/getadd?pageNumber=$page";
+    final url = Uri.parse(maurl);
+    final response = await http.post(url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          // 'latitude': double.parse(latitude),
+          // 'longitude': double.parse(longitude),
+          // 'tags': tags,
+        },
+        body: jsonEncode(<String, dynamic>{
+          'tags': tags,
+        }));
+
+    if (response.statusCode == 200) {
       print('bbb');
 
-      var ads = AdsPro(response.body);
-      print(ads);
+      var res = jsonDecode(response.body);
+      print('cool');
+      print(res['adds']);
+
+      var ads = AdsPro(jsonEncode(res['adds']));
+      return ads;
+    } else {
+      print('hhh');
+
+      throw Exception('Failed to load adds');
+    }
+  }
+
+  Future<List<Ads>> getaddsbylocation(String? keyword, double latitude,
+      double longitude, int distance, int page) async {
+    print('cool is nice');
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    String maurl;
+    if (keyword != null) {
+      maurl = baseURL + '/api/adds/getadd?keyword=$keyword&pageNumber=$page';
+    } else
+      maurl = baseURL + "/api/adds/getadd?pageNumber=$page";
+    final url = Uri.parse(maurl);
+    final response = await http.post(url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          //  'latitude': double.parse(latitude),
+          // 'longitude': double.parse(longitude),
+          // 'tags': tags,
+          // 'distance':int.parse(distance)
+          // 'authorization': 'Bearer ' + token!
+        },
+        body: jsonEncode(<String, dynamic>{
+          'latitude': latitude,
+          'longitude': longitude,
+          'distance': distance,
+        }));
+
+    if (response.statusCode == 200) {
+      var res = jsonDecode(response.body);
+      print('cool');
+      print(res['adds']);
+
+      var ads = AdsPro(jsonEncode(res['adds']));
+
+      return ads;
+    } else {
+      print('hhh');
+
+      throw Exception('Failed to load adds');
+    }
+  }
+
+  Future<List<Ads>> getaddsfull(String? keyword, double latitude,
+      double longitude, int distance, List tags, int page) async {
+    print('cool is nice');
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    String maurl;
+    if (keyword != null) {
+      maurl = baseURL + '/api/adds/getadd?keyword=$keyword&pageNumber=$page';
+    } else
+      maurl = baseURL + "/api/adds/getadd?pageNumber=$page";
+    final url = Uri.parse(maurl);
+    final response = await http.post(url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          //  'latitude': double.parse(latitude),
+          // 'longitude': double.parse(longitude),
+          // 'tags': tags,
+          // 'distance':int.parse(distance)
+          // 'authorization': 'Bearer ' + token!
+        },
+        body: jsonEncode(<String, dynamic>{
+          'latitude': latitude,
+          'longitude': longitude,
+          'distance': distance,
+          'tags': tags,
+        }));
+
+    if (response.statusCode == 200) {
+      var res = jsonDecode(response.body);
+      print('cool');
+      print(res['adds']);
+
+      var ads = AdsPro(jsonEncode(res['adds']));
 
       return ads;
     } else {
@@ -180,6 +307,33 @@ class Api {
     }
   }
 
+  Future<dynamic> savelocation(lat, long) async {
+    print(lat + long);
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    String maurl = baseURL + "/api/users/location";
+    final url = Uri.parse(maurl);
+    final response = await http.post(url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'authorization': 'Bearer ' + token!
+        },
+        body: jsonEncode(<String, dynamic>{
+          'latitude': lat,
+          'longitude': long,
+        }));
+    if (response.statusCode == 200) {
+      print(response.body);
+
+      return json.decode(response.body);
+    } else {
+      print('hhh');
+
+      throw Exception('Failed to load adds');
+    }
+  }
+
   Future<dynamic> addtofavourites(id) async {
     print(id);
 
@@ -188,6 +342,35 @@ class Api {
     String maurl = baseURL + "/api/users/favourites";
     final url = Uri.parse(maurl);
     final response = await http.post(url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'authorization': 'Bearer ' + token!
+        },
+        body: jsonEncode(<String, String>{
+          'favourite': id,
+        }));
+    if (response.statusCode == 200) {
+      print('bbb');
+
+      //var ads = AdsPro(response.body);
+      print(json.decode(response.body));
+
+      return json.decode(response.body);
+    } else {
+      print('hhh');
+
+      throw Exception('Failed to load adds');
+    }
+  }
+
+  Future<dynamic> deletefavourites(id) async {
+    print(id);
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    String maurl = baseURL + "/api/users/favourites";
+    final url = Uri.parse(maurl);
+    final response = await http.delete(url,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'authorization': 'Bearer ' + token!
@@ -338,7 +521,10 @@ class Api {
     // }
   }
 
-  Future<dynamic> uploadadd(title, description, catagory, price, images) async {
+  Future<dynamic> uploadadd(
+      title, description, catagory, maincatagory, price, images) async {
+    print('maincatagory');
+    print(maincatagory);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
     final response = await http.post(Uri.parse(baseURL + '/api/adds'),
@@ -350,6 +536,7 @@ class Api {
           'title': title,
           'description': description,
           'catagory': catagory,
+          "maincatagory": maincatagory,
           'price': price,
           'images': images,
         }));

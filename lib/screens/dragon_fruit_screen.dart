@@ -77,14 +77,14 @@ class _DragonFruitScreenState extends State<DragonFruitScreen> {
                 future: api.getaddsbyid(widget.id),
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                  var images = snapshot.data['images'];
+                  var images = snapshot.data!['images'];
                   print('this is cool');
                   print(images);
                   if (snapshot.hasData) {
                     return Column(
                       children: [
                         CarouselSlider.builder(
-                          itemCount: images.length,
+                          itemCount: images!.length,
                           options: CarouselOptions(
                             enlargeCenterPage: true,
                             height: 300,
@@ -267,6 +267,23 @@ class _DragonFruitScreenState extends State<DragonFruitScreen> {
                                       ))
                                 ])),
                       ],
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Column(children: [
+                        Text('Error occured'),
+                         Image.asset(
+                              'assets/images/errorpage.png',
+                              height: 200,
+                            ),
+                        ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                api.getaddsbyid(widget.id);
+                              });
+                            },
+                            child: Text('Retry again'))
+                      ]),
                     );
                   } else
                     return CircularProgressIndicator();

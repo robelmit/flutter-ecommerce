@@ -8,8 +8,10 @@ import 'package:app/screens/dragon_fruit_screen.dart';
 import 'package:app/screens/postad.dart';
 import 'package:app/services/api.dart';
 import 'package:app/widgets/search_bar.dart';
+import 'package:checkbox_grouped/checkbox_grouped.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../constants/colors.dart';
 import '../models/category.dart';
@@ -37,12 +39,113 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Timer? _debounce;
-
+  GroupController controller = GroupController();
+  final List<String> categorie = [
+    'phones'.tr(),
+    'electronics'.tr(),
+    'vehicles'.tr(),
+    'property'.tr(),
+    'homesupplies'.tr(),
+    'fashion'.tr(),
+    'animals'.tr(),
+  ];
+  final List<String> categoriestosen = [
+    'phones',
+    'electronics',
+    'vehicles',
+    'property',
+    'homesupplies',
+    'fashion',
+    'animals',
+  ];
   @override
   void initState() {
     // TODO: implement initState
 
     super.initState();
+  }
+
+  void _showForm() async {
+    double _value = 0.0;
+
+    showModalBottomSheet(
+        context: context,
+        elevation: 5,
+        isScrollControlled: true,
+        builder: (context) => StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
+              return Container(
+                padding: EdgeInsets.only(
+                  top: 15,
+                  left: 15,
+                  right: 15,
+                  // this will prevent the soft keyboard from covering the text fields
+                  bottom: MediaQuery.of(context).viewInsets.bottom + 120,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(children: <Widget>[
+                      Text('Filter the adds'.tr()),
+                      SizedBox(width: 20),
+                    ]),
+                    SimpleGroupedChips<String>(
+                      controller: controller,
+                      values: categoriestosen,
+                      itemTitle: categorie,
+                      chipGroupStyle: ChipGroupStyle.minimize(
+                        backgroundColorItem: Theme.of(context).primaryColor,
+                        itemTitleStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text('Choose distance in km ')),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SfSlider(
+                      min: 0,
+                      max: 200,
+                      value: _value,
+                      interval: 50,
+                      showTicks: true,
+                      stepSize: 5.0,
+                      showLabels: true,
+                      enableTooltip: true,
+                      minorTicksPerInterval: 1,
+                      onChanged: (dynamic value) {
+                        setState(() {
+                          _value = value;
+                        });
+                      },
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        // Save new journal
+                      },
+
+                      // Clear the text fields
+
+                      // Close the bottom sheet
+                      // Navigator.of(context).pop();
+
+                      child: Text('Filter'.tr()),
+                    )
+                  ],
+                ),
+              );
+            }));
   }
 
   @override
@@ -171,8 +274,17 @@ class _HomeScreenState extends State<HomeScreen> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: kFillColorThird,
-                prefixIcon: Icon(Icons.search),
-                suffixIcon: Icon(Icons.filter_alt),
+                prefixIcon: IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {},
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(Icons.filter_alt),
+                  onPressed: () {
+                    _showForm();
+                    print('object');
+                  },
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(
                     getProportionateScreenWidth(4),
@@ -245,7 +357,7 @@ class _PopularDealTabState extends State<PopularDealTab> {
           displacement: 80,
           onRefresh: refresh,
           child: FutureBuilder<List<Ads>?>(
-            future: api.getadds(search),
+            future: api.getadds(search, 1),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return GridView.builder(
@@ -275,7 +387,18 @@ class _PopularDealTabState extends State<PopularDealTab> {
                     );
                   },
                 );
-              } else {
+              }
+                else if(snapshot.hasError){
+                          return Center(
+                            child: Column(children: [
+                              Text('Error occured'),
+                              // const AssetImage('bro1.png'),
+                              ElevatedButton(onPressed: (){}, child: Text('Retry again'))
+                            ]),
+                          );
+                         }
+              
+               else {
                 return Center(child: CircularProgressIndicator());
               }
             },
@@ -286,7 +409,7 @@ class _PopularDealTabState extends State<PopularDealTab> {
   }
 
   Future<void> refresh() async {
-    api.getadds('1111111111');
+    api.getadds('1111111111', 1);
   }
 }
 
@@ -369,7 +492,8 @@ class CategoryTab extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: List.generate(
                 categories.length,
-                (index) => CategoryCardhome(categories[index], categories1[index]),
+                (index) =>
+                    CategoryCardhome(categories[index], categories1[index]),
               ),
             ),
           )

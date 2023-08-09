@@ -3,6 +3,7 @@ import 'package:app/screens/tab_screen.dart';
 import 'package:app/services/api.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../screens/add_address_screen.dart';
 import '../screens/login_screen.dart';
@@ -25,14 +26,23 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   var isloading = false;
   final _formKey = GlobalKey<FormState>();
+  final name = TextEditingController();
+  final phone = TextEditingController();
+  final email = TextEditingController();
+  final password = TextEditingController();
+  @override
+  void dispose() {
+    name.clear();
+    phone.clear();
+    email.clear();
+    password.clear();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     ScreenUtils().init(context);
-    final name = TextEditingController();
-    final phone = TextEditingController();
-    final email = TextEditingController();
-    final password = TextEditingController();
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -41,7 +51,7 @@ class _SignupScreenState extends State<SignupScreen> {
             IconButton(
               icon: Icon(Icons.arrow_back_ios_new),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, TabScreen.routeName);
               },
             ),
             Expanded(
@@ -160,8 +170,22 @@ class _SignupScreenState extends State<SignupScreen> {
                                         setState(() {
                                           isloading = false;
                                           Navigator.of(context)
-                                              .pushNamed(LoginScreen.routeName);
+                                              .pushReplacementNamed(
+                                                  LoginScreen.routeName);
                                         })
+                                      })
+                                  .onError((error, stackTrace) => {
+                                        EasyLoading.dismiss(),
+                                        Fluttertoast.showToast(
+                                            msg:
+                                                "an error occured during sign up"
+                                                    .tr(),
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.SNACKBAR,
+                                            timeInSecForIosWeb: 1,
+                                            backgroundColor: Colors.red,
+                                            textColor: Colors.white,
+                                            fontSize: 16.0)
                                       });
                             }
                           },
@@ -181,8 +205,8 @@ class _SignupScreenState extends State<SignupScreen> {
                               desc: 'haveanaccount'.tr(),
                               method: 'login'.tr(),
                               onPressHandler: () {
-                                Navigator.of(context)
-                                    .pushNamed(LoginScreen.routeName);
+                                Navigator.of(context).pushReplacementNamed(
+                                    LoginScreen.routeName);
                               },
                             ),
                           ],

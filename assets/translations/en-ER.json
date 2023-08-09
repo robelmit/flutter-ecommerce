@@ -53,7 +53,7 @@
     "signuptocontinue": "ንምቅፃል ይመዝገቡ",
     "getstarted": "ይጀምሩ",
     "buytomillions": "ዝደለይዎ አቅሓ ናብ ሚልዮናት ይሽጡ ይግዝኡ",
-    "welcomeemssage": "እንካዕ ናብ ደስታ መተግበሪ መፅኡ",
+    "welcomeemssage": "እንካዕ ናብ ኢዛና መተግበሪ መፅኡ",
     "title": "welcome home brother",
     "chatscreen": "መራከቢ",
     "profile": "መግለፂ",
@@ -113,5 +113,10 @@
     "Villa": "ቪላ",
     "Dogs": "ከልቢ",
     "Cats": "ዱሙ",
-    "Birds": "ዒፍ"
+    "Birds": "ዒፍ",
+    "Filter the adds": "መስታወቅያ ይኣልሹ",
+    "Filter":"አልሽ",
+    "Choose distance in km":"ርሕቀት ብ ኪሎሜትር ምረፅ",
+    "noroomsyet":"ዕላል የብሎምን"
+
 }

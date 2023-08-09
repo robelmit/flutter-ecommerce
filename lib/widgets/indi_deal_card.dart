@@ -36,10 +36,11 @@ class IndiDealCard extends StatefulWidget {
 
 class _IndiDealCardState extends State<IndiDealCard> {
   var api = Api();
-  var firsttime;
+  String? firsttime;
   @override
   void initState() {
     // TODO: implement initState
+    mountask();
     super.initState();
   }
 

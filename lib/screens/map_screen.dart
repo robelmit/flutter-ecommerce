@@ -1,8 +1,14 @@
+import 'package:app/screens/postad.dart';
+import 'package:app/screens/tab_screen.dart';
+import 'package:app/services/api.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/colors.dart';
 import '../utils/screen_utils.dart';
 import '../widgets/back_button_ls.dart';
 import '../widgets/custom_text_field.dart';
+import 'package:location/location.dart';
+// import 'package:geolocator/geolocator.dart';
 
 class MapScreen extends StatelessWidget {
   static const routeName = '/map_screen';
@@ -18,7 +24,13 @@ class MapScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BackButtonLS(),
+                IconButton(
+                  icon: Icon(Icons.arrow_back_ios),
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(
+                        context, TabScreen.routeName);
+                  },
+                ),
                 Text(
                   'Choose Your Address',
                   style: TextStyle(
@@ -59,7 +71,14 @@ class MapScreen extends StatelessWidget {
   }
 }
 
-class BottomCard extends StatelessWidget {
+class BottomCard extends StatefulWidget {
+  @override
+  State<BottomCard> createState() => _BottomCardState();
+}
+
+class _BottomCardState extends State<BottomCard> {
+  var api = new Api();
+
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -114,48 +133,32 @@ class BottomCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Row(
-                      children: [
-                        Text(
-                          'Planet Namex 989',
-                          style: Theme.of(context).textTheme.headline3!.copyWith(
-                                fontWeight: FontWeight.w700,
-                              ),
-                        ),
-                        Spacer(),
-                        Icon(
-                          Icons.search,
-                          size: getProportionateScreenWidth(32),
-                        ),
-                      ],
+                      children: [],
                     ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(10),
-                    ),
-                    Text(
-                      'Norristown, Pennsylvania, 19403',
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                            color: kTextColorAccent,
-                          ),
-                    ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(10),
-                    ),
-                    Text(
-                      'Detail Address',
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                            color: kTextColorAccent,
-                          ),
-                    ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(5),
-                    ),
-                    // CustomTextField(
-                    //   hint: 'Write down the building, apartment or office...',
+
                     // ),
                     SizedBox(
                       height: getProportionateScreenHeight(10),
                     ),
-                    ElevatedButton(onPressed: () {}, child: Text('Add Address'))
+                    ElevatedButton(
+                        onPressed: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+
+                          _initLocationService().then((value) => {
+                                prefs.setString(
+                                    'latitude', value.latitude.toString()),
+                                prefs.setString(
+                                    'longitude', value.longitude.toString()),
+                                api.savelocation(
+                                    value.latitude, value.longitude),
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            MyNewApp()))
+                              }); //
+                        },
+                        child: Text('Enable location'))
                   ],
                 ),
               ),
@@ -165,4 +168,26 @@ class BottomCard extends StatelessWidget {
       ),
     );
   }
+}
+
+Future _initLocationService() async {
+  var location = Location();
+
+  if (!await location.serviceEnabled()) {
+    if (!await location.requestService()) {
+      return;
+    }
+  }
+
+  var permission = await location.hasPermission();
+  if (permission == PermissionStatus.denied) {
+    permission = await location.requestPermission();
+    if (permission != PermissionStatus.granted) {
+      return;
+    }
+  }
+
+  var loc = await location.getLocation();
+  print("${loc.latitude} ${loc.longitude}");
+  return loc;
 }

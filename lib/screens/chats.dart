@@ -16,7 +16,7 @@ class ChatScreenPro extends StatefulWidget {
 
 class _ChatScreenProState extends State<ChatScreenPro> {
   var api = Api();
-  String firsttime = 'hi there';
+  String firsttime = '';
   @override
   void initState() {
     // TODO: implement initState
@@ -43,40 +43,49 @@ class _ChatScreenProState extends State<ChatScreenPro> {
         ? Container(
             child: Center(
                 child: Container(
+                    width: MediaQuery.of(context).size.width * 2 / 3,
+                    height: (MediaQuery.of(context).size.height) / 2,
+                    padding: EdgeInsets.symmetric(horizontal: 30.0),
+                    color: Color.fromARGB(15, 0, 0, 0),
                     child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/d.png',
-                    width: MediaQuery.of(context).size.width / 2),
-                Text('logintoviewyourchatsLogin'.tr(),
-                    style: TextStyle(color: Colors.red.withOpacity(0.8))),
-                Column(
-                  children: [
-                    FilledButton(
-                        onPressed: () {
-                          Navigator.popAndPushNamed(
-                              context, SignupScreen.routeName);
-                        },
-                        child: Text(
-                          'signup'.tr(),
-                          style: TextStyle(fontWeight: FontWeight.normal),
-                        )),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text('alreadyhaveaccount'.tr(),
-                          style: TextStyle(fontSize: 12.0)),
-                      TextButton(
-                          child: Text('login'.tr(),
-                              style: TextStyle(fontSize: 12.0)),
-                          onPressed: () {
-                            Navigator.popAndPushNamed(
-                                context, LoginScreen.routeName);
-                          })
-                    ])
-                  ],
-                ),
-              ],
-            ))),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('logintoviewyourchatsLogin'.tr(),
+                            style: TextStyle(
+                                color: Color.fromARGB(86, 8, 4, 19)
+                                    .withOpacity(0.8))),
+                        Image.asset('assets/images/d.png',
+                            width: MediaQuery.of(context).size.width / 2),
+                        Column(
+                          children: [
+                            FilledButton(
+                                onPressed: () {
+                                  Navigator.popAndPushNamed(
+                                      context, SignupScreen.routeName);
+                                },
+                                child: Text(
+                                  'signup'.tr(),
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.normal),
+                                )),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('alreadyhaveaccount'.tr(),
+                                      style: TextStyle(fontSize: 12.0)),
+                                  TextButton(
+                                      child: Text('login'.tr(),
+                                          style: TextStyle(fontSize: 12.0)),
+                                      onPressed: () {
+                                        Navigator.popAndPushNamed(
+                                            context, LoginScreen.routeName);
+                                      })
+                                ])
+                          ],
+                        ),
+                      ],
+                    ))),
           )
         : SafeArea(
             child: Column(
@@ -114,8 +123,7 @@ class _ChatScreenProState extends State<ChatScreenPro> {
                           return Center(
                               child: Column(
                             children: [
-                              Image.asset("assets/images/empty_cart_illu.png"),
-                              Text('nofavouritesyet'.tr()),
+                              Text('noroomsyet'.tr()),
                             ],
                           ));
                         } else {
@@ -177,8 +185,24 @@ class _ChatScreenProState extends State<ChatScreenPro> {
                       //     ),
                       //   ],
                       // ),
-
-                      else {
+                      else if (snapshot.hasError) {
+                        return Center(
+                          child: Column(children: [
+                            Text('an arror occured'),
+                            Image.asset(
+                              'assets/images/errorpage.png',
+                              height: 200,
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    api.getrooms();
+                                  });
+                                },
+                                child: Text('Retry again'))
+                          ]),
+                        );
+                      } else {
                         return CircularProgressIndicator();
                       }
                     })

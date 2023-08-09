@@ -1,0 +1,6 @@
+adigrat 
+ lat 14.278304
+ long 39.460561
+shire
+ lat 14.105671
+ long 38.284946

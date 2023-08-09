@@ -126,12 +126,12 @@ class IntroWidget extends StatelessWidget {
         ),
         Container(
           margin: EdgeInsets.all(10),
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pushReplacementNamed(ChooseLanguage.routeName);
-            },
-            child: Text('getstarted'.tr()),
-          ),
+          // child: ElevatedButton(
+          //   onPressed: () {
+          //     Navigator.of(context).pushReplacementNamed(ChooseLanguage.routeName);
+          //   },
+          //   child: Text('getstarted'.tr()),
+          // ),
         ),
       ],
     );

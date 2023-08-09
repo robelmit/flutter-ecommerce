@@ -8,6 +8,7 @@ import '../utils/screen_utils.dart';
 import '../models/category.dart';
 import '../constants/colors.dart';
 import '../models/category.dart';
+import '../constants/lists.dart';
 
 class CategoryCardhome extends StatelessWidget {
   final Category category;
@@ -15,300 +16,6 @@ class CategoryCardhome extends StatelessWidget {
   //  List<Category> categorynice;
   CategoryCardhome(this.category, this.categorypro);
 
-  // final List<Category> phone = [
-  //   Category(
-  //     'Samsung'.tr(),
-  //     'assets/images/samsung.svg',
-  //     kAccentGreen,
-  //   ),
-  //   Category(
-  //     'iphone'.tr(),
-  //     'assets/images/apple.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Nokia'.tr(),
-  //     'assets/images/nokia.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Huawei'.tr(),
-  //     'assets/images/huaweipro.svg',
-  //     kAccentYellow,
-  //   ),
-  //   Category(
-  //     'Xiaomi'.tr(),
-  //     'assets/images/xiaomi.svg',
-  //     kAccentPurple,
-  //   ),
-  // ];
-  //   final List<Category> categories = [
-  //   Category(
-  //     'Samsung'.tr(),
-  //     'assets/images/samsung.svg',
-  //     kAccentGreen,
-  //   ),
-  //   Category(
-  //     'iphone'.tr(),
-  //     'assets/images/apple.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Nokia'.tr(),
-  //     'assets/images/nokia.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Huawei'.tr(),
-  //     'assets/images/huaweipro.svg',
-  //     kAccentYellow,
-  //   ),
-  //   Category(
-  //     'Xiaomi'.tr(),
-  //     'assets/images/xiaomi.svg',
-  //     kAccentPurple,
-  //   ),
-  // ];
-  final List<Category> categories = [
-    Category(
-      'Tv'.tr(),
-      'assets/images/television pro.svg',
-      kAccentGreen,
-    ),
-    Category(
-      'Video Cameras'.tr(),
-      'assets/images/video.svg',
-      kAccentPurple,
-    ),
-    Category(
-      'Laptops'.tr(),
-      'assets/images/laptop.svg',
-      kAccentPurple,
-    ),
-    Category(
-      'Desktops'.tr(),
-      'assets/images/desktop.svg',
-      kAccentPurple,
-    ),
-    Category(
-      'Computer Accessory'.tr(),
-      'assets/images/harddisk.svg',
-      kAccentPurple,
-    ),
-    Category(
-      'Headphones'.tr(),
-      'assets/images/headphone.svg',
-      kAccentPurple,
-    ),
-    Category(
-      'Router'.tr(),
-      'assets/images/router.svg',
-      kAccentPurple,
-    ),
-  ];
-  final List<Category> categorieshome = [
-    Category(
-      'Sofa'.tr(),
-      'assets/images/sofa.svg',
-      kAccentGreen,
-    ),
-    Category(
-      'Fridge'.tr(),
-      'assets/images/fridge.svg',
-      kAccentPurple,
-    ),
-    Category(
-      'Bed'.tr(),
-      'assets/images/bed.svg',
-      kAccentPurple,
-    ),
-    Category(
-      'Microwave'.tr(),
-      'assets/images/microwave.svg',
-      kAccentPurple,
-    ),
-    Category(
-      'Table'.tr(),
-      'assets/images/table.svg',
-      kAccentPurple,
-    ),
-    Category(
-      'Chair'.tr(),
-      'assets/images/chair.svg',
-      kAccentPurple,
-    ),
-  ];
-  final List<Category> categoriescloth = [
-    Category(
-      'Cloths'.tr(),
-      'assets/images/sofa.svg',
-      kAccentGreen,
-    ),
-    Category(
-      'Shoe'.tr(),
-      'assets/images/shoe.svg',
-      kAccentPurple,
-    ),
-    Category(
-      'Watch'.tr(),
-      'assets/images/watch.svg',
-      kAccentPurple,
-    ),
-    Category(
-      'Bags'.tr(),
-      'assets/images/bag.svg',
-      kAccentPurple,
-    ),
-  ];
-  // final List<Category> categories = [
-  //   Category(
-  //     'Toyota'.tr(),
-  //     'assets/images/toyota.svg',
-  //     kAccentGreen,
-  //   ),
-  //   Category(
-  //     'Hyundai'.tr(),
-  //     'assets/images/hyundai.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Suzuki'.tr(),
-  //     'assets/images/suzuki.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Nissan'.tr(),
-  //     'assets/images/nissan.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Ford'.tr(),
-  //     'assets/images/ford.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Volswagen'.tr(),
-  //     'assets/images/buses.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Buses'.tr(),
-  //     'assets/images/buses.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Truck'.tr(),
-  //     'assets/images/truck.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Heavy Equipment'.tr(),
-  //     'assets/images/excavator.svg',
-  //     kAccentPurple,
-  //   ),
-  // ];
-  // final List<Category> categorieshome = [
-  //   Category(
-  //     'Apartment'.tr(),
-  //     'assets/images/apartment.svg',
-  //     kAccentGreen,
-  //   ),
-  //   Category(
-  //     'House'.tr(),
-  //     'assets/images/house.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Condominium'.tr(),
-  //     'assets/images/apartment.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Villa'.tr(),
-  //     'assets/images/villa.svg',
-  //     kAccentPurple,
-  //   ),
-  // ];
-  // final List<Category> categories = [
-  //   Category(
-  //     'Dogs'.tr(),
-  //     'assets/images/dog.svg',
-  //     kAccentGreen,
-  //   ),
-  //   Category(
-  //     'Cats'.tr(),
-  //     'assets/images/cat.svg',
-  //     kAccentPurple,
-  //   ),
-  //   Category(
-  //     'Birds'.tr(),
-  //     'assets/images/bird.svg',
-  //     kAccentPurple,
-  //   ),
-
-  // ];
-  final List<Categorypro> categoriespro = [
-    Categorypro(
-      'phones'.tr(),
-      'assets/images/phone.svg',
-      kAccentGreen,
-    ),
-    Categorypro(
-      'electronics'.tr(),
-      'assets/images/television pro.svg',
-      kAccentYellow,
-    ),
-    Categorypro(
-      'homesupplies'.tr(),
-      'assets/images/sofa.svg',
-      kAccentPurple,
-    ),
-    Categorypro(
-      'animals'.tr(),
-      'assets/images/dog.svg',
-      kAccentYellow,
-    ),
-    Categorypro(
-      'fashion'.tr(),
-      'assets/images/shoe.svg',
-      kAccentPurple,
-    ),
-    Categorypro(
-      'vehicles'.tr(),
-      'assets/images/car.svg',
-      kAccentTosca,
-    ),
-    Categorypro(
-      'property'.tr(),
-      'assets/images/house.svg',
-      kAccentGreen,
-    ),
-    Categorypro(
-      'homesupplies'.tr(),
-      'assets/images/sofa.svg',
-      kAccentPurple,
-    ),
-    Categorypro(
-      'animals'.tr(),
-      'assets/images/dog.svg',
-      kAccentYellow,
-    ),
-    Categorypro(
-      'fashion'.tr(),
-      'assets/images/shoe.svg',
-      kAccentPurple,
-    ),
-    Categorypro(
-      'vehicles'.tr(),
-      'assets/images/car.svg',
-      kAccentTosca,
-    ),
-    Categorypro(
-      'property'.tr(),
-      'assets/images/house.svg',
-      kAccentGreen,
-    ),
-  ];
   //List<Categorypro> categorypronice;
 
   @override
@@ -327,13 +34,64 @@ class CategoryCardhome extends StatelessWidget {
               width: getProportionateScreenWidth(40),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => SubCategoryScreen(
-                              catagories: categories,
-                              catagoriestosend: categoriespro,
-                            )),
-                  );
+                  if (category.catIcon == 'assets/images/phone.svg') {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => SubCategoryScreen(
+                                catagories: phone,
+                                catagoriestosend: phonepro,
+                              )),
+                    );
+                  } else if (category.catIcon ==
+                      'assets/images/television pro.svg') {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => SubCategoryScreen(
+                                catagories: electronics,
+                                catagoriestosend: electronicspro,
+                              )),
+                    );
+                  } else if (category.catIcon == 'assets/images/sofa.svg') {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => SubCategoryScreen(
+                                catagories: homesupply,
+                                catagoriestosend: homesupplypro,
+                              )),
+                    );
+                  } else if (category.catIcon == 'assets/images/dog.svg') {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => SubCategoryScreen(
+                                catagories: animals,
+                                catagoriestosend: animalspro,
+                              )),
+                    );
+                  } else if (category.catIcon == 'assets/images/shoe.svg') {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => SubCategoryScreen(
+                                catagories: cloth,
+                                catagoriestosend: clothpro,
+                              )),
+                    );
+                  } else if (category.catIcon == 'assets/images/car.svg') {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => SubCategoryScreen(
+                                catagories: vehicles,
+                                catagoriestosend: vehiclespro,
+                              )),
+                    );
+                  } else if (category.catIcon == 'assets/images/house.svg') {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => SubCategoryScreen(
+                                catagories: house,
+                                catagoriestosend: housepro,
+                              )),
+                    );
+                  }
                 },
                 child: SvgPicture.asset(
                   category.catIcon,

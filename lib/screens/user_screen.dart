@@ -1,6 +1,8 @@
 import 'package:app/screens/login_screen.dart';
+import 'package:app/screens/map_screen.dart';
 import 'package:app/screens/postad.dart';
 import 'package:app/screens/signup_screen.dart';
+import 'package:app/screens/tab_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,6 +13,8 @@ import '../widgets/image_container.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+
+var location;
 
 class UserScreen extends StatefulWidget {
   @override
@@ -30,10 +34,17 @@ class _UserScreenState extends State<UserScreen> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+   
+    super.dispose();
+  }
+
   mountask() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     name = prefs.getString('name');
     phone = prefs.getString('phone');
+    location = prefs.getString('latitude');
     print('check' + name);
     print('nice' + phone);
     var isloggedin = prefs.getString('id');
@@ -52,40 +63,48 @@ class _UserScreenState extends State<UserScreen> {
         ? Container(
             child: Center(
                 child: Container(
+                    width: MediaQuery.of(context).size.width * 2 / 3,
+                    height: (MediaQuery.of(context).size.height) / 2,
+                    padding: EdgeInsets.symmetric(horizontal: 30.0),
+                    color: Color.fromARGB(15, 0, 0, 0),
                     child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/d.png',
-                    width: MediaQuery.of(context).size.width / 2),
-                Text('logintoviewyourprofile'.tr(),
-                    style: TextStyle(color: Colors.red.withOpacity(0.8))),
-                Column(
-                  children: [
-                    FilledButton(
-                        onPressed: () {
-                          Navigator.popAndPushNamed(
-                              context, SignupScreen.routeName);
-                        },
-                        child: Text(
-                          'signup'.tr(),
-                          style: TextStyle(fontWeight: FontWeight.normal),
-                        )),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text('alreadyhaveaccount'.tr(),
-                          style: TextStyle(fontSize: 12.0)),
-                      TextButton(
-                          child: Text('login'.tr(),
-                              style: TextStyle(fontSize: 12.0)),
-                          onPressed: () {
-                            Navigator.popAndPushNamed(
-                                context, LoginScreen.routeName);
-                          })
-                    ])
-                  ],
-                ),
-              ],
-            ))),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'logintoviewyourprofile'.tr(),
+                        ),
+                        Image.asset('assets/images/d.png',
+                            width: MediaQuery.of(context).size.width / 2),
+                        Column(
+                          children: [
+                            FilledButton(
+                                onPressed: () {
+                                  Navigator.popAndPushNamed(
+                                      context, SignupScreen.routeName);
+                                },
+                                child: Text(
+                                  'signup'.tr(),
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.normal),
+                                )),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('alreadyhaveaccount'.tr(),
+                                      style: TextStyle(fontSize: 12.0)),
+                                  TextButton(
+                                      child: Text('login'.tr(),
+                                          style: TextStyle(fontSize: 12.0)),
+                                      onPressed: () {
+                                        Navigator.popAndPushNamed(
+                                            context, LoginScreen.routeName);
+                                      })
+                                ])
+                          ],
+                        ),
+                      ],
+                    ))),
           )
         : Center(
             child: Padding(
@@ -186,7 +205,7 @@ class _UserScreenState extends State<UserScreen> {
   }
 }
 
-class ProfileCard extends StatelessWidget {
+class ProfileCard extends StatefulWidget {
   const ProfileCard({
     Key? key,
     required this.image,
@@ -201,14 +220,23 @@ class ProfileCard extends StatelessWidget {
   final Color color;
 
   @override
+  State<ProfileCard> createState() => _ProfileCardState();
+}
+
+class _ProfileCardState extends State<ProfileCard> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         //print('hi there bb');
-        if (image == "assets/images/profile_user.png") {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (BuildContext context) => MyNewApp()));
-        } else if (image == "assets/images/egg.png") {
+        if (widget.image == "assets/images/profile_user.png") {
+          if (location == null) {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (BuildContext context) => MapScreen()));
+          } else
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (BuildContext context) => MyNewApp()));
+        } else if (widget.image == "assets/images/egg.png") {
           AwesomeDialog(
             context: context,
             animType: AnimType.scale,
@@ -244,6 +272,10 @@ class ProfileCard extends StatelessWidget {
             desc: 'This is also Ignored',
             btnOkOnPress: () {},
           )..show();
+        } else if (widget.image == "assets/images/arrow_user.png") {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.clear();
+          Navigator.pushReplacementNamed(context, TabScreen.routeName);
         }
 
         //Navigator.of(context).pushNamed(MyNewApp.routeName);
@@ -269,21 +301,21 @@ class ProfileCard extends StatelessWidget {
                 getProportionateScreenWidth(8.0),
               ),
               decoration: ShapeDecoration(
-                color: color,
+                color: widget.color,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     getProportionateScreenWidth(8.0),
                   ),
                 ),
               ),
-              child: Image.asset(image),
+              child: Image.asset(widget.image),
             ),
             SizedBox(
               width: getProportionateScreenWidth(8.0),
             ),
             Expanded(
               child: Text(
-                title,
+                widget.title,
                 style: Theme.of(context)
                     .textTheme
                     .headline4!

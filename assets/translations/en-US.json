@@ -53,7 +53,7 @@
     "signuptocontinue": "Sign Up To Continue!",
     "getstarted": "Get Started",
     "buytomillions": "Buy and sell any item you want to millions.",
-    "welcomeemssage": "Welcome to Desta Ecommerce app",
+    "welcomeemssage": "Welcome to Ezana Ecommerce app",
     "title": "welcome home brother",
     "chatscreen": "Chat Screen",
     "profile": "Profile",
@@ -61,6 +61,8 @@
     "favourite": "Favourites",
     "home": "home",
     "skip": "Skip",
+    "logintoviewyourfavoutite": "Login to view your favourites",
+    "logintoviewyourprofile": "Login to view your profile",
     "logintoviewyourchatsLogin": "Sign up to view all your chats",
     "alreadyhaveaccount": "Already have an account",
     "pleaselogintoaddtofavourite": "Please Login to add to your favourite",
@@ -112,5 +114,8 @@
     "Villa": "Villa",
     "Dogs": "Dogs",
     "Cats": "Cats",
-    "Birds": "Birds"
+    "Birds": "Birds",
+    "Filter the adds":"Filter the adds",
+    "noroomsyet":"No rooms yet"
+
 }

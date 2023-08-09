@@ -53,7 +53,7 @@
     "signuptocontinue": "ለመቀጠል ይመዝገቡ!",
     "getstarted": "ይጀምሩ",
     "buytomillions": "የፈልጉትን እቃ ለሚልዮኖች ይሽጡ ይግዙ",
-    "welcomeemssage": "እንኳን ወደ ደስታ መተግበርያ መጡ",
+    "welcomeemssage": "እንኳን ወደ ኢዛና መተግበርያ መጡ",
     "title": "welcome home brother",
     "chatscreen": "ይገናኙ",
     "profile": "መገለጫ",
@@ -115,5 +115,7 @@
     "Villa": "ቪላ",
     "Dogs": "ዉሻ",
     "Cats": "ድመት",
-    "Birds": "ወፍ"
+    "Birds": "ወፍ",
+    "Filter the adds": "ማስታወቅያ ይፈልጉ",
+    "noroomsyet": "ምንም መልእክት የለውም"
 }

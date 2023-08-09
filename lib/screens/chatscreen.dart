@@ -116,7 +116,10 @@ class _ChatDetailState extends State<ChatDetail> {
           appBar: AppBar(
             leading: messages.isNotEmpty
                 ? IconButton(
-                    icon: Icon(Icons.arrow_back_ios,color: Colors.white,),
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                    ),
                     onPressed: () {
                       Navigator.of(context, rootNavigator: true).pop(context);
                     },

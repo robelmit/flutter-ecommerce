@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:app/screens/home_screen.dart';
+import 'package:app/screens/home_screen1.dart';
+import 'package:app/screens/tab_screen.dart';
 import 'package:app/services/api.dart';
 import 'package:app/widgets/custom_text_field.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -15,6 +16,7 @@ import 'package:app/constants/dropdown.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 class MyNewApp extends StatefulWidget {
+  
   static const routeName = '/post screen';
 
   const MyNewApp({super.key});
@@ -33,6 +35,16 @@ class _MyNewAppState extends State<MyNewApp> {
   TextEditingController description = new TextEditingController();
   TextEditingController price = new TextEditingController();
   List<String> items = phone;
+  List<String> itemsmain = phone;
+
+  @override
+  void dispose() {
+    title.dispose();
+    name.dispose();
+    description.dispose();
+    price.dispose();
+    super.dispose();
+  }
 
   final List categories = [
     'phones'.tr(),
@@ -43,11 +55,21 @@ class _MyNewAppState extends State<MyNewApp> {
     'fashion'.tr(),
     'animals'.tr(),
   ];
+  final List categoriespro = [
+    'phones',
+    'electronics',
+    'vehicles',
+    'property',
+    'homesupplies',
+    'fashion',
+    'animals',
+  ];
   // items = phone;
 
   String? selectedValue;
   String? selectedValue1;
   String? tobesent;
+  String? tobesentmain;
   final _formKey = GlobalKey<FormState>();
 
   _getFromGallery() async {
@@ -106,12 +128,12 @@ class _MyNewAppState extends State<MyNewApp> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios, color: Colors.grey),
             onPressed: () {
-              Navigator.of(context, rootNavigator: true).pop(context);
+              Navigator.pushReplacementNamed(context, TabScreen.routeName);
             },
           ),
           shadowColor: Colors.white,
           title: Text('postanadd'.tr(),
-              style: TextStyle(fontSize: 20, color: Colors.green)),
+              style: TextStyle(fontSize: 20, color: Colors.black)),
           backgroundColor: Colors.white,
         ),
         body: SingleChildScrollView(
@@ -322,6 +344,7 @@ class _MyNewAppState extends State<MyNewApp> {
                         if (_formKey.currentState!.validate()) {
                           var api = new Api();
                           var index = items.indexOf(selectedValue1!);
+                          var mainindex = categories.indexOf(selectedValue!);
                           if (items == phone) {
                             tobesent = phonepro[index];
                             setState(() {});
@@ -344,9 +367,12 @@ class _MyNewAppState extends State<MyNewApp> {
                             tobesent = animalspro[index];
                             setState(() {});
                           }
+                          tobesentmain = categoriespro[mainindex];
                           print('hi');
                           print(index);
                           print(tobesent);
+                          print(tobesentmain);
+
                           // Map<dynamic, dynamic>? robel;
                           //                for (int i = 0; i < value.length; i++)
                           //         {
@@ -364,13 +390,18 @@ class _MyNewAppState extends State<MyNewApp> {
                                         title.text,
                                         description.text,
                                         tobesent,
+                                        tobesentmain,
                                         price.text,
                                         jsonDecode(value))
                                   })
                               .then((value) => {
                                     EasyLoading.dismiss(),
-                                    Navigator.of(context)
-                                        .pushNamed(HomeScreen.routeName)
+                                    _formKey.currentState!.reset(),
+                                    myimages.clear(),
+                                    setState(() {})
+
+                                    // Navigator.of(context)
+                                    //     .pushNamed(HomeScreen1.routeName)
                                   });
                         }
                       },

@@ -1,10 +1,12 @@
 import 'package:app/screens/chats.dart';
 import 'package:app/screens/chatscreen.dart';
+import 'package:app/screens/map_screen.dart';
 import 'package:app/services/api.dart';
 import 'package:flutter/material.dart';
 import '../screens/cart_screen.dart';
 import '../screens/fav_screen.dart';
 import '../screens/home_screen.dart';
+import '../screens/home_screen1.dart';
 import '../screens/user_screen.dart';
 import '../widgets/custom_nav_bar.dart';
 
@@ -29,10 +31,15 @@ class _TabScreenState extends State<TabScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     List<Map<String, Widget>> pages = [
       {
-        'widget': HomeScreen(),
+        'widget': HomeScreen1(),
       },
       {
         'widget': FavScreen(() {

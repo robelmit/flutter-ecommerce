@@ -46,7 +46,7 @@ class TextView extends StatelessWidget {
   const TextView(this.pageCount);
   @override
   Widget build(BuildContext context) {
-    List<Map<String, String>>  data;
+    List<Map<String, String>> data;
     if (context.locale == Locale('en', 'US')) {
       data = [
         {
@@ -151,7 +151,7 @@ class TextView extends StatelessWidget {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(TabScreen.routeName);
+                Navigator.of(context).pushReplacementNamed(TabScreen.routeName);
               },
               child: Text(
                 'getstarted'.tr(),
