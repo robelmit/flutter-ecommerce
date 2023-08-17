@@ -35,10 +35,14 @@ class _TabScreenState extends State<TabScreen> {
     super.dispose();
   }
 
+//  {
+//         'widget': HomeScreen1(),
+//       },
+
   @override
   Widget build(BuildContext context) {
     List<Map<String, Widget>> pages = [
-      {
+  {
         'widget': HomeScreen1(),
       },
       {

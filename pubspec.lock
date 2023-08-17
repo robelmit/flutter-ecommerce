@@ -69,10 +69,10 @@ packages:
     dependency: "direct main"
     description:
       name: chapasdk
-      sha256: "2ce81de14f28959f129621f015e43721eb6b9e67b75b262cb91479a46d2eb291"
+      sha256: "6a4cb5d28c804433011af767aacebea91b4dbab6bca8011c8706e626246016f8"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.6"
+    version: "0.0.5"
   characters:
     dependency: transitive
     description:
@@ -1198,10 +1198,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "5a751eddf9db89b3e5f9d50c20ab8612296e4e8db69009788d6c8b060a84191c"
+      sha256: a6f0236dbda0f63aa9a25ad1ff9a9d8a4eaaa5012da0dc59d21afdb1dc361ca4
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.4"
+    version: "3.1.4"
   xdg_directories:
     dependency: transitive
     description:

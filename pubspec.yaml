@@ -61,7 +61,12 @@ dependencies:
   #fancy_shimmer_image: any
   #stream_transform: any 
   #loading_indicator: any
+  # webviewx: ^0.2.2
+  # easy_web_view: ^1.6.0
+  # web_browser: ^0.7.4
+  # flutter_webview_pro: ^3.0.1+4
   photo_view: any
+  # flutter_inappwebview: ^5.0.5
   uuid: any
   easy_localization: ^3.0.1
   #flutter_parsed_text: any
@@ -71,14 +76,15 @@ dependencies:
   multi_select_flutter: ^4.1.3
   chips_choice: ^3.0.0
   flutter_multi_select_items: ^0.4.2
-  chapasdk: ^0.0.6
   flutter_typeahead: ^4.6.2
+  chapasdk: ^0.0.5
+  # chapasdk: ^0.0.6
   awesome_select: ^6.0.0
   #flutter_phone_direct_caller: ^2.1.1
   #url_launcher: ^6.1.10
   # flutter_icons: ^1.1.0
   # convert: ^2.1.1
-  # keyboard_avoider: ^0.1.2
+  # keyboard_avoider: any
   # redux_thunk: ^0.4.0
   # http: ^0.12.0+1
   # redux: ^5.0.0

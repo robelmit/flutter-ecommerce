@@ -1,4 +1,5 @@
 import 'package:app/screens/chatscreen.dart';
+import 'package:app/screens/check.dart';
 import 'package:app/screens/chooselanguage.dart';
 import 'package:app/screens/home_screen.dart';
 import 'package:app/screens/landing_screen.dart';
@@ -13,6 +14,7 @@ import '../screens/map_screen.dart';
 import '../screens/search_screen.dart';
 import '../screens/vegetable_screen.dart';
 import '../screens/fruit_screen.dart';
+import '../screens/fav_screen.dart';
 import '../screens/category_screen.dart';
 import '../screens/popular_deals_screen.dart';
 import '../screens/special_deal_screen.dart';
@@ -50,6 +52,9 @@ class Route {
     TabScreen.routeName: (ctx) => TabScreen(),
     LandingScreen.routeName: (ctx) => LandingScreen(),
     MyNewApp.routeName: (ctx) => MyNewApp(),
+    // Checker.routeName: (ctx) => Checker(),
+    // Checker.routeName: (ctx) => Checker(),
+    // FavScreen.routeName: (ctx) => FavScreen()
     // ChatDetail.routeName: (ctx) => ChatDetail(),
   };
 }

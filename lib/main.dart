@@ -8,16 +8,12 @@ import './screens/postad.dart';
 import './utils/custom_theme.dart';
 import './models/item.dart';
 import './routes/route.dart' as route;
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'dart:io';
 
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  if (Platform.isAndroid) {
-    await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
-  }
+
   runApp(EasyLocalization(
     supportedLocales: const [
       Locale('en', 'US'),
@@ -61,7 +57,7 @@ class MyApp extends StatelessWidget {
               // home: DragonFruitScreen(id: "64551c2b8fde0cde141e2221"),
               //home: CheckoutScreen(),
               // home: LoginScreen(),
-              //home: CategoryScreen() 
+              //home: CategoryScreen(), 
               home: LandingScreen(),
               routes: route.Route().routes);
           // routes: route.Route().routes);

@@ -146,7 +146,16 @@ class _IndiDealCardState extends State<IndiDealCard> {
                           if (firsttime != null) {
                             api.addtofavourites(widget.id).then((value) => {
                                   setState(
-                                    () {},
+                                    () {
+                                       Fluttertoast.showToast(
+                                msg: "addsuccessfullyaddedtofavourites".tr(),
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.SNACKBAR,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.green,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                                    },
                                   )
                                 });
                           } else

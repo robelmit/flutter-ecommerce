@@ -13,8 +13,11 @@ import '../widgets/image_container.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import '../services/api.dart';
 
 var location;
+var islocationsaved;
+var api = Api();
 
 class UserScreen extends StatefulWidget {
   @override
@@ -36,7 +39,6 @@ class _UserScreenState extends State<UserScreen> {
 
   @override
   void dispose() {
-   
     super.dispose();
   }
 
@@ -45,6 +47,7 @@ class _UserScreenState extends State<UserScreen> {
     name = prefs.getString('name');
     phone = prefs.getString('phone');
     location = prefs.getString('latitude');
+    islocationsaved = prefs.getString('latitude');
     print('check' + name);
     print('nice' + phone);
     var isloggedin = prefs.getString('id');
@@ -230,9 +233,12 @@ class _ProfileCardState extends State<ProfileCard> {
       onTap: () async {
         //print('hi there bb');
         if (widget.image == "assets/images/profile_user.png") {
-          if (location == null) {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (BuildContext context) => MapScreen()));
+          if (islocationsaved == null) {
+            api.islocationsaved().then((value) => {
+ Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (BuildContext context) => MapScreen()))
+            });
+           
           } else
             Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (BuildContext context) => MyNewApp()));

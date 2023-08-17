@@ -15,8 +15,9 @@ import 'package:app/constants/dropdown.dart';
 
 import 'package:dropdown_button2/dropdown_button2.dart';
 
+enum Status { older, newer }
+
 class MyNewApp extends StatefulWidget {
-  
   static const routeName = '/post screen';
 
   const MyNewApp({super.key});
@@ -36,6 +37,7 @@ class _MyNewAppState extends State<MyNewApp> {
   TextEditingController price = new TextEditingController();
   List<String> items = phone;
   List<String> itemsmain = phone;
+  Status status = Status.newer;
 
   @override
   void dispose() {
@@ -337,6 +339,31 @@ class _MyNewAppState extends State<MyNewApp> {
                   SizedBox(
                     height: 10,
                   ),
+                  Text('Change add status'),
+                  ListTile(
+                    title: const Text('Newer'),
+                    leading: Radio<Status>(
+                      value: Status.newer,
+                      groupValue: status,
+                      onChanged: (Status? value) {
+                        setState(() {
+                          status = value!;
+                          print(status);
+                        });
+                      },
+                    ),
+                  ),
+                  ListTile(
+                      title: const Text('Older'),
+                      leading: Radio<Status>(
+                          value: Status.older,
+                          groupValue: status,
+                          onChanged: (Status? value) {
+                            setState(() {
+                              status = value!;
+                              print(value);
+                            });
+                          })),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: ElevatedButton(
@@ -392,7 +419,8 @@ class _MyNewAppState extends State<MyNewApp> {
                                         tobesent,
                                         tobesentmain,
                                         price.text,
-                                        jsonDecode(value))
+                                        jsonDecode(value),
+                                        status),
                                   })
                               .then((value) => {
                                     EasyLoading.dismiss(),
