@@ -288,6 +288,82 @@ final List<Category> vehicles = [
     kAccentPurple,
   ),
 ];
+final List<Category> vehiclesfinal = [
+  Category(
+    'cars'.tr(),
+    'assets/images/toyota.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'vehiclepartsandaccessories'.tr(),
+    'assets/images/hyundai.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'motorcycles'.tr(),
+    'assets/images/suzuki.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'trucks'.tr(),
+    'assets/images/nissan.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'buses'.tr(),
+    'assets/images/ford.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'heavyequipment'.tr(),
+    'assets/images/buses.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'boats'.tr(),
+    'assets/images/buses.svg',
+    kAccentPurple,
+  ),
+
+];
+final List<Category> vehiclesfinalpro = [
+  Category(
+    'cars',
+    'assets/images/toyota.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'vehiclepartsandaccessories'.tr(),
+    'assets/images/hyundai.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'motorcycles',
+    'assets/images/suzuki.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'trucks',
+    'assets/images/nissan.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'buses',
+    'assets/images/ford.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'heavyequipment',
+    'assets/images/buses.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'boats',
+    'assets/images/buses.svg',
+    kAccentPurple,
+  ),
+
+];
 final List<Categorypro> vehiclespro = [
   Categorypro(
     'Toyota'.tr(),
@@ -338,7 +414,7 @@ final List<Categorypro> vehiclespro = [
 final List<Category> house = [
   Category(
     'Apartment'.tr(),
-    'assets/images/apartment.svg',
+    'assets/images/apartmentbro.svg',
     kAccentGreen,
   ),
   Category(
@@ -348,7 +424,7 @@ final List<Category> house = [
   ),
   Category(
     'Condominium'.tr(),
-    'assets/images/apartment.svg',
+    'assets/images/condominiumbro.svg',
     kAccentPurple,
   ),
   Category(

@@ -1,14 +1,28 @@
+import 'package:app/constants/animals.dart';
+import 'package:app/constants/electronics.dart';
+import 'package:app/constants/foodandagri.dart';
+import 'package:app/constants/homesupplies.dart';
+import 'package:app/constants/mobileandtablets.dart';
+import 'package:app/constants/property.dart';
+import 'package:app/constants/beautyandhealth.dart';
 import 'package:app/models/Categorypro.dart';
 import 'package:app/screens/special_deal_screen.dart';
 import 'package:app/screens/subcatagory.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../constants/babies.dart';
+import '../constants/commercialequipment.dart';
+import '../constants/construction.dart';
+import '../constants/fashion.dart';
+import '../constants/jobs.dart';
+import '../constants/vehicles.dart';
+import '../screens/detailedlist.dart';
+import '../screens/subcatagorypro.dart';
 import '../utils/screen_utils.dart';
 import '../models/category.dart';
 import '../constants/colors.dart';
-import '../models/category.dart';
-import '../constants/lists.dart';
+// import '../models/category.dart';
 
 class CategoryCardhome extends StatelessWidget {
   final Category category;
@@ -34,61 +48,100 @@ class CategoryCardhome extends StatelessWidget {
               width: getProportionateScreenWidth(40),
               child: GestureDetector(
                 onTap: () {
+                  var ph = 'phones';
+                  var ele = 'electronics';
+                  var veh = 'vehicles';
+                  var pro = 'property';
+                  var hom = 'homesupplies';
+                  var fas = 'fashion';
+                  var ani = 'animals';
                   if (category.catIcon == 'assets/images/phone.svg') {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => SubCategoryScreen(
-                                catagories: phone,
-                                catagoriestosend: phonepro,
-                              )),
-                    );
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => DetailedList(
+                            catagories: mobileandtablets,
+                            catagoriestosend: mobileandtabletspro,
+                            title: ph.tr())));
                   } else if (category.catIcon ==
-                      'assets/images/television pro.svg') {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => SubCategoryScreen(
-                                catagories: electronics,
-                                catagoriestosend: electronicspro,
-                              )),
-                    );
-                  } else if (category.catIcon == 'assets/images/sofa.svg') {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => SubCategoryScreen(
-                                catagories: homesupply,
-                                catagoriestosend: homesupplypro,
-                              )),
-                    );
+                      'assets/images/new/electronics/tv.svg') {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => DetailedList(
+                            catagories: electronics,
+                            catagoriestosend: electronicspro,
+                            title: ele.tr())));
+                  } else if (category.catIcon == 'assets/images/new/homesupplies/sofa.svg') {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => DetailedList(
+                            catagories: homesupplies,
+                            catagoriestosend: homesuppliespro,
+                            title: hom.tr())));
                   } else if (category.catIcon == 'assets/images/dog.svg') {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => SubCategoryScreen(
-                                catagories: animals,
-                                catagoriestosend: animalspro,
-                              )),
-                    );
-                  } else if (category.catIcon == 'assets/images/shoe.svg') {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => SubCategoryScreen(
-                                catagories: cloth,
-                                catagoriestosend: clothpro,
-                              )),
-                    );
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => DetailedList(
+                            catagories: animalsfinal,
+                            catagoriestosend: animalsfinalpro,
+                            title: ani.tr())));
+                  } else if (category.catIcon == 'assets/images/new/fashion/tshirt.svg') {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => DetailedList(
+                            catagories: fashion,
+                            catagoriestosend: fashionpro,
+                            title: 'fashion'.tr())));
                   } else if (category.catIcon == 'assets/images/car.svg') {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => SubCategoryScreen(
-                                catagories: vehicles,
-                                catagoriestosend: vehiclespro,
-                              )),
-                    );
+
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => DetailedList(
+                            catagories: vehicles,
+                            catagoriestosend: vehiclespro,
+                            title: 'Vehicles'.tr())));
                   } else if (category.catIcon == 'assets/images/house.svg') {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => DetailedList(
+                            catagories: property,
+                            catagoriestosend: propertypro,
+                            title: 'property'.tr())));
+                  }
+                  else if (category.catIcon == 'assets/images/new/babies/baby.svg') {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => DetailedList(
+                            catagories: babies,
+                            catagoriestosend: babiespro,
+                            title: 'babies'.tr())));
+                  }
+                  else if (category.catIcon == 'assets/images/new/foodandagri/food.svg') {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => DetailedList(
+                            catagories: foodandagri,
+                            catagoriestosend: foodandagripro,
+                            title: 'Food and agri'.tr())));
+                  }
+                                    else if (category.catIcon == 'assets/images/new/jobs/jab1.svg') {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => DetailedList(
+                            catagories: jobs,
+                            catagoriestosend: jobspro,
+                            title: 'Jobs'.tr())));
+                  }
+                  else if (category.catIcon == 'assets/images/new/commercialequipment/factory.svg') {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => DetailedList(
+                            catagories: commercialequipment,
+                            catagoriestosend: commercialequipmentpro,
+                            title: 'Commercial equipment'.tr())));
+                  }
+                  else if (category.catIcon == 'assets/images/new/construction/metr.svg') {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => DetailedList(
+                            catagories: construction,
+                            catagoriestosend: constructionpro,
+                            title: 'construction'.tr())));
+                  }
+                    else if (category.catIcon == 'assets/images/new/beautyandhealth/hair.svg') {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                          builder: (BuildContext context) => SubCategoryScreen(
-                                catagories: house,
-                                catagoriestosend: housepro,
+                          builder: (BuildContext context) => DetailedList(
+                                catagories: beautyandhealth,
+                                catagoriestosend: beautyandhealthpro,
+                                title :"beautyandhealth".tr()
                               )),
                     );
                   }
@@ -107,10 +160,15 @@ class CategoryCardhome extends StatelessWidget {
             padding: const EdgeInsets.only(top: 5.0),
             child: Align(
                 alignment: Alignment.center,
-                child: Text(
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.visible,
-                    category.catName)),
+
+                child: Container(
+              width: getProportionateScreenWidth(70),
+
+                  child: Text(
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      category.catName),
+                )),
           )
         ],
       ),

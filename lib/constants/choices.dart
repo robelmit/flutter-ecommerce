@@ -74,16 +74,16 @@ List<S2Choice<String>> sorts = [
   S2Choice<String>(value: 'pricey', title: 'High Price'),
 ];
 List<S2Choice<String>> regions = [
-  S2Choice<String>(value: 'all', title: 'All Ethiopia'),
-  S2Choice<String>(value: 'tigray', title: 'Tigray'),
-  S2Choice<String>(value: 'addisababa', title: 'Addis Ababa'),
-  S2Choice<String>(value: 'amhara', title: 'Amhara'),
-  S2Choice<String>(value: 'oromia', title: 'Oromia'),
-  S2Choice<String>(value: 'somali', title: 'Somali'),
-  S2Choice<String>(value: 'benishangul', title: 'Benishangul-Gumuz'),
-  S2Choice<String>(value: 'sidama', title: 'Sidama'),
-  S2Choice<String>(value: 'southern', title: 'Southern'),
-  S2Choice<String>(value: 'harari', title: 'Harari')
+  S2Choice<String>(value: 'all', title: 'All Ethiopia'.tr()),
+  S2Choice<String>(value: 'tigray', title: 'Tigray'.tr()),
+  S2Choice<String>(value: 'addisababa', title: 'Addis Ababa'.tr()),
+  S2Choice<String>(value: 'amhara', title: 'Amhara'.tr()),
+  S2Choice<String>(value: 'oromia', title: 'Oromia'.tr()),
+  S2Choice<String>(value: 'somali', title: 'Somali'.tr()),
+  S2Choice<String>(value: 'benishangul', title: 'Benishangul-Gumuz'.tr()),
+  S2Choice<String>(value: 'sidama', title: 'Sidama'.tr()),
+  S2Choice<String>(value: 'south', title: 'Southern'.tr()),
+  S2Choice<String>(value: 'harar', title: 'Harari'.tr())
 ];
 //   {'value': 'tigray', 'title': 'Tigray'},
 //   {'value': 'addisababa', 'title': 'Addis Ababa'},
@@ -124,7 +124,6 @@ List<S2Choice<String>> catagory = [
   S2Choice<String>(value: 'fashion', title: 'fashion'.tr()),
   S2Choice<String>(value: 'animals', title: 'animals'.tr()),
 ];
-
 
 List<Map<String, String>> phone = [
   {'value': 'Samsung', 'title': 'Samsung'.tr()},
@@ -171,11 +170,10 @@ List<Map<String, String>> vehicles = [
   {'value': 'Heavy Equipment', 'title': 'Heavy Equipment'.tr()},
 ];
 
-
 List<Map<String, String>> house = [
   {'value': 'Apartment', 'title': 'Apartment'.tr()},
   {'value': 'House', 'title': 'House'.tr()},
-  {'value': 'Condominium', 'title':'Condominium'.tr()},
+  {'value': 'Condominium', 'title': 'Condominium'.tr()},
   {'value': 'Villa', 'title': 'Villa'.tr()},
 ];
 // final List<String> animals = [
@@ -186,154 +184,61 @@ List<Map<String, String>> house = [
 List<Map<String, String>> animals = [
   {'value': 'Dogs', 'title': 'Dogs'.tr()},
   {'value': 'Cats', 'title': 'Cats'.tr()},
-  {'value': 'Birds', 'title':'Birds'.tr()},
+  {'value': 'Birds', 'title': 'Birds'.tr()},
 ];
 
+List<Map<String, String>> cities = [
+  {'value': 'Mekele', 'title': 'Mekele'.tr(), 'brand': 'Tigray'.tr(), 'body': 'SUV'},
+  {'value': 'Āksum', 'title': 'Axum'.tr(), 'brand': 'Tigray'.tr(), 'body': 'SUV'},
+  {'value': 'Adwa', 'title': 'Adwa'.tr(), 'brand': 'Tigray'.tr(), 'body': 'SUV'},
+  {'value': 'Ādīgrat', 'title': 'Adigrat'.tr(), 'brand': 'Tigray'.tr(), 'body': 'SUV'},
+  {'value': 'Shire', 'title': 'Shire'.tr(), 'brand': 'Tigray'.tr(), 'body': 'SUV'},
+  {'value': 'Bahir Dar', 'title': 'BahirDar'.tr(), 'brand': 'Amhara'.tr(), 'body': 'SUV'},
+  {'value': 'Gondar', 'title': 'Gonder'.tr(), 'brand': 'Amhara'.tr(), 'body': 'SUV'},
+  {'value': 'Desē', 'title': 'Dessye'.tr(), 'brand': 'Amhara'.tr(), 'body': 'SUV'},
+  {'value': 'Kombolcha', 'title': 'Kombolcha'.tr(), 'brand': 'Amhara'.tr(), 'body': 'SUV'},
+  {'value': 'Debre Birhan', 'title': 'DebreBirhan'.tr(), 'brand': 'Amhara'.tr(), 'body': 'SUV'},
+  {'value': 'Jīma', 'title': 'Jimma'.tr(), 'brand': 'Oromia'.tr(), 'body': 'SUV'},
+  {'value': 'Nazrēt', 'title': 'Nazreth'.tr(), 'brand': 'Oromia'.tr(), 'body': 'SUV'},
+  {'value': 'Shashemenē', 'title': 'Shashamanni'.tr(), 'brand': 'Oromia'.tr(), 'body': 'SUV'},
+  {'value': 'Bishoftu', 'title': 'Bishoftu'.tr(), 'brand': 'Oromia'.tr(), 'body': 'SUV'},
+  {'value': 'Nekemte', 'title': 'Nekemte'.tr(), 'brand': 'Oromia'.tr(), 'body': 'SUV'},
+  {'value': 'Hawassa', 'title': 'Hawassa'.tr(), 'brand': 'South'.tr(), 'body': 'SUV'},
+  {'value': 'Ārba Minch’', 'title': 'Arba'.tr(), 'brand': 'South'.tr(), 'body': 'SUV'},
+  {'value': 'Sodo', 'title': 'Sodo'.tr(), 'brand': 'South'.tr(), 'body': 'SUV'},
+  {'value': 'Jijiga', 'title': 'Jijiga'.tr(), 'brand': 'Somali'.tr(), 'body': 'SUV'},
+  {'value': 'Semera', 'title': 'Semera'.tr(), 'brand': 'Afar'.tr(), 'body': 'SUV'},
+  {'value': 'Harar', 'title': 'Harar'.tr(), 'brand': 'Harar'.tr(), 'body': 'SUV'},
+  {'value': 'Addis Ababa', 'title': 'Addis'.tr(), 'brand': 'Addis'.tr(), 'body': 'SUV'},
+  {'value': 'Dire Dawa', 'title': 'Dire'.tr(), 'brand': 'Dire'.tr(), 'body': 'SUV'},
+
+];
 List<Map<String, String>> cars = [
   {'value': 'bmw-x1', 'title': 'BMW X1', 'brand': 'BMW', 'body': 'SUV'},
-  {'value': 'bmw-x7', 'title': 'BMW X7', 'brand': 'BMW', 'body': 'SUV'},
-  {'value': 'bmw-x2', 'title': 'BMW X2', 'brand': 'BMW', 'body': 'SUV'},
-  {'value': 'bmw-x4', 'title': 'BMW X4', 'brand': 'BMW', 'body': 'SUV'},
-  {
-    'value': 'honda-crv',
-    'title': 'Honda C-RV',
-    'brand': 'Honda',
-    'body': 'SUV'
-  },
-  {
-    'value': 'honda-hrv',
-    'title': 'Honda H-RV',
-    'brand': 'Honda',
-    'body': 'SUV'
-  },
-  {
-    'value': 'mercedes-gcl',
-    'title': 'Mercedes-Benz G-class',
-    'brand': 'Mercedes',
-    'body': 'SUV'
-  },
-  {
-    'value': 'mercedes-gle',
-    'title': 'Mercedes-Benz GLE',
-    'brand': 'Mercedes',
-    'body': 'SUV'
-  },
-  {
-    'value': 'mercedes-ecq',
-    'title': 'Mercedes-Benz ECQ',
-    'brand': 'Mercedes',
-    'body': 'SUV'
-  },
-  {
-    'value': 'mercedes-glcc',
-    'title': 'Mercedes-Benz GLC Coupe',
-    'brand': 'Mercedes',
-    'body': 'SUV'
-  },
-  {
-    'value': 'lr-ds',
-    'title': 'Land Rover Discovery Sport',
-    'brand': 'Land Rover',
-    'body': 'SUV'
-  },
-  {
-    'value': 'lr-rre',
-    'title': 'Land Rover Range Rover Evoque',
-    'brand': 'Land Rover',
-    'body': 'SUV'
-  },
-  {
-    'value': 'honda-jazz',
-    'title': 'Honda Jazz',
-    'brand': 'Honda',
-    'body': 'Hatchback'
-  },
-  {
-    'value': 'honda-civic',
-    'title': 'Honda Civic',
-    'brand': 'Honda',
-    'body': 'Hatchback'
-  },
-  {
-    'value': 'mercedes-ac',
-    'title': 'Mercedes-Benz A-class',
-    'brand': 'Mercedes',
-    'body': 'Hatchback'
-  },
-  {
-    'value': 'hyundai-i30f',
-    'title': 'Hyundai i30 Fastback',
-    'brand': 'Hyundai',
-    'body': 'Hatchback'
-  },
-  {
-    'value': 'hyundai-kona',
-    'title': 'Hyundai Kona Electric',
-    'brand': 'Hyundai',
-    'body': 'Hatchback'
-  },
-  {
-    'value': 'hyundai-i10',
-    'title': 'Hyundai i10',
-    'brand': 'Hyundai',
-    'body': 'Hatchback'
-  },
-  {'value': 'bmw-i3', 'title': 'BMW i3', 'brand': 'BMW', 'body': 'Hatchback'},
-  {
-    'value': 'bmw-sgc',
-    'title': 'BMW 4-serie Gran Coupe',
-    'brand': 'BMW',
-    'body': 'Hatchback'
-  },
-  {
-    'value': 'bmw-sgt',
-    'title': 'BMW 6-serie GT',
-    'brand': 'BMW',
-    'body': 'Hatchback'
-  },
-  {
-    'value': 'audi-a5s',
-    'title': 'Audi A5 Sportback',
-    'brand': 'Audi',
-    'body': 'Hatchback'
-  },
-  {
-    'value': 'audi-rs3s',
-    'title': 'Audi RS3 Sportback',
-    'brand': 'Audi',
-    'body': 'Hatchback'
-  },
-  {
-    'value': 'audi-ttc',
-    'title': 'Audi TT Coupe',
-    'brand': 'Audi',
-    'body': 'Coupe'
-  },
-  {
-    'value': 'audi-r8c',
-    'title': 'Audi R8 Coupe',
-    'brand': 'Audi',
-    'body': 'Coupe'
-  },
-  {
-    'value': 'mclaren-570gt',
-    'title': 'Mclaren 570GT',
-    'brand': 'Mclaren',
-    'body': 'Coupe'
-  },
-  {
-    'value': 'mclaren-570s',
-    'title': 'Mclaren 570S Spider',
-    'brand': 'Mclaren',
-    'body': 'Coupe'
-  },
-  {
-    'value': 'mclaren-720s',
-    'title': 'Mclaren 720S',
-    'brand': 'Mclaren',
-    'body': 'Coupe'
-  },
+ 
 ];
+List<S2Choice<String>> Transmission = [
+    S2Choice<String>(
+      value: 'Automatic',
+      title: 'Automatic'.tr(),
+    ),
+    S2Choice<String>(value: 'CVT', title: 'CVT'.tr()),
+    S2Choice<String>(value: 'Manual', title: 'Manual'.tr()),
+  ];
+  List<S2Choice<String>> EngineSize = [
+    S2Choice<String>( value: '1.0-1,2 Litre engine',title: '1.0-1,2 Litre engine'.tr(),),
+    S2Choice<String>( value: '1.4-1.6 Lite engine',title: '1.4-1.6 Lite engine'.tr(),),
+    S2Choice<String>( value: '1.8-2.0 Litre engine',title: '1.8-2.0 Litre engine'.tr(),),
+    S2Choice<String>( value: '2.2=3.0 Litre engine',title: '2.2=3.0 Litre engine'.tr(),),
+    S2Choice<String>( value: '> 3.5  Litre Engine',title: '> 3.5  Litre Engine'.tr(),),
+
+   
+  ];
+  List<S2Choice<String>> Fuel = [
+    S2Choice<String>( value: 'Diesel',title: 'Diesel'.tr(),),
+    S2Choice<String>( value: 'Gasoline',title: 'Gasoline'.tr(),),
+    
+  ];
 
 List<Map<String, String>> smartphones = [
   {

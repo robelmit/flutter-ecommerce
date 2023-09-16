@@ -53,7 +53,7 @@ class _ChatDetailState extends State<ChatDetail> {
 
   Future<void> initSocket() async {
     print('Connecting to chat service');
-    socket = IO.io('http://192.168.43.34:5000', <String, dynamic>{
+    socket = IO.io('http://robel.eu-4.evennode.com', <String, dynamic>{
       'transports': ['websocket'],
       'autoConnect': false,
     });

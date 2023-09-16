@@ -266,16 +266,72 @@ class _DragonFruitScreenState extends State<DragonFruitScreen> {
                                             fontWeight: FontWeight.normal),
                                       ))
                                 ])),
+                        Builder(builder: (context) {
+                          if (snapshot.data!["transmission"]!=null &&snapshot.data!["transmission"]!.toString().isNotEmpty) {
+                            return Container(
+                                margin: EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 1,
+                                      color:
+                                          Color.fromARGB(117, 110, 110, 110)),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20),
+                                  child: Column(children: [
+                                    SizedBox(height: 5),
+                                    Text('More details'),
+                                    SizedBox(height: 10),
+                                    Row(children: [
+                                      Column(children: [
+                                        Text('transmission'),
+                                        SizedBox(height: 3),
+                                        Text(snapshot.data!['transmission'],
+                                            style:
+                                                TextStyle(color: Colors.grey))
+                                      ]),
+                                      Spacer(),
+                                      Column(children: [
+                                        Text('engineSize'),
+                                        SizedBox(height: 3),
+                                        Text(snapshot.data!['engineSize'],
+                                            style:
+                                                TextStyle(color: Colors.grey))
+                                      ]),
+                                    ]),
+                                    SizedBox(height: 4),
+                                    Row(children: [
+                                      Column(children: [
+                                        Text('Fuel'),
+                                        SizedBox(height: 3),
+                                        Text(snapshot.data!['fuel'],
+                                            style:
+                                                TextStyle(color: Colors.grey))
+                                      ]),
+                                      Spacer(),
+                                      Column(children: [
+                                        Text('Mile Age'),
+                                        SizedBox(height: 3),
+                                        Text(snapshot.data!['mileAge'],
+                                            style:
+                                                TextStyle(color: Colors.grey))
+                                      ]),
+                                    ])
+                                  ]),
+                                ));
+                          }
+                          return Container();
+                        }),
                       ],
                     );
                   } else if (snapshot.hasError) {
                     return Center(
                       child: Column(children: [
                         Text('Error occured'),
-                         Image.asset(
-                              'assets/images/errorpage.png',
-                              height: 200,
-                            ),
+                        Image.asset(
+                          'assets/images/errorpage.png',
+                          height: 200,
+                        ),
                         ElevatedButton(
                             onPressed: () {
                               setState(() {

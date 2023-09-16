@@ -1,0 +1,466 @@
+import 'package:easy_localization/easy_localization.dart';
+
+import '../models/Categorypro.dart';
+import '../models/category.dart';
+import 'colors.dart';
+
+
+
+final List<Category> technologyjobs = [
+    Category(
+    'parttime'.tr(),
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'fulltime'.tr(),
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Temporary'.tr(),
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> technologyjobspro = [
+     Categorypro(
+    'parttime',
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'fulltime',
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Temporary',
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> healthandbeautyjobs = [
+     Category(
+    'parttime'.tr(),
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'fulltime'.tr(),
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Temporary'.tr(),
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> healthandbeautyjobspro = [
+      Categorypro(
+    'parttime',
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'fulltime',
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Temporary',
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> artandentertainmentjobs = [
+      Category(
+    'parttime'.tr(),
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'fulltime'.tr(),
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Temporary'.tr(),
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> artandentertainmentjobspro = [
+     Categorypro(
+    'parttime',
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'fulltime',
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Temporary',
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> securityjobs = [
+      Category(
+    'parttime'.tr(),
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'fulltime'.tr(),
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Temporary'.tr(),
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> securityjobspro = [
+      Categorypro(
+    'parttime',
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'fulltime',
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Temporary',
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> teachingjobs = [
+      Category(
+    'parttime'.tr(),
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'fulltime'.tr(),
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Temporary'.tr(),
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> teachingjobspro = [
+     Categorypro(
+    'parttime',
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'fulltime',
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Temporary',
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> travelandtourismjobs = [
+      Category(
+    'parttime'.tr(),
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'fulltime'.tr(),
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Temporary'.tr(),
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> travelandtourismjobspro = [
+     Categorypro(
+    'parttime',
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'fulltime',
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Temporary',
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> reaurantandsurveyjobs = [
+     Category(
+    'parttime'.tr(),
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'fulltime'.tr(),
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Temporary'.tr(),
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> reaurantandsurveyjobspro = [
+     Categorypro(
+    'parttime',
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'fulltime',
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Temporary',
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> customerservicesjobs = [
+      Category(
+    'parttime'.tr(),
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'fulltime'.tr(),
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Temporary'.tr(),
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> customerservicesjobspro = [
+     Categorypro(
+    'parttime',
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'fulltime',
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Temporary',
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> hoteljobs = [];
+final List<Categorypro> hoteljobspro = [
+      Categorypro(
+    'parttime',
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'fulltime',
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Temporary',
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> engineeringjobs = [];
+final List<Categorypro> engineeringjobspro = [
+     Categorypro(
+    'parttime',
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'fulltime',
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Temporary',
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> otherjobs = [
+     Category(
+    'parttime'.tr(),
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'fulltime'.tr(),
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Temporary'.tr(),
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> otherjobspro = [
+     Categorypro(
+    'parttime',
+    'assets/images/new/fulltime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'fulltime',
+    'assets/images/new/halftime.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Temporary',
+    'assets/images/new/temporary.svg',
+    kAccentPurple,
+  ),
+];
+
+final List<Category> jobs = [
+  Category(
+    'technologyjobs'.tr(),
+    'assets/images/new/jobs/jab1.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'healthandbeautyjobs'.tr(),
+    'assets/images/new/jobs/jab1.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'artandentertainmentjobs'.tr(),
+    'assets/images/new/jobs/jab1.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'securityjobs'.tr(),
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'teachingjobs'.tr(),
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'travelandtourismjobs'.tr(),
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'reaurantandsurveyjobs'.tr(),
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'customerservicesjobs'.tr(),
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'hoteljobs'.tr(),
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'engineeringjobs'.tr(),
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'otherjobs'.tr(),
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+];
+
+final List<Categorypro> jobspro = [
+  Categorypro(
+    'technologyjobs',
+    'assets/images/new/jobs/jab1.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'healthandbeautyjobs',
+    'assets/images/new/jobs/jab1.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'artandentertainmentjobs',
+    'assets/images/new/jobs/jab1.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'securityjobs',
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'teachingjobs',
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'travelandtourismjobs',
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'reaurantandsurveyjobs',
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'customerservicesjobs',
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'hoteljobs',
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'engineeringjobs',
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'otherjobs',
+    'assets/images/new/jobs/jab1.svg',
+    kAccentPurple,
+  ),
+];

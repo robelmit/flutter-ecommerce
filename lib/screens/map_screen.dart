@@ -1,5 +1,6 @@
 import 'package:app/screens/postad.dart';
 import 'package:app/screens/tab_screen.dart';
+import 'package:app/screens/user_screen.dart';
 import 'package:app/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -150,12 +151,14 @@ class _BottomCardState extends State<BottomCard> {
                                     'latitude', value.latitude.toString()),
                                 prefs.setString(
                                     'longitude', value.longitude.toString()),
+                                    prefs.setString(
+                                    'islocationsaved', 'true'),
                                 api.savelocation(
                                     value.latitude, value.longitude),
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                         builder: (BuildContext context) =>
-                                            MyNewApp()))
+                                            UserScreen()))
                               }); //
                         },
                         child: Text('Enable location'))

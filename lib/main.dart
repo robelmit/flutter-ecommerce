@@ -22,7 +22,7 @@ Future<void> main() async {
     ],
     path: "assets/translations",
     saveLocale: true,
-    fallbackLocale: Locale('en', 'US'),
+    fallbackLocale: const Locale('en', 'US'),
     child: MyApp(),
   ));
 }
@@ -51,14 +51,9 @@ class MyApp extends StatelessWidget {
               supportedLocales: context.supportedLocales,
               locale: context.locale,
               builder: EasyLoading.init(), 
-              // home: SpecialDealScreen(catagory: 'senior developer'),
-              //home: HomeScreen(),
-              // home: TabScreen()
-              // home: DragonFruitScreen(id: "64551c2b8fde0cde141e2221"),
-              //home: CheckoutScreen(),
-              // home: LoginScreen(),
-              //home: CategoryScreen(), 
+           
               home: LandingScreen(),
+              // home: MyNewApp(),
               routes: route.Route().routes);
           // routes: route.Route().routes);
         },

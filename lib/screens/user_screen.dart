@@ -3,9 +3,11 @@ import 'package:app/screens/map_screen.dart';
 import 'package:app/screens/postad.dart';
 import 'package:app/screens/signup_screen.dart';
 import 'package:app/screens/tab_screen.dart';
+import 'package:chapasdk/chapa_payment%20initializer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 import '../constants/colors.dart';
 import '../screens/my_profile_screen.dart';
 import '../utils/screen_utils.dart';
@@ -47,7 +49,7 @@ class _UserScreenState extends State<UserScreen> {
     name = prefs.getString('name');
     phone = prefs.getString('phone');
     location = prefs.getString('latitude');
-    islocationsaved = prefs.getString('latitude');
+    islocationsaved = prefs.getString('islocationsaved');
     print('check' + name);
     print('nice' + phone);
     var isloggedin = prefs.getString('id');
@@ -231,17 +233,84 @@ class _ProfileCardState extends State<ProfileCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+
         //print('hi there bb');
         if (widget.image == "assets/images/profile_user.png") {
           if (islocationsaved == null) {
-            api.islocationsaved().then((value) => {
- Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (BuildContext context) => MapScreen()))
+            api
+                .islocationsaved()
+                .then((value) async => {
+                     print('value'),
+                     print(value['message']),
+                      await prefs.setString('islocationsaved', 'true'),
+                      islocationsaved = 'true',
+                      if(value['message']=="error"){
+                           Navigator.pushReplacementNamed(
+                          context, MapScreen.routeName)
+                      }
+                      else if(value['message']=="Location is saved successfully"){
+
+
+                      }
+
+                    })
+                .onError((error, stackTrace) => {
+                    // add internet connection error
+
+
+                   
+                    });
+          } else {
+            var uuid = Uuid();
+            int amount;
+            api.getsetting().then((value) => {
+                 amount = int.parse(value['payment']),
+
+              if(value['paymentenabled']==true){
+                Chapa.paymentParameters(
+                        context: context, // context
+                        publicKey: 'CHASECK_TEST-Mkp2ETiF5AgbdcHYOubHdihacubwUlhP',
+                        currency: 'ETB',
+                        amount: amount.toString(),
+                        email: 'xyz@gmail.com',
+                        firstName: 'fullName',
+                        lastName: 'lastName',
+                        txRef: uuid.v1(),
+                        title: 'title',
+                        desc: 'desc',
+                        namedRouteFallBack: '/checker', // fall back route name
+                      )
+              }
+              else if (value['paymentenabled']==false){
+                     Navigator.of(context).pushReplacementNamed(MyNewApp.routeName)
+              }
+              // print(value['paymentenabled']),
+              
+              // print(value['paymentenabled']==false),
+    //             Chapa.paymentParameters(
+    //   context: context, // context
+    //   publicKey: 'CHASECK_TEST-Mkp2ETiF5AgbdcHYOubHdihacubwUlhP',
+    //   currency: 'ETB',
+    //   amount: '200',
+    //   email: 'xyz@gmail.com',
+    //   firstName: 'fullName',
+    //   lastName: 'lastName',
+    //   txRef: '34TXc15bdsf459058c012320567293234200wefsdf0017826ui091010233789',
+    //   title: 'title',
+    //   desc: 'desc',
+    //   namedRouteFallBack: '/checker', // fall back route name
+    // );
+    //           if(value){
+    //              //payment call will go over here
+    //           }
+    //           else {
+    //  Navigator.of(context).pushReplacement(MaterialPageRoute(
+    //             builder: (BuildContext context) => MyNewApp()));
+    //           }
             });
-           
-          } else
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (BuildContext context) => MyNewApp()));
+       
+          }
         } else if (widget.image == "assets/images/egg.png") {
           AwesomeDialog(
             context: context,

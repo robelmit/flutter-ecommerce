@@ -38,8 +38,8 @@ import '../constants/choices.dart' as choices;
 
 var api = new Api();
 String? search = null;
-final minprice = TextEditingController();
-final maxprice = TextEditingController();
+final minpricefield = TextEditingController();
+final maxpricefield = TextEditingController();
 List? adds = null;
 List addspro = [];
 bool isloadingmore = false;
@@ -58,6 +58,8 @@ final List<String> categorie = [
   'fashion'.tr(),
   'animals'.tr(),
 ];
+int? minprice;
+int? maxprice;
 var filtersbro = {};
 final List<String> categoriestosen = [
   'phones',
@@ -87,6 +89,8 @@ class HomeScreen1 extends StatefulWidget {
 }
 
 class _HomeScreen1State extends State<HomeScreen1> {
+  FocusNode myfocus = FocusNode();
+
   getadds() async {
     adds = null;
     page = 1;
@@ -181,6 +185,8 @@ class _HomeScreen1State extends State<HomeScreen1> {
   void initState() {
     // TODO: implement initState;
     print('testing payment method');
+    myfocus.unfocus();
+
     page = 1;
     getadds();
     getlocation();
@@ -216,15 +222,18 @@ class _HomeScreen1State extends State<HomeScreen1> {
   void _showForm() async {
     String status = 'all';
     List<S2Choice<String>> statusoptions = [
-      S2Choice<String>(value: 'all', title: 'All'),
-      S2Choice<String>(value: 'new', title: 'Brand New'),
+      S2Choice<String>(
+        value: 'all',
+        title: 'All'.tr(),
+      ),
+      S2Choice<String>(value: 'new', title: 'Brand New'.tr()),
       S2Choice<String>(value: 'old', title: 'Old'),
     ];
-    String filter = '';
+    String filter = 'newest';
     List<S2Choice<String>> filters = [
-      S2Choice<String>(value: 'newest', title: 'Newest'),
-      S2Choice<String>(value: 'pricelow', title: 'Price low'),
-      S2Choice<String>(value: 'pricemax', title: 'Highest price'),
+      S2Choice<String>(value: 'newest', title: 'Newest'.tr()),
+      S2Choice<String>(value: 'pricelow', title: 'Price low'.tr()),
+      S2Choice<String>(value: 'pricemax', title: 'Highest price'.tr()),
     ];
     String selectedadd = '';
     // String selectedaddcatagory = '';
@@ -279,8 +288,8 @@ class _HomeScreen1State extends State<HomeScreen1> {
                 "filter": filter,
                 "tags": tags,
                 "distance": _value,
-                "minprice": minprice.text,
-                "maxprice": maxprice.text
+                "minprice": minprice,
+                "maxprice": maxprice
               };
               return FractionallySizedBox(
                 heightFactor: 0.9,
@@ -304,7 +313,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
                               SizedBox(width: 20),
                               Text('Filter the adds'.tr()),
                               TextButton(
-                                  child: Text('Cancel',
+                                  child: Text('Cancel'.tr(),
                                       style: TextStyle(
                                           color: Colors.redAccent,
                                           fontSize: 16,
@@ -317,14 +326,21 @@ class _HomeScreen1State extends State<HomeScreen1> {
                         Container(
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  width: 1.5, color: Color(0xFFE4E4E6))),
-                          child: SmartSelect<String>.single(
-                            title: 'Select region',
-                            // placeholder: 'Choose one',
-                            selectedValue: region,
-                            onChange: (selected) =>
-                                setStatehere(() => region = selected.value),
-                            choiceItems: choices.regions,
+                                  width: 1.5, color: Color(0xFFE4E4E6))
+                                  ),
+                          child: SizedBox(
+                            height: 50,
+                            child: Align(
+                              alignment: Alignment.topCenter,
+                              child: SmartSelect<String>.single(
+                                title: 'Select region'.tr(),
+                                // placeholder: 'Choose one',
+                                selectedValue: region,
+                                onChange: (selected) =>
+                                    setStatehere(() => region = selected.value),
+                                choiceItems: choices.regions,
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(height: 5),
@@ -332,21 +348,24 @@ class _HomeScreen1State extends State<HomeScreen1> {
                           decoration: BoxDecoration(
                               border: Border.all(
                                   width: 1.5, color: Color(0xFFE4E4E6))),
-                          child: SmartSelect<String>.single(
-                            title: 'Choose ad catagory',
-                            placeholder: 'Choose one',
-                            selectedValue: selectedadd,
-                            onChange: (selected) {
-                              selectedadd = selected.value;
-                              checker(selected.value);
-                              setStatehere(
-                                () {},
-                              );
-                            },
-                            choiceItems: choices.catagory,
-                            // choiceGrouped: true,
-                            // modalFilter: true,
-                            modalFilterAuto: true,
+                          child: SizedBox(
+                            height: 50,
+                            child: SmartSelect<String>.single(
+                              title: 'Choose ad catagory'.tr(),
+                              placeholder: 'Choose one'.tr(),
+                              selectedValue: selectedadd,
+                              onChange: (selected) {
+                                selectedadd = selected.value;
+                                checker(selected.value);
+                                setStatehere(
+                                  () {},
+                                );
+                              },
+                              choiceItems: choices.catagory,
+                              // choiceGrouped: true,
+                              // modalFilter: true,
+                              modalFilterAuto: true,
+                            ),
                           ),
                         ),
                         SizedBox(height: 5),
@@ -356,8 +375,8 @@ class _HomeScreen1State extends State<HomeScreen1> {
                               border: Border.all(
                                   width: 1.5, color: Color(0xFFE4E4E6))),
                           child: SmartSelect<String>.multiple(
-                            title: 'Choose sub catagory ',
-                            placeholder: 'Choose one',
+                            title: 'Choose sub catagory'.tr(),
+                            placeholder: 'Choose one'.tr(),
                             selectedValue: selectedaddcatagory,
                             onChange: (selected) => setStatehere(
                                 () => selectedaddcatagory = selected.value),
@@ -485,53 +504,66 @@ class _HomeScreen1State extends State<HomeScreen1> {
                           decoration: BoxDecoration(
                               border: Border.all(
                                   width: 0.2, color: Color(0xFFE4E4E6))),
-                          child: SmartSelect<String>.single(
-                              title: 'Select status',
-                              modalType: S2ModalType.bottomSheet,
-                              selectedValue: status,
-                              // modalFilter:true,
-                              choiceItems: statusoptions,
-                              // modalType: ,
-                              onChange: (state) =>
-                                  setState(() => status = state.value)),
+                          child: SizedBox(
+                            height: 50,
+                            child: SmartSelect<String>.single(
+                                title: 'Select status'.tr(),
+                                modalType: S2ModalType.bottomSheet,
+                                selectedValue: status,
+                                // modalFilter:true,
+                                choiceItems: statusoptions,
+                                // modalType: ,
+                                onChange: (state) =>
+                                    setStatehere(() => status = state.value)
+                                    ),
+                          ),
                         ),
-                        Row(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .push(FullScreenSearchModal());
-                              },
-                              child: Container(
-                                margin: EdgeInsets.only(left: 18),
+                        SizedBox(
+                          height: 50,
+                          child: Row(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context)
+                                      .push(FullScreenSearchModal());
+                                },
+                                child: Container(
+                                  height: 50,
+                                  margin: EdgeInsets.only(left: 18),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 0.2,
+                                          color: Color(0xFFE4E4E6))),
+                                  width: MediaQuery.of(context).size.width / 2 -
+                                      52,
+                                  child: Center(
+                                    child: Text('Enter custom price'.tr(),
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            color:
+                                                Colors.black.withOpacity(0.8),
+                                            fontSize: 15)),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width / 2,
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         width: 0.2, color: Color(0xFFE4E4E6))),
-                                width:
-                                    MediaQuery.of(context).size.width / 2 - 52,
-                                child: Text('Enter custom price',
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        color: Colors.black.withOpacity(0.8),
-                                        fontSize: 15)),
+                                child: SmartSelect<String>.single(
+                                    title: 'Filter by '.tr(),
+                                    placeholder: 'Choose one'.tr(),
+                                    selectedValue: filter,
+                                    // modalFilter:true,
+                                    choiceItems: filters,
+                                    modalType: S2ModalType.bottomSheet,
+                                    // modalType: ,
+                                    onChange: (state) => setStatehere(
+                                        () => filter = state.value)),
                               ),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width / 2,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      width: 0.2, color: Color(0xFFE4E4E6))),
-                              child: SmartSelect<String>.single(
-                                  title: 'Filter by',
-                                  selectedValue: filter,
-                                  // modalFilter:true,
-                                  choiceItems: filters,
-                                  modalType: S2ModalType.bottomSheet,
-                                  // modalType: ,
-                                  onChange: (state) =>
-                                      setStatehere(() => filter = state.value)),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         const SizedBox(
                           height: 20,
@@ -578,16 +610,20 @@ class _HomeScreen1State extends State<HomeScreen1> {
                               //       // print(realtags);
                               //       // allfilters["tags"] = realtags;
                               //       print(allfilters);
+
                               allfilters['latitude'] = double.parse(latitude!);
                               allfilters['longitude'] =
                                   double.parse(longitude!);
                               page = 1;
+                              print(allfilters);
                               adds = await api.getaddsbyfilters(
                                   search, allfilters, page);
                               print('check');
                               print(adds!);
                               setState(() => {});
                               filtersbro = allfilters;
+                              minprice = null;
+                              maxprice = null;
 
                               //   if (tags.isEmpty && _value == 0.0) {
                               //     Navigator.pop(context);
@@ -649,13 +685,13 @@ class _HomeScreen1State extends State<HomeScreen1> {
   Widget build(BuildContext context) {
     final List<Category> categories = [
       Category(
-        'phones'.tr(),
+        'mobileandtablets'.tr(),
         'assets/images/phone.svg',
         kAccentGreen,
       ),
       Category(
         'electronics'.tr(),
-        'assets/images/television pro.svg',
+        'assets/images/new/electronics/tv.svg',
         kAccentYellow,
       ),
       Category(
@@ -668,14 +704,29 @@ class _HomeScreen1State extends State<HomeScreen1> {
         'assets/images/house.svg',
         kAccentGreen,
       ),
+            Category(
+        'beautyandhealth'.tr(),
+        'assets/images/new/beautyandhealth/hair.svg',
+        kAccentGreen,
+      ),
+            Category(
+        'babies'.tr(),
+        'assets/images/new/babies/baby.svg',
+        kAccentGreen,
+      ),
+            Category(
+        'foodandagri'.tr(),
+        'assets/images/new/foodandagri/food.svg',
+        kAccentGreen,
+      ),
       Category(
         'homesupplies'.tr(),
-        'assets/images/sofa.svg',
+        'assets/images/new/homesupplies/sofa.svg',
         kAccentPurple,
       ),
       Category(
         'fashion'.tr(),
-        'assets/images/shoe.svg',
+        'assets/images/new/fashion/tshirt.svg',
         kAccentPurple,
       ),
       Category(
@@ -683,16 +734,32 @@ class _HomeScreen1State extends State<HomeScreen1> {
         'assets/images/dog.svg',
         kAccentYellow,
       ),
+            Category(
+        'jobs'.tr(),
+        'assets/images/new/jobs/jab1.svg',
+        kAccentYellow,
+      ),
+            Category(
+        'commercialequipment'.tr(),
+        'assets/images/new/commercialequipment/factory.svg',
+        kAccentYellow,
+      ),
+            Category(
+        'construction'.tr(),
+        'assets/images/new/construction/metr.svg',
+        kAccentYellow,
+      ),
+       
     ];
     final List<Categorypro> categoriestosend = [
-      Categorypro(
-        'phones',
+       Categorypro(
+        'mobileandtablets',
         'assets/images/phone.svg',
         kAccentGreen,
       ),
       Categorypro(
         'electronics',
-        'assets/images/television pro.svg',
+        'assets/images/new/electronics/television pro.svg',
         kAccentYellow,
       ),
       Categorypro(
@@ -705,14 +772,29 @@ class _HomeScreen1State extends State<HomeScreen1> {
         'assets/images/house.svg',
         kAccentGreen,
       ),
+            Categorypro(
+        'beautyandhealth',
+        'assets/images/new/beautyandhealth/hair.svg',
+        kAccentGreen,
+      ),
+            Categorypro(
+        'babies',
+        'assets/images/new/babies/baby.svg',
+        kAccentGreen,
+      ),
+            Categorypro(
+        'foodandagri',
+        'assets/images/new/foodandagri/food.svg',
+        kAccentGreen,
+      ),
       Categorypro(
         'homesupplies',
-        'assets/images/sofa.svg',
+        'assets/images/new/homesupplies/sofa.svg',
         kAccentPurple,
       ),
       Categorypro(
         'fashion',
-        'assets/images/shoe.svg',
+        'assets/images/new/fashion/tshirt.svg',
         kAccentPurple,
       ),
       Categorypro(
@@ -720,113 +802,29 @@ class _HomeScreen1State extends State<HomeScreen1> {
         'assets/images/dog.svg',
         kAccentYellow,
       ),
+            Categorypro(
+        'jobs',
+        'assets/images/new/jobs/jab1.svg',
+        kAccentYellow,
+      ),
+            Categorypro(
+        'commercialequipment',
+        'assets/images/new/commercialequipment/dog.svg',
+        kAccentYellow,
+      ),
+            Categorypro(
+        'construction',
+        'assets/images/new/construction/cutter.svg',
+        kAccentYellow,
+      ),
+       
     ];
     ScreenUtils().init(context);
-    FocusScope.of(context).unfocus();
 
     return SafeArea(
       child: Column(
-        //  crossAxisAlignment: CrossAxisAlignment.,
         children: [
-          //   Spacer(),
-          //HomeAppBar(),
-          // TextField(
-          //   onChanged: ((value) => {
-          //         if (_debounce?.isActive ?? false) {_debounce!.cancel()},
-          //         _debounce = Timer(const Duration(milliseconds: 1000), () {
-          //           search = value.toString();
-          //           setState(() {});
-          //           getadds();
-          //         })
-          //       }),
-          //   decoration: InputDecoration(
-          //     filled: true,
-          //     fillColor: kFillColorThird,
-          //     prefixIcon: IconButton(
-          //       icon: Icon(Icons.search),
-          //       onPressed: () {},
-          //     ),
-          //     suffixIcon: IconButton(
-          //       icon: Icon(Icons.filter_alt),
-          //       onPressed: () async {
-          //         // ignore: unnecessary_null_comparison
-          //         // _showForm();
-
-          //         if (!(latitude == null)) {
-          //           print('location');
-          //           _showForm();
-          //         } else {
-          //           print('location b');
-
-          //           Location location = new Location();
-
-          //           bool _serviceEnabled;
-          //           PermissionStatus _permissionGranted;
-          //           LocationData _locationData;
-
-          //           _serviceEnabled = await location.serviceEnabled();
-          //           if (!_serviceEnabled) {
-          //             _serviceEnabled = await location.requestService();
-          //             if (!_serviceEnabled) {
-          //               return;
-          //             }
-          //           }
-
-          //           _permissionGranted = await location.hasPermission();
-          //           if (_permissionGranted == PermissionStatus.denied) {
-          //             _permissionGranted = await location.requestPermission();
-          //             if (_permissionGranted != PermissionStatus.granted) {
-          //               return;
-          //             }
-          //           }
-
-          //           _locationData = await location.getLocation();
-          //           SharedPreferences prefs =
-          //               await SharedPreferences.getInstance();
-          //           prefs.setString(
-          //               'latitude', _locationData.latitude.toString());
-          //           prefs.setString(
-          //               'longitude', _locationData.longitude.toString());
-          //           //_showForm();
-          //         }
-          //       },
-          //     ),
-          //     border: OutlineInputBorder(
-          //       borderRadius: BorderRadius.circular(
-          //         getProportionateScreenWidth(4),
-          //       ),
-          //     ),
-          //     enabledBorder: OutlineInputBorder(
-          //       borderRadius: BorderRadius.circular(
-          //         getProportionateScreenWidth(8),
-          //       ),
-          //       borderSide: BorderSide(
-          //         color: Colors.transparent,
-          //       ),
-          //     ),
-          //     focusedBorder: OutlineInputBorder(
-          //       borderRadius: BorderRadius.circular(
-          //         getProportionateScreenWidth(8),
-          //       ),
-          //       borderSide: BorderSide(
-          //         color: Colors.transparent,
-          //       ),
-          //     ),
-          //     hintText: 'searchanadd'.tr(),
-          //     contentPadding: EdgeInsets.symmetric(
-          //       vertical: getProportionateScreenHeight(
-          //         10,
-          //       ),
-          //     ),
-          //     hintStyle: TextStyle(
-          //       color: kGreyShade2,
-          //       //fontSize: getProportionateScreenWidth(17),
-          //     ),
-          //   ),
-          //   style: TextStyle(
-          //     fontWeight: FontWeight.w300,
-          //   ),
-          // ),
+ 
           TypeAheadField(
             minCharsForSuggestions: 2,
             hideOnEmpty: true,
@@ -835,6 +833,8 @@ class _HomeScreen1State extends State<HomeScreen1> {
             animationStart: 0,
             animationDuration: Duration.zero,
             textFieldConfiguration: TextFieldConfiguration(
+              focusNode: myfocus,
+              autofocus: false,
               controller: textcontroller,
               onChanged: ((value) => {
                     if (_debounce?.isActive ?? false) {_debounce!.cancel()},
@@ -844,7 +844,6 @@ class _HomeScreen1State extends State<HomeScreen1> {
                       getadds();
                     })
                   }),
-              autofocus: true,
               style: TextStyle(fontSize: 15),
               decoration: InputDecoration(
                 filled: true,
@@ -857,7 +856,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
                   icon: Icon(Icons.filter_alt),
                   onPressed: () async {
                     // ignore: unnecessary_null_comparison
-                    // _showForm();
+                    _showForm();
 
                     if (!(latitude == null)) {
                       print('location');
@@ -894,6 +893,10 @@ class _HomeScreen1State extends State<HomeScreen1> {
                           'latitude', _locationData.latitude.toString());
                       prefs.setString(
                           'longitude', _locationData.longitude.toString());
+                      latitude = _locationData.latitude.toString();
+                      longitude = _locationData.longitude.toString();
+                      setState(() {});
+
                       //_showForm();
                     }
                   },
@@ -950,12 +953,163 @@ class _HomeScreen1State extends State<HomeScreen1> {
                 child: Text(sone.toString()),
               );
             },
-            onSuggestionSelected: (suggestion) {
+            onSuggestionSelected: (suggestion) async {
+              bool condition = true;
               print(suggestion);
-              textcontroller.text = suggestion;
-              search = suggestion;
-              getadds();
+              if (suggestion == "house" ||
+                  suggestion == "ቤት" ||
+                  suggestion == "ገዛ") {
+                filtersbro = {"catagory": "property"};
+              } else if (suggestion == "car" || suggestion == "መኪና") {
+                filtersbro = {"catagory": "vehicles"};
+              } else if (suggestion == "samsung" || suggestion == "ሳምሰንግ") {
+                filtersbro = {
+                  "subcatagory": ["Samsung"]
+                };
+              } else if (suggestion == "nokia" || suggestion == "ኖክያ") {
+                filtersbro = {
+                  "subcatagory": ["Nokia"]
+                };
+              } else if (suggestion == "iphone" || suggestion == "ኣይፎን") {
+                filtersbro = {
+                  "subcatagory": ["iphone"]
+                };
+              } else if (suggestion == "ቴሌቪዝን" || suggestion == "television") {
+                filtersbro = {
+                  "subcatagory": ["Tv"]
+                };
+              } else if (suggestion == "camera" || suggestion == "ካሜራ") {
+                filtersbro = {
+                  "subcatagory": ["Video Cameras"]
+                };
+              } else if (suggestion == "laptop" || suggestion == "ላፕቶፕ") {
+                filtersbro = {
+                  "subcatagory": ["Laptops"]
+                };
+              } else if (suggestion == "desktop" || suggestion == "ዴስክቶፕ") {
+                filtersbro = {
+                  "subcatagory": ["Desktop"]
+                };
+              } else if (suggestion == "ሄድ ፎን" || suggestion == "headphone") {
+                filtersbro = {
+                  "subcatagory": ["Headphones"]
+                };
+              } else if (suggestion == "sofa" || suggestion == "ሶፋ") {
+                filtersbro = {
+                  "subcatagory": ["Sofa"]
+                };
+              } else if (suggestion == "fridge" || suggestion == "ፍሪጅ") {
+                filtersbro = {
+                  "subcatagory": ["Fridge"]
+                };
+              } else if (suggestion == "bed" ||
+                  suggestion == "ኣልጋ" ||
+                  suggestion == "ዓራት") {
+                filtersbro = {
+                  "subcatagory": ["Bed"]
+                };
+              } else if (suggestion == "microwave" || suggestion == "ማይክሮዌቭ") {
+                filtersbro = {
+                  "subcatagory": ["Microwave"]
+                };
+              } else if (suggestion == "table" || suggestion == "ጠረቤዛ") {
+                filtersbro = {
+                  "subcatagory": ["Table"]
+                };
+              } else if (suggestion == "chair" || suggestion == "ወንበር") {
+                filtersbro = {
+                  "subcatagory": ["Chair"]
+                };
+              } else if (suggestion == "cloth" || suggestion == "ልብስ") {
+                filtersbro = {
+                  "subcatagory": ["Cloths"]
+                };
+              } else if (suggestion == "shoe" || suggestion == "ጫማ") {
+                filtersbro = {
+                  "subcatagory": ["Shoe"]
+                };
+              } else if (suggestion == "watch" || suggestion == "ሰዓት") {
+                filtersbro = {
+                  "subcatagory": ["Watch"]
+                };
+              } else if (suggestion == "bags" || suggestion == "ቦርሳ") {
+                filtersbro = {
+                  "subcatagory": ["Bags"]
+                };
+              } else if (suggestion == "toyota" || suggestion == "ቶዮታ") {
+                filtersbro = {
+                  "subcatagory": ["Toyota"]
+                };
+              } else if (suggestion == "hyundai" || suggestion == "ሃዩንዳይ") {
+                filtersbro = {
+                  "subcatagory": ["Hyundai"]
+                };
+              } else if (suggestion == "suzuki" || suggestion == "ሱዙኪ") {
+                filtersbro = {
+                  "subcatagory": ["Suzuki"]
+                };
+              } else if (suggestion == "nissan" || suggestion == "ኒሳን") {
+                filtersbro = {
+                  "subcatagory": ["Nissan"]
+                };
+              } else if (suggestion == "ford" || suggestion == "ፎርድ") {
+                filtersbro = {
+                  "subcatagory": ["Ford"]
+                };
+              } else if (suggestion == "volswagen" || suggestion == "ቮልስዋገን") {
+                filtersbro = {
+                  "subcatagory": ["Volswagen"]
+                };
+              } else if (suggestion == "buses" || suggestion == "ባስ") {
+                filtersbro = {
+                  "subcatagory": ["Buses"]
+                };
+              } else if (suggestion == "truck" ||
+                  suggestion == "የጭነት መኪና" ||
+                  suggestion == "ናይ ፅዕነት መኪና") {
+                filtersbro = {
+                  "subcatagory": ["Truck"]
+                };
+              } else if (suggestion == "apartment" || suggestion == "አፓርታመንት") {
+                filtersbro = {
+                  "subcatagory": ["Apartment"]
+                };
+              } else if (suggestion == "condominium" ||
+                  suggestion == "ኮንዶሚየም") {
+                filtersbro = {
+                  "subcatagory": ["Condominium"]
+                };
+              } else if (suggestion == "villa" || suggestion == "ቪላ") {
+                print('hey bro');
+                filtersbro = {
+                  "subcatagory": ["Villa"]
+                };
+              } else if (suggestion == "dogs" || suggestion == "ውሻ") {
+                filtersbro = {
+                  "subcatagory": ["Dogs"]
+                };
+              } else if (suggestion == "birds" || suggestion == "አዕዋፍ") {
+                filtersbro = {
+                  "subcatagory": ["Birds"]
+                };
+              } else if (suggestion == "cats" || suggestion == "ድመት") {
+                filtersbro = {
+                  "subcatagory": ["Cats"]
+                };
+              } else {
+                condition = false;
+                print('opps');
+                textcontroller.text = suggestion;
+                search = suggestion;
+              }
+              if (condition == true) {
+                search = null;
+              }
+              adds = null;
+              adds = await api.getaddsbyfilters(search, filtersbro, page);
+              // getadds();
               setState(() {});
+              // filtersbro= {};
             },
           ),
 
@@ -984,6 +1138,7 @@ class _PopularDealTabState extends State<PopularDealTab> {
     scrollController.addListener(scrolllistener);
 
     // TODO: implement initState
+    FocusManager.instance.primaryFocus?.unfocus();
     getadds();
   }
 
@@ -1070,7 +1225,7 @@ class _PopularDealTabState extends State<PopularDealTab> {
     return Expanded(
       child: Column(children: [
         TabTitle(
-            title: 'New Ads ',
+            title: 'New Ads  ',
             seeAll: () {
               Navigator.of(context).pushNamed(PopularDealsScreen.routeName);
             }),
@@ -1136,30 +1291,27 @@ class _PopularDealTabState extends State<PopularDealTab> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Adds not found'),
-                        SizedBox(height:10),
+                        Text('Adds not found'.tr()),
+                        SizedBox(height: 10),
                         Image.asset(
                           'assets/images/errorpage.png',
                           height: 200,
                         ),
                         TextButton(
                             onPressed: () async {
-                             
-                                adds = null;
-                                 
-                                page=1;
-                                filtersbro = {};
-                                adds = await api.getaddsbyfilters(search, filtersbro, page);
-                                setState(() {
-                              
-                              });
-                                
+                              adds = null;
+
+                              page = 1;
+                              filtersbro = {};
+                              adds = await api.getaddsbyfilters(
+                                  search, filtersbro, page);
+                              setState(() {});
                             },
-                            child: Text('Go to homepage'))
+                            child: Text('Reset filter'.tr()))
                       ]),
                 );
               } else {
-                return Text('');
+                return Text('flksajfslkdfjslfjslkdfj');
               }
             } else {
               return const Center(child: CircularProgressIndicator());
@@ -1375,7 +1527,7 @@ class FullScreenSearchModal extends ModalRoute {
             Navigator.pop(context);
           },
         ),
-        title: Text('Enter your price below'),
+        title: Text('Enter your price below'.tr()),
       ),
       body: SafeArea(
         child: Padding(
@@ -1387,9 +1539,13 @@ class FullScreenSearchModal extends ModalRoute {
               Row(children: [
                 Expanded(
                   child: TextField(
-                    controller: minprice,
+                    controller: minpricefield,
+                    keyboardType: TextInputType.number,
+                    onChanged: (price) {
+                      minprice = int.parse(price);
+                    },
                     decoration: InputDecoration(
-                      hintText: 'Enter low price ',
+                      hintText: 'Enter min price'.tr(),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(12),
@@ -1403,9 +1559,15 @@ class FullScreenSearchModal extends ModalRoute {
                 SizedBox(width: 10),
                 Expanded(
                   child: TextField(
-                    controller: maxprice,
+                    controller: maxpricefield,
+                    keyboardType: TextInputType.number,
+                    onChanged: (price) {
+                      maxprice = int.parse(price);
+                    },
+
+                    // on
                     decoration: InputDecoration(
-                      hintText: 'Enter max price ',
+                      hintText: 'Enter max price'.tr(),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(12),
@@ -1427,8 +1589,7 @@ class FullScreenSearchModal extends ModalRoute {
               // This button is used to close the search modal
               ElevatedButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('Filter')),
-
+                  child: Text('Done'.tr())),
               // display other things like search history, suggestions, search results, etc.
               const SizedBox(
                 height: 20,

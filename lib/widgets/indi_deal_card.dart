@@ -69,7 +69,7 @@ class _IndiDealCardState extends State<IndiDealCard> {
         // width: 60.0,
         // height: 60.0,
         padding: EdgeInsets.all(
-          getProportionateScreenWidth(8.0),
+          getProportionateScreenWidth(3.6),
         ),
         margin: EdgeInsets.all(
           getProportionateScreenWidth(4.0),
@@ -127,6 +127,7 @@ class _IndiDealCardState extends State<IndiDealCard> {
                   Spacer(),
                   Text(
                     '${widget.catagory}'.tr(),
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: getProportionateScreenWidth(12),
                       color: Theme.of(context).primaryColor,
@@ -137,7 +138,7 @@ class _IndiDealCardState extends State<IndiDealCard> {
                     children: [
                       Expanded(
                         child: Text(
-                          '\$${widget.price}',
+                          '${widget.price} ${'birr'.tr()}',
                           style: Theme.of(context).textTheme.headline4,
                         ),
                       ),
@@ -147,14 +148,16 @@ class _IndiDealCardState extends State<IndiDealCard> {
                             api.addtofavourites(widget.id).then((value) => {
                                   setState(
                                     () {
-                                       Fluttertoast.showToast(
-                                msg: "addsuccessfullyaddedtofavourites".tr(),
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.SNACKBAR,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.green,
-                                textColor: Colors.white,
-                                fontSize: 16.0);
+                                      Fluttertoast.showToast(
+                                          msg:
+                                              "addsuccessfullyaddedtofavourites"
+                                                  .tr(),
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.SNACKBAR,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.green,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0);
                                     },
                                   )
                                 });

@@ -42,7 +42,7 @@ class Ads {
         catagory: json["catagory"],
         postedby: json["postedby"],
         description: json["description"],
-        price: json["price"],
+        price: json["price"].toString(),
         images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
         favourites: List<dynamic>.from(json["favourites"].map((x) => x)),
         postedBy: json["postedBy"],

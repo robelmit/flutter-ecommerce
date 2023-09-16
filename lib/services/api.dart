@@ -13,8 +13,8 @@ class Api {
   //     isLeft: false,
   ///   isSelected: true,
   // ),
-  // var baseURL = "http://des.eu-4.evennode.com";
-  var baseURL = "http://10.0.2.2:5000";
+  var baseURL = "http://robel.eu-4.evennode.com";
+  // var baseURL = "http://10.0.2.2:5000";
   // var baseURL = "http://localhost:5000";
 
   // var baseURL = "http://192.168.43.34:5000";
@@ -114,15 +114,31 @@ class Api {
     if (filters['region'] != 'all' && filters['region'] != null) {
       finalfilters['region'] = filters['region'];
     }
+     if (filters['city'] !=null) {
+      finalfilters['city'] = filters['city'];
+    }
+     if (filters['fuel'] != null) {
+      finalfilters['fuel'] = filters['fuel'];
+    }
+     if (filters['engineSize']  != null) {
+      finalfilters['EngineSize'] = filters['engineSize'];
+    }
+     if (filters['transmission'] != null) {
+      finalfilters['transmission'] = filters['transmission'];
+    }
+
+
+
+
     if (filters['catagory'] != '' && filters['catagory'] != null) {
       finalfilters['catagory'] = filters['catagory'];
     }
-    if (filters['subcatagory'] != null &&
-        filters['subcatagory'] != [] &&
-        filters['subcatagory'] != '[]') {
+    if (filters['detailcatagory'] != null &&
+        filters['detailcatagory'] != [] &&
+        filters['detailcatagory'] != '[]') {
       print('some bug');
       print(filters['subcatagory']);
-      finalfilters['subcatagory'] = filters['subcatagory'];
+      finalfilters['detailcatagory'] = filters['detailcatagory'];
     }
     if (filters['status'] != 'all' && filters['status'] != null) {
       finalfilters['status'] = filters['status'];
@@ -131,7 +147,7 @@ class Api {
       finalfilters['filter'] = filters['filter'];
     }
     if (filters['distance'] != 0.0 && filters['distance'] != null) {
-      finalfilters['distance'] = filters['distance'];
+      finalfilters['distance'] = double.parse(filters['distance']);
     }
     if (filters['latitude'] != 0.0 &&
         filters['latitude'] != '' &&
@@ -153,6 +169,7 @@ class Api {
         filters['maxprice'] != null) {
       finalfilters['maxprice'] = filters['maxprice'];
     }
+    print('finalfilters');
     print(finalfilters);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -567,26 +584,40 @@ class Api {
     // }
   }
 
-  Future<dynamic> uploadadd(
-      title, description, catagory, maincatagory, price, images, status) async {
+  Future<dynamic> uploadadd(title, description, catagory, maincatagory, detailcatagory,price,
+      images, status, Map map) async {
     print('maincatagory');
     print(maincatagory);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
+    var body = <String, dynamic>{
+      'title': title,
+      'description': description,
+      'catagory': catagory,
+      "maincatagory": maincatagory,
+      "detailcatagory":detailcatagory,
+      'price': price,
+      'status': status,
+      'images': images,
+    };
+    if (map['transmission']!=null) {
+      body['transmission'] = map['transmission'];
+    }
+    if (map['engineSize']!=null) {
+      body['engineSize'] = map['engineSize'];
+    }
+    if (map['fuel']!=null) {
+      body['fuel'] = map['fuel'];
+    }
+    if (map['mileAge']!=null) {
+      body['mileAge'] = map['mileAge'];
+    }
     final response = await http.post(Uri.parse(baseURL + '/api/adds'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           "Authorization": "Bearer $token"
         },
-        body: jsonEncode(<String, dynamic>{
-          'title': title,
-          'description': description,
-          'catagory': catagory,
-          "maincatagory": maincatagory,
-          'price': price,
-          'status': status,
-          'images': images,
-        }));
+        body: jsonEncode(body));
     if (response.statusCode == 201) {
       //return Post.fromJson(jsonDecode(response.body));
       print('registering user was successful');
@@ -660,9 +691,12 @@ class Api {
   }
 
   Future<dynamic> islocationsaved() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
     final url = Uri.parse('$baseURL/api/users/islocationenabled');
     final response = await http.get(url, headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
+      "Authorization": "Bearer $token"
     });
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
@@ -672,9 +706,12 @@ class Api {
   }
 
   Future<dynamic> getsetting() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
     final url = Uri.parse('$baseURL/api/users/getaddsetting');
     final response = await http.get(url, headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
+      "Authorization": "Bearer $token"
     });
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
@@ -686,15 +723,16 @@ class Api {
   Future<dynamic> sendpayment(amount) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
-    final response = await http.post(Uri.parse(baseURL + '/api/users'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          "Authorization": "Bearer $token"
-        },
-        body: jsonEncode(<String, dynamic>{
-          'amount': amount,
-        }));
-    if (response.statusCode == 201) {
+    final response =
+        await http.post(Uri.parse(baseURL + '/api/users/sendpayment'),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+              "Authorization": "Bearer $token"
+            },
+            body: jsonEncode(<String, dynamic>{
+              'amount': amount,
+            }));
+    if (response.statusCode == 201 || response.statusCode == 200) {
       //return Post.fromJson(jsonDecode(response.body));
 
 //

@@ -11,15 +11,15 @@ class CategoryScreen extends StatelessWidget {
   static const routeName = '/category_screen';
   @override
   Widget build(BuildContext context) {
-    final List<Category> categories = [
+      final List<Category> categories = [
       Category(
-        'phones'.tr(),
+        'mobileandtablets'.tr(),
         'assets/images/phone.svg',
         kAccentGreen,
       ),
       Category(
         'electronics'.tr(),
-        'assets/images/television pro.svg',
+        'assets/images/new/electronics/tv.svg',
         kAccentYellow,
       ),
       Category(
@@ -32,14 +32,29 @@ class CategoryScreen extends StatelessWidget {
         'assets/images/house.svg',
         kAccentGreen,
       ),
+            Category(
+        'beautyandhealth'.tr(),
+        'assets/images/new/beautyandhealth/hair.svg',
+        kAccentGreen,
+      ),
+            Category(
+        'babies'.tr(),
+        'assets/images/babe.svg',
+        kAccentGreen,
+      ),
+            Category(
+        'foodandagri'.tr(),
+        'assets/images/new/foodandagri/food.svg',
+        kAccentGreen,
+      ),
       Category(
         'homesupplies'.tr(),
-        'assets/images/sofa.svg',
+        'assets/images/new/homesupplies/sofa.svg',
         kAccentPurple,
       ),
       Category(
         'fashion'.tr(),
-        'assets/images/shoe.svg',
+        'assets/images/new/fashion/tshirt.svg',
         kAccentPurple,
       ),
       Category(
@@ -47,16 +62,32 @@ class CategoryScreen extends StatelessWidget {
         'assets/images/dog.svg',
         kAccentYellow,
       ),
+            Category(
+        'jobs'.tr(),
+        'assets/images/job1.svg',
+        kAccentYellow,
+      ),
+            Category(
+        'commercialequipment'.tr(),
+        'assets/images/new/commercialequipment/factory.svg',
+        kAccentYellow,
+      ),
+            Category(
+        'construction'.tr(),
+        'assets/images/new/construction/metr.svg',
+        kAccentYellow,
+      ),
+       
     ];
     final List<Categorypro> categoriestosend = [
-      Categorypro(
-        'phones',
+       Categorypro(
+        'mobileandtablets',
         'assets/images/phone.svg',
         kAccentGreen,
       ),
       Categorypro(
         'electronics',
-        'assets/images/television pro.svg',
+        'assets/images/new/electronics/television pro.svg',
         kAccentYellow,
       ),
       Categorypro(
@@ -69,14 +100,29 @@ class CategoryScreen extends StatelessWidget {
         'assets/images/house.svg',
         kAccentGreen,
       ),
+            Categorypro(
+        'beautyandhealth',
+        'assets/images/new/beautyandhealth/hair.svg',
+        kAccentGreen,
+      ),
+            Categorypro(
+        'babies',
+        'assets/images/new/babies/baby.svg',
+        kAccentGreen,
+      ),
+            Categorypro(
+        'foodandagri',
+        'assets/images/new/foodandagri/food.svg',
+        kAccentGreen,
+      ),
       Categorypro(
         'homesupplies',
-        'assets/images/sofa.svg',
+        'assets/images/new/homesupplies/sofa.svg',
         kAccentPurple,
       ),
       Categorypro(
         'fashion',
-        'assets/images/shoe.svg',
+        'assets/images/new/fashion/tshirt.svg',
         kAccentPurple,
       ),
       Categorypro(
@@ -84,6 +130,22 @@ class CategoryScreen extends StatelessWidget {
         'assets/images/dog.svg',
         kAccentYellow,
       ),
+            Categorypro(
+        'jobs',
+        'assets/images/dog.svg',
+        kAccentYellow,
+      ),
+            Categorypro(
+        'commercialequipment',
+        'assets/images/new/commercialequipment/dog.svg',
+        kAccentYellow,
+      ),
+            Categorypro(
+        'construction'.tr(),
+        'assets/images/new/construction/cutter.svg',
+        kAccentYellow,
+      ),
+       
     ];
     ScreenUtils().init(context);
     return Scaffold(

@@ -1,0 +1,556 @@
+import 'package:easy_localization/easy_localization.dart';
+
+import '../models/Categorypro.dart';
+import '../models/category.dart';
+import 'colors.dart';
+final List<Category> boats = [];
+final List<Categorypro> boatspro = [];
+
+final List<Category> heavyequipment = [
+  Category(
+    'excavatar'.tr(),
+    'assets/images/new/vehicles/excavator',
+    kAccentGreen,
+  ),
+  Category(
+    'roadroller'.tr(),
+    'assets/images/new/vehicles/road-roller.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'tractor'.tr(),
+    'assets/images/new/vehicles/tractor.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Bulfldozers'.tr(),
+    'assets/images/new/vehicles/bulldozer.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'craneforks'.tr(),
+    'assets/images/new/vehicles/crane.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'forklifts'.tr(),
+    'assets/images/new/vehicles/forklift.svg',
+    kAccentPurple,
+  ),
+
+    Category(
+    'backhoeloader'.tr(),
+    'assets/images/new/vehicles/loader.svg',
+    kAccentPurple,
+  ),  
+ 
+];
+final List<Categorypro> heavyequipmentpro = [
+   Categorypro(
+    'excavatar',
+    'assets/images/new/vehicles/excavator.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'roadroller',
+    'assets/images/new/vehicles/roadroller.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'tractor',
+    'assets/images/new/vehicles/tractor.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Bulfldozers',
+    'assets/images/new/vehicles/bulldozer.svg',
+    kAccentPurple,
+  ),
+    Categorypro(
+    'craneforks',
+    'assets/images/new/vehicles/crane.svg',
+    kAccentPurple,
+  ),
+    Categorypro(
+    'forklifts',
+    'assets/images/new/vehicles/forklift.svg',
+    kAccentPurple,
+  ),
+
+    Categorypro(
+    'backhoeloader',
+    'assets/images/new/vehicles/loader.svg',
+    kAccentPurple,
+  ),  
+ 
+ 
+];
+final List<Category> buses = [
+  Category(
+    'toyota'.tr(),
+    'assets/images/hyundai.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'hyundai'.tr(),
+    'assets/images/toyota.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'isuzu'.tr(),
+    'assets/images/new/vehicles/isuzu.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'suzuki'.tr(),
+    'assets/images/new/vehicles/suzuki.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'daewoo'.tr(),
+    'assets/images/new/vehicles/daewoo.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'mercedes-benz'.tr(),
+    'assets/images/new/vehicles/mercedes.svg',
+    kAccentPurple,
+  ),
+
+    Category(
+    'renault'.tr(),
+    'assets/images/new/vehicles/renault.svg',
+    kAccentPurple,
+  ),  
+ 
+];
+final List<Categorypro> busespro = [
+    Categorypro(
+    'toyota',
+    'assets/images/hyundai.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'hyundai',
+    'assets/images/toyota.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'isuzu',
+    'assets/images/new/vehicles/isuzu.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'suzuki',
+    'assets/images/new/vehicles/suzuki.svg',
+    kAccentPurple,
+  ),
+    Categorypro(
+    'daewoo',
+    'assets/images/new/vehicles/daewoo.svg',
+    kAccentPurple,
+  ),
+    Categorypro(
+    'mercedes-benz',
+    'assets/images/new/vehicles/mercedes.svg',
+    kAccentPurple,
+  ),
+
+    Categorypro(
+    'renault',
+    'assets/images/new/vehicles/renault.svg',
+    kAccentPurple,
+  ),
+ 
+];
+final List<Category> trucks = [
+  Category(
+    'sinotruck'.tr(),
+    'assets/images/new/vehicles/sinotruck.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'isuzu'.tr(),
+    'assets/images/new/vehicles/isuzu.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'iveco'.tr(),
+    'assets/images/new/vehicles/iveco.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'fiat'.tr(),
+    'assets/images/new/vehicles/fiat.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'mitsubishi'.tr(),
+    'assets/images/new/vehicles/mitsubishi.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'foton'.tr(),
+    'assets/images/new/vehicles/Foton.svg',
+    kAccentPurple,
+  ),
+
+    Category(
+    'dongfeng'.tr(),
+    'assets/images/new/vehicles/Dongfeng.svg',
+    kAccentPurple,
+  ),  
+ 
+];
+final List<Categorypro> truckspro = [
+   Categorypro(
+    'sinotruck',
+    'assets/images/new/vehicles/sinotruck.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'isuzu',
+    'assets/images/new/vehicles/isuzu.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'iveco',
+    'assets/images/new/vehicles/iveco.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'fiat',
+    'assets/images/new/vehicles/fiat.svg',
+    kAccentPurple,
+  ),
+    Categorypro(
+    'mitsubishi',
+    'assets/images/new/vehicles/mitsubishi.svg',
+    kAccentPurple,
+  ),
+    Categorypro(
+    'foton',
+    'assets/images/new/vehicles/Foton.svg',
+    kAccentPurple,
+  ),
+
+    Categorypro(
+    'dongfeng',
+    'assets/images/new/vehicles/Dongfeng.svg',
+    kAccentPurple,
+  ),  
+ 
+];
+final List<Category> motorcycles = [
+  Category(
+    'Bajaj'.tr(),
+    'assets/images/new/vehicles/bajaj.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'TVS'.tr(),
+    'assets/images/new/vehicles/tvs.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Suzuki'.tr(),
+    'assets/images/new/vehicles/suzuki.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Piaggio'.tr(),
+    'assets/images/new/vehicles/piaggio.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'Aprilia'.tr(),
+    'assets/images/new/vehicles/aprilia.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'Honda'.tr(),
+    'assets/images/new/vehicles/honda.svg',
+    kAccentPurple,
+  ),
+
+    Category(
+    'Yamaha'.tr(),
+    'assets/images/new/vehicles/yamaha.svg',
+    kAccentPurple,
+  ),  
+
+  
+];
+final List<Categorypro> motorcyclespro = [
+   Categorypro(
+    'Bajaj',
+    'assets/images/new/vehicles/bajaj.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'TVS',
+    'assets/images/new/vehicles/tvs.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Suzuki',
+    'assets/images/new/vehicles/suzuki.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Piaggio',
+    'assets/images/new/vehicles/piaggio.svg',
+    kAccentPurple,
+  ),
+    Categorypro(
+    'Aprilia',
+    'assets/images/new/vehicles/aprilia.svg',
+    kAccentPurple,
+  ),
+    Categorypro(
+    'Honda',
+    'assets/images/new/vehicles/honda.svg',
+    kAccentPurple,
+  ),
+
+    Categorypro(
+    'Yamaha',
+    'assets/images/new/vehicles/yamaha.svg',
+    kAccentPurple,
+  ),  
+
+  
+];
+final List<Category> vehiclepartsandaccessories = [
+  Category(
+    'engine'.tr(),
+    'assets/images/new/vehicles/engine.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'wheelsandparts'.tr(),
+    'assets/images/wheel.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'exterioraccessory'.tr(),
+    'assets/images/new/vehicles/external.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'safetyandsecurity'.tr(),
+    'assets/images/ford.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'interioraccessories'.tr(),
+    'assets/images/new/vehicles/car.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'brakes'.tr(),
+    'assets/images/new/vehicles/brake.svg',
+    kAccentPurple,
+  ),
+
+    Category(
+    'headlightsandlighting'.tr(),
+    'assets/images/new/vehicles/light.svg',
+    kAccentPurple,
+  ),  
+
+  
+];
+final List<Categorypro> vehiclepartsandaccessoriespro = [
+   Categorypro(
+    'engine',
+    'assets/images/hyundai.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'wheelsandparts',
+    'assets/images/wheel.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'exterioraccessory',
+    'assets/images/new/vehicles/nissan.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'safetyandsecurity',
+    'assets/images/ford.svg',
+    kAccentPurple,
+  ),
+    Categorypro(
+    'interioraccessories',
+    'assets/images/new/vehicles/volkswagen.svg',
+    kAccentPurple,
+  ),
+    Categorypro(
+    'brakes',
+    'assets/images/new/vehicles/buses.svg',
+    kAccentPurple,
+  ),
+
+    Categorypro(
+    'headlightsandlighting',
+    'assets/images/truck.svg',
+    kAccentPurple,
+  ),  
+
+];
+final List<Category> cars = [
+  Category(
+    'Toyota'.tr(),
+    'assets/images/toyota.svg',
+    kAccentGreen,
+  ),
+    Category(
+    'Hyundai'.tr(),
+    'assets/images/hyundai.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Suzuki'.tr(),
+    'assets/images/suzuki.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Nissan'.tr(),
+    'assets/images/nissan.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Ford'.tr(),
+    'assets/images/ford.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'Volkswagen'.tr(),
+    'assets/images/new/vehicles/volkswagen.svg',
+    kAccentPurple,
+  ),
+      Category(
+    'Mercedes Benz'.tr(),
+    'assets/images/new/vehicles/mercedes.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> carspro = [
+  Categorypro(
+    'Toyota',
+    'assets/images/toyota.svg',
+    kAccentGreen,
+  ),
+    Categorypro(
+    'Hyundai',
+    'assets/images/hyundai.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Suzuki',
+    'assets/images/suzuki.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Nissan',
+    'assets/images/nissan.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Ford',
+    'assets/images/ford.svg',
+    kAccentPurple,
+  ),
+    Categorypro(
+    'Volkswagen',
+    'assets/images/new/vehicles/volkswagen.svg',
+    kAccentPurple,
+  ),
+      Categorypro(
+    'Mercedes Benz',
+    'assets/images/new/vehicles/mercedes.svg',
+    kAccentPurple,
+  ),
+];
+
+final List<Categorypro> vehiclespro = [
+  Categorypro(
+    'cars',
+    'assets/images/new/vehicles/car.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'vehiclepartsandaccessories',
+    'assets/images/wheel.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'motorcycles',
+    'assets/images/new/motorbike.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'trucks',
+    'assets/images/truck.svg',
+    kAccentPurple,
+  ),
+    Categorypro(
+    'buses',
+    'assets/images/bus.svg',
+    kAccentPurple,
+  ),
+    Categorypro(
+    'heavyequipment',
+    'assets/images/excavator.svg',
+    kAccentPurple,
+  ),
+
+    Categorypro(
+    'boats',
+    'assets/images/new/vehicles/boat.svg',
+    kAccentPurple,
+  ),  
+  
+];
+
+final List<Category> vehicles = [
+ Category(
+    'cars'.tr(),
+    'assets/images/new/vehicles/car.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'vehiclepartsandaccessories'.tr(),
+    'assets/images/wheel.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'motorcycles'.tr(),
+    'assets/images/new/motorbike.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'trucks'.tr(),
+    'assets/images/truck.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'buses'.tr(),
+    'assets/images/bus.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'heavyequipment'.tr(),
+    'assets/images/excavator.svg',
+    kAccentPurple,
+  ),
+
+    Category(
+    'boats'.tr(),
+    'assets/images/new/vehicles/boat.svg', 
+    kAccentPurple,
+  ),  
+  
+];

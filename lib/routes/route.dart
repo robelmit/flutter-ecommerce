@@ -1,5 +1,5 @@
 import 'package:app/screens/chatscreen.dart';
-import 'package:app/screens/check.dart';
+import 'package:app/screens/checkpayment.dart';
 import 'package:app/screens/chooselanguage.dart';
 import 'package:app/screens/home_screen.dart';
 import 'package:app/screens/landing_screen.dart';

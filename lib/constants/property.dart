@@ -1,0 +1,290 @@
+import 'package:easy_localization/easy_localization.dart';
+
+import '../models/Categorypro.dart';
+import '../models/category.dart';
+import 'colors.dart';
+
+final List<Category> houseandapartmentforsale = [
+  Category(
+    'apartment'.tr(),
+    'assets/images/apartment.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'House'.tr(),
+    'assets/images/house.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Condominium'.tr(),
+    'assets/images/condominium.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Villa'.tr(),
+    'assets/images/villa.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> houseandapartmentforsalepro = [
+  Categorypro(
+    'apartment',
+    'assets/images/apartment.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'House',
+    'assets/images/house.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Condominium',
+    'assets/images/condominium.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Villa',
+    'assets/images/villa.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> houseandapartmentforrent = [
+  Category(
+    'apartment'.tr(),
+    'assets/images/apartment.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'House'.tr(),
+    'assets/images/house.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'Condominium'.tr(),
+    'assets/images/condominium.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'Villa'.tr(),
+    'assets/images/villa.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> houseandapartmentforrentpro = [
+  Categorypro(
+    'apartment',
+    'assets/images/apartment.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'House',
+    'assets/images/house.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'Condominium',
+    'assets/images/new/property/condo.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'Villa',
+    'assets/images/villa.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> landandplotsforsale = [];
+final List<Categorypro> landandplotsforsalepro = [];
+final List<Category> landandplotsforrent = [];
+final List<Categorypro> landandplotsforrentpro = [];
+final List<Category> commercialpropertyforsale = [
+  Category(
+    'ware house'.tr(),
+    'assets/images/new/property/warehouse.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'officespace'.tr(),
+    'assets/images/new/property/office.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'apartment'.tr(),
+    'assets/images/new/property/apartment.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'complex'.tr(),
+    'assets/images/new/property/complex.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'villa'.tr(),
+    'assets/images/villa.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'restaurant'.tr(),
+    'assets/images/new/property/restaurant.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> commercialpropertyforsalepro = [
+  Categorypro(
+    'ware house',
+    'assets/images/new/property/warehouse.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'officespace',
+    'assets/images/new/property/office.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'apartment',
+    'assets/images/new/property/apartment.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'complex',
+    'assets/images/new/property/complex.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'villa',
+    'assets/images/villa.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'restaurant',
+    'assets/images/new/property/restaurant.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> commercialpropertyforrent = [
+  Category(
+    'ware house'.tr(),
+    'assets/images/new/property/warehouse.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'officespace'.tr(),
+    'assets/images/new/property/office.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'apartment'.tr(),
+    'assets/images/new/property/apartment.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'complex'.tr(),
+    'assets/images/new/property/complex.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'villa'.tr(),
+    'assets/images/villa.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'restaurant'.tr(),
+    'assets/images/new/property/restaurant.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> commercialpropertyforrentpro = [
+  Categorypro(
+    'ware house',
+    'assets/images/new/property/warehouse.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'officespace',
+    'assets/images/new/property/office.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'apartment',
+    'assets/images/new/property/apartment.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'complex',
+    'assets/images/new/property/complex.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'villa',
+    'assets/images/villa.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'restaurant',
+    'assets/images/new/property/restaurant.svg',
+    kAccentPurple,
+  ),
+];
+final List<Category> property = [
+  Category(
+    'houseandapartmentforsale'.tr(),
+    'assets/images/house.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'houseandapartmentforrent'.tr(),
+    'assets/images/house.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'landandplotsforsale'.tr(),
+    'assets/images/land.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'landandplotsforrent'.tr(),
+    'assets/images/land.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'commercialpropertyforsale'.tr(),
+    'assets/images/new/property/office.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'commercialpropertyforrent'.tr(),
+    'assets/images/new/property/office.svg',
+    kAccentPurple,
+  ),
+];
+final List<Categorypro> propertypro = [
+  Categorypro(
+    'houseandapartmentforsale',
+    'assets/images/house.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'houseandapartmentforrent',
+    'assets/images/house.svg',
+    kAccentGreen,
+  ),
+  Categorypro(
+    'landandplotsforsale',
+    'assets/images/land.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'landandplotsforrent',
+    'assets/images/land.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'commercialpropertyforsale',
+    'assets/images/new/property/officespace.svg',
+    kAccentPurple,
+  ),
+  Categorypro(
+    'commercialpropertyforrent',
+    'assets/images/new/property/officespace.svg',
+    kAccentPurple,
+  ),
+];
