@@ -40,16 +40,16 @@ class _LandingScreenState extends State<LandingScreen> {
     var token = prefs.getString('token');
     var id = prefs.getString('id');
     var isfirsttime = prefs.getString('firsttime');
-    if (id == null) {
-      await prefs.setString('id', '64e205146b7703b033b9815b');
-      await prefs.setString('token',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTIwNTE0NmI3NzAzYjAzM2I5ODE1YiIsImlhdCI6MTY5MjUzNDAzNywiZXhwIjoxNjk1MTI2MDM3fQ.R8bv7vcQch8H5tdz-NA4Q7rRYFwaKmV5cDaVJjMYjuw');
-      await prefs.setString('name', 'Desta');
-      await prefs.setString('phone', '0914414141');
-      await prefs.setString('islocationsaved', 'true');
-      await prefs.setString('latitude', '13.477445');
-      await prefs.setString('longitude', '39.4589081');
-    }
+    // if (id == null) {
+    //   // await prefs.setString('id', '64e205146b7703b033b9815b');
+    //   // await prefs.setString('token',
+    //   //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTIwNTE0NmI3NzAzYjAzM2I5ODE1YiIsImlhdCI6MTY5MjUzNDAzNywiZXhwIjoxNjk1MTI2MDM3fQ.R8bv7vcQch8H5tdz-NA4Q7rRYFwaKmV5cDaVJjMYjuw');
+    //   // await prefs.setString('name', 'Desta');
+    //   // await prefs.setString('phone', '0914414141');
+    //   await prefs.setString('islocationsaved', 'true');
+    //   // await prefs.setString('latitude', '13.477445');
+    //   // await prefs.setString('longitude', '39.4589081');
+    // }
 
     print(isfirsttime);
     if (isfirsttime == null) {

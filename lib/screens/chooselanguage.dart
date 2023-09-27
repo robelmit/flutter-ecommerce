@@ -30,25 +30,29 @@ class _ChooseLanguageScreenState extends State<ChooseLanguage> {
           ),
           ToggleSwitch(
             initialLabelIndex: 0,
-            totalSwitches: 3,
+            totalSwitches: 4,
             changeOnTap: true,
             inactiveBgColor: const Color.fromARGB(79, 158, 158, 158),
-            labels: [
+            labels: const [
               'english',
               'ትግርኛ',
               'አማርኛ',
+              'Oromiffa',
             ],
             onToggle: (index) {
               print(index);
               if (index == 0) {
                 context.setLocale(Locale('en', 'US'));
-                setState(() {});
+                // setState(() {});
               } else if (index == 1) {
                 context.setLocale(Locale('en', 'ER'));
-                setState(() {});
+                // setState(() {});
               } else if (index == 2) {
                 context.setLocale(Locale('am', 'ET'));
-                setState(() {});
+                // setState(() {});
+              } else if (index == 3) {
+                context.setLocale(Locale('en', 'KE'));
+                // setState(() {});
               }
             },
           ),

@@ -57,7 +57,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'phone',
                           title: 'phone'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'tablets') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -67,7 +69,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'tablets',
                           title: 'tablets'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'smartwatches') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -77,7 +81,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'smartwatches',
                           title: 'smartwatches'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'mobile accessory') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -87,7 +93,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'mobile accessory',
                           title: 'mobile accessory'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 }
 
                 print(widget.catagoriestosend[index].catName);
@@ -103,7 +111,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'laptopsandcomputers',
                           title: 'laptopsandcomputers'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'computeraccessory') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -113,7 +123,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'computeraccessory',
                           title: 'computeraccessory'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'securityandsurvelliance') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -123,7 +135,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'securityandsurvelliance',
                           title: 'securityandsurvelliance'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'Networkingproducts') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -133,7 +146,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'Networking products',
                           title: 'Networking products'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'softwares') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -143,7 +157,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'softwares',
                           title: 'softwares'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'printersandscanners') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -153,7 +168,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'printersandscanners',
                           title: 'printersandscanners'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName == 'Tv') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
@@ -162,7 +178,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'Tv',
                           title: 'Tv'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'videogames') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -172,7 +190,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'videogames',
                           title: 'videogames'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'photoandvideocameras') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -182,7 +201,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'photoandvideocameras',
                           title: 'photoandvideocameras'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'videogames') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -192,7 +212,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'videogames',
                           title: 'videogames'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'printersandscanners') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -202,7 +223,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'printersandscanners',
                           title: 'printersandscanners'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'headphones') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -212,7 +234,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'headphones',
                           title: 'headphones'.tr()
                           
-                          )));
+                          ))
+                          );
                 }
 
                 print(widget.catagoriestosend[index].catName);
@@ -225,7 +248,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'furniture',
                           title: 'furniture'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'homeappliances') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -235,7 +259,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'homeappliances',
                           title: 'homeappliances'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'kitchensupplies') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -245,7 +270,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'kitchensupplies',
                           title: 'kitchensupplies'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'gardensupplies') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -255,7 +281,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'gardensupplies',
                           title: 'gardensupplies'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'householdchemicals') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -265,7 +292,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'householdchemicals',
                           title: 'householdchemicals'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'homeaccessories') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -275,7 +303,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'homeaccessories',
                           title: 'homeaccessories'.tr()
                           
-                          )));
+                          ))
+                          );
                 }
 
                 print(widget.catagoriestosend[index].catName);
@@ -289,7 +318,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'dogsandpuppies',
                           title: 'dogsandpuppies'.tr()
                           
-                          )));
+                          ))
+
+                          );
                 } else if (widget.catagoriestosend[index].catName == 'birds') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
@@ -298,7 +329,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'birds',
                           title: 'birds'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName == 'cats') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
@@ -307,7 +339,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'cats',
                           title: 'cats'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'reptiles') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -317,7 +350,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'reptiles',
                           title: 'reptiles'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName == 'others') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
@@ -326,7 +360,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'others',
                           title: 'others'.tr()
                           
-                          )));
+                          ))
+                          );
                 }
 
                 print(widget.catagoriestosend[index].catName);
@@ -339,7 +374,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'clothing',
                           title: 'clothing'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName == 'shoes') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
@@ -348,11 +384,14 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'shoes',
                           title: 'shoes'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName == 'bags') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
-                          catagories: [], catagoriestosend: [], name: 'bags',title: 'bags'.tr())));
+                          catagories: [], catagoriestosend: [], name: 'bags',title: 'bags'.tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'jewelry') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -362,7 +401,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'jewelry',
                           title: 'jewelry'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'watches') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -372,7 +412,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'watches',
                           title: 'watches'.tr()
                           
-                          )));
+                          ))
+                          );
                 }
 
                 print(widget.catagoriestosend[index].catName);
@@ -385,7 +426,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'cars',
                           title: 'cars'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'vehiclepartsandaccessories') {
                   print('wechema');
@@ -396,7 +438,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'vehiclepartsandaccessories',
                           title: 'vehiclepartsandaccessories'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'motorcycles') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -406,7 +449,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'motorcycles',
                           title: 'motorcycles'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName == 'trucks') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
@@ -415,7 +459,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'trucks',
                           title: 'trucks'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName == 'buses') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
@@ -424,7 +469,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'buses',
                           title: 'buses'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'heavyequipment') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -434,7 +480,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'heavyequipment',
                           title: 'heavyequipment'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName == 'boats') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
@@ -443,7 +490,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'boats',
                           title: 'boats'.tr()
                           
-                          )));
+                          ))
+                          );
                 }
 
                 print(widget.catagoriestosend[index].catName);
@@ -457,7 +505,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'vitaminsandsupplements',
                           title: 'vitaminsandsupplements'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 }
                 if (widget.catagoriestosend[index].catName ==
                     'houseandapartmentforrent') {
@@ -468,7 +518,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'houseandapartmentforrent',
                           title: 'houseandapartmentforrent'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'landandplotsforsale') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -478,7 +530,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'landandplotsforsale',
                           title: 'landandplotsforsale'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'landandplotsforrent') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -488,7 +542,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'landandplotsforrent',
                           title: 'landandplotsforrent'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'commercialpropertyforsale') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -498,7 +554,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'commercialpropertyforsale',
                           title: 'commercialpropertyforsale'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'commercialpropertyforrent') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -508,7 +566,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'commercialpropertyforrent',
                           title: 'commercialpropertyforrent'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 }
 
                 print(widget.catagoriestosend[index].catName);
@@ -522,7 +582,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'vitaminsandsupplements',
                           title: 'vitaminsandsupplements'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'hairbeauty') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -532,7 +594,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'hairbeauty',
                           title: 'hairbeauty'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'fragrances') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -542,7 +606,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'fragrances',
                           title: 'fragrances'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'skincare') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -552,7 +618,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'skincare',
                           title: 'skincare'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'sexualwellness') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -562,7 +630,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'sexualwellness',
                           title: 'sexualwellness'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'bathandbody') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -572,7 +642,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'bathandbody',
                           title: 'bathandbody'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName == 'makeup') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
@@ -581,7 +653,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'makeup',
                           title: 'makeup'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 }
                 print(widget.catagoriestosend[index].catName);
               } else if (widget.catagories == babies) {
@@ -594,7 +668,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'babyandchildcare',
                           title: 'babyandchildcare'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'childrenclothing') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -604,7 +680,9 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'childrenclothing',
                           title: 'childrenclothing'.tr()
                           
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'childreshoe') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -614,14 +692,16 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'childreshoe',
                           title: 'childreshoe'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName == 'toys') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
                           catagories: [], catagoriestosend: [], name: 'toys',
                           title:'toys'.tr()
                           
-                          )));
+                          ))
+                          );
                 }
 
                 print(widget.catagoriestosend[index].catName);
@@ -635,7 +715,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'mealsanddrinks',
                           title: 'mealsanddrinks'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'livestockandpoultry') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -645,7 +726,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'livestockandpoultry',
                           title: 'livestockandpoultry'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'feedssupplements') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -655,7 +737,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'feedssupplements',
                           title: 'feedssupplements'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'farmmachineryandequipment') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -665,7 +748,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'farmmachineryandequipment',
                           title: 'farmmachineryandequipment'.tr()
                           
-                          )));
+                          ))
+                          );
                 }
 
                 print(widget.catagoriestosend[index].catName);
@@ -678,7 +762,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'furniture',
                           title: 'furniture'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'homeappliances') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -688,7 +773,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'homeappliances',
                           title: 'homeappliances'.tr()
                           
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'kitchensupplies') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -697,7 +783,8 @@ class _DetailedListState extends State<DetailedList> {
                           catagoriestosend: kitchensuppliespro,
                           name: 'kitchensupplies',
                           title: 'kitchensupplies'.tr()
-                          )));
+                          ))
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'gardensupplies') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -707,7 +794,8 @@ class _DetailedListState extends State<DetailedList> {
                           name: 'gardensupplies',
                           title: 'gardensupplies'.tr()
                           
-                          )));
+                          ))
+                          );
                 }
 
                 print(widget.catagoriestosend[index].catName);
@@ -720,7 +808,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagoriestosend: technologyjobspro,
                           name: 'technologyjobs',
                           title: 'technologyjobs'.tr()
-                          )));
+                          ))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'healthandbeautyjobs') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -728,7 +818,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: healthandbeautyjobs,
                           catagoriestosend: healthandbeautyjobspro,
                           name: 'healthandbeautyjobs',
-                          title: "healthandbeautyjobs".tr())));
+                          title: "healthandbeautyjobs".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'artandentertainmentjobs') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -736,7 +828,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: artandentertainmentjobs,
                           catagoriestosend: artandentertainmentjobspro,
                           name: 'artandentertainmentjobs',
-                          title: "artandentertainmentjobs".tr())));
+                          title: "artandentertainmentjobs".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'securityjobs') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -744,7 +838,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: securityjobs,
                           catagoriestosend: securityjobspro,
                           name: 'securityjobs',
-                          title: "securityjobs".tr())));
+                          title: "securityjobs".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'teachingjobs') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -752,7 +848,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: teachingjobs,
                           catagoriestosend: teachingjobspro,
                           name: 'teachingjobs',
-                          title: "teachingjobs".tr())));
+                          title: "teachingjobs".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'travelandtourismjobs') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -760,7 +858,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: travelandtourismjobs,
                           catagoriestosend: travelandtourismjobspro,
                           name: 'travelandtourismjobs',
-                          title: "travelandtourismjobs".tr())));
+                          title: "travelandtourismjobs".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'reaurantandsurveyjobs') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -768,7 +868,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: reaurantandsurveyjobs,
                           catagoriestosend: reaurantandsurveyjobspro,
                           name: 'reaurantandsurveyjobs',
-                          title: "reaurantandsurveyjobs".tr())));
+                          title: "reaurantandsurveyjobs".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'customerservicesjobs') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -776,7 +878,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: customerservicesjobs,
                           catagoriestosend: customerservicesjobspro,
                           name: 'customerservicesjobs',
-                          title: "customerservicesjobs".tr())));
+                          title: "customerservicesjobs".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'hoteljobs') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -784,7 +888,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: hoteljobs,
                           catagoriestosend: hoteljobspro,
                           name: 'hoteljobs',
-                          title: "hoteljobs".tr())));
+                          title: "hoteljobs".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'engineeringjobs') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -792,7 +898,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: engineeringjobs,
                           catagoriestosend: engineeringjobspro,
                           name: 'engineeringjobs',
-                          title: "engineeringjobs".tr())));
+                          title: "engineeringjobs".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'otherjobs') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -800,7 +908,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: otherjobs,
                           catagoriestosend: otherjobspro,
                           name: 'otherjobs',
-                          title: "otherjobs".tr())));
+                          title: "otherjobs".tr()))
+                          
+                          );
                 }
                 print(widget.catagoriestosend[index].catName);
               } else if (widget.catagories == commercialequipment) {
@@ -810,7 +920,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'restaurant',
-                          title: "restaurant".tr())));
+                          title: "restaurant".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'storeequipment') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -818,7 +930,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'storeequipment',
-                          title: "storeequipment".tr())));
+                          title: "storeequipment".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'manufacturingequipment') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -826,7 +940,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'manufacturingequipment',
-                          title: "manufacturingequipment".tr())));
+                          title: "manufacturingequipment".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'industrialovens') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -834,7 +950,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'industrialovens',
-                          title: "industrialovens".tr())));
+                          title: "industrialovens".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'printingequipments') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -842,7 +960,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'printingequipments',
-                          title: "printingequipments".tr())));
+                          title: "printingequipments".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'stagelightingandeffects') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -850,7 +970,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'stagelightingandeffects',
-                          title: "stagelightingandeffects".tr())));
+                          title: "stagelightingandeffects".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'salonequipment') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -858,7 +980,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'salonequipment',
-                          title: "salonequipment".tr())));
+                          title: "salonequipment".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'stationary') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -866,7 +990,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'stationary',
-                          title: "stationary".tr())));
+                          title: "stationary".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'Medicalsuppliesandequipment') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -874,14 +1000,18 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'Medicalsuppliesandequipment',
-                          title: "Medicalsuppliesandequipment".tr())));
+                          title: "Medicalsuppliesandequipment".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName == 'gym') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
                           catagories: [],
                           catagoriestosend: [],
                           name: 'gym',
-                          title: "gym".tr())));
+                          title: "gym".tr()))
+                          
+                          );
                 }
                 print(widget.catagoriestosend[index].catName);
               } else if (widget.catagories == construction) {
@@ -892,7 +1022,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'buildingmaterials',
-                          title: "buildingmaterials".tr())));
+                          title: "buildingmaterials".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'solarenergy') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -900,7 +1032,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'solarenergy',
-                          title: "solarenergy".tr())));
+                          title: "solarenergy".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'electricalequipment') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -908,14 +1042,18 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'electricalequipment',
-                          title: "electricalequipment".tr())));
+                          title: "electricalequipment".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName == 'doors') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
                           catagories: [],
                           catagoriestosend: [],
                           name: 'doors',
-                          title: "doors".tr())));
+                          title: "doors".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'electricalhandtools') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -923,7 +1061,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'electricalhandtools',
-                          title: "electricalhandtools".tr())));
+                          title: "electricalhandtools".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'plumpingandwatersupply') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -931,7 +1071,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'plumpingandwatersupply',
-                          title: "plumpingandwatersupply".tr())));
+                          title: "plumpingandwatersupply".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'handtools') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -939,7 +1081,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'handtools',
-                          title: "handtools".tr())));
+                          title: "handtools".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'measuringandlayouttools') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -947,7 +1091,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'measuringandlayouttools',
-                          title: "measuringandlayouttools".tr())));
+                          title: "measuringandlayouttools".tr()))
+                          
+                          );
                 } else if (widget.catagoriestosend[index].catName ==
                     'solarenergy') {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -955,7 +1101,9 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: [],
                           catagoriestosend: [],
                           name: 'solarenergy',
-                          title: "solarenergy".tr())));
+                          title: "solarenergy".tr()))
+                          
+                          );
                 }
                 print(widget.catagoriestosend[index].catName);
               }

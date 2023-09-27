@@ -231,20 +231,24 @@ class _DragonFruitScreenState extends State<DragonFruitScreen> {
                                             snapshot.data!["postedBy"]['_id']
                                                 .toString());
                                         if (userid != null) {
-                                          api.createroom(
-                                              userid,
-                                              snapshot.data!["postedBy"]["_id"]
-                                                  .toString());
-                                          Navigator.of(context)
-                                              .pushAndRemoveUntil(
-                                                  MaterialPageRoute(
-                                                      builder: (BuildContext
-                                                              context) =>
-                                                          TabScreen(
-                                                            tab: "2",
-                                                          )),
-                                                  ModalRoute.withName(
-                                                      "/tab_screen"));
+                                          api
+                                              .createroom(
+                                                  userid,
+                                                  snapshot.data!["postedBy"]
+                                                          ["_id"]
+                                                      .toString())
+                                              .then((value) => {
+                                                    Navigator.of(context)
+                                                        .pushAndRemoveUntil(
+                                                            MaterialPageRoute(
+                                                                builder: (BuildContext
+                                                                        context) =>
+                                                                    TabScreen(
+                                                                      tab: "2",
+                                                                    )),
+                                                            ModalRoute.withName(
+                                                                "/tab_screen"))
+                                                  });
                                         }
                                       },
                                       child: Text(
@@ -267,7 +271,10 @@ class _DragonFruitScreenState extends State<DragonFruitScreen> {
                                       ))
                                 ])),
                         Builder(builder: (context) {
-                          if (snapshot.data!["transmission"]!=null &&snapshot.data!["transmission"]!.toString().isNotEmpty) {
+                          if (snapshot.data!["transmission"] != null &&
+                              snapshot.data!["transmission"]!
+                                  .toString()
+                                  .isNotEmpty) {
                             return Container(
                                 margin: EdgeInsets.all(12),
                                 decoration: BoxDecoration(
@@ -282,6 +289,23 @@ class _DragonFruitScreenState extends State<DragonFruitScreen> {
                                     SizedBox(height: 5),
                                     Text('More details'),
                                     SizedBox(height: 10),
+                                    Row(children: [
+                                      Column(children: [
+                                        Text('category'),
+                                        SizedBox(height: 3),
+                                        Text(snapshot.data!['detailcatagory']!,
+                                            style:
+                                                TextStyle(color: Colors.grey))
+                                      ]),
+                                      Spacer(),
+                                      Column(children: [
+                                        Text('Model'),
+                                        SizedBox(height: 3),
+                                        Text(snapshot.data!['model']!,
+                                            style:
+                                                TextStyle(color: Colors.grey))
+                                      ]),
+                                    ]),
                                     Row(children: [
                                       Column(children: [
                                         Text('transmission'),
@@ -316,7 +340,24 @@ class _DragonFruitScreenState extends State<DragonFruitScreen> {
                                             style:
                                                 TextStyle(color: Colors.grey))
                                       ]),
-                                    ])
+                                    ]),
+                                    Row(children: [
+                                      Column(children: [
+                                        Text('color'),
+                                        SizedBox(height: 3),
+                                        Text(snapshot.data!['color']!,
+                                            style:
+                                                TextStyle(color: Colors.grey))
+                                      ]),
+                                      Spacer(),
+                                      Column(children: [
+                                        Text('Manifacturing year'),
+                                        SizedBox(height: 3),
+                                        Text(snapshot.data!['year']!,
+                                            style:
+                                                TextStyle(color: Colors.grey))
+                                      ]),
+                                    ]),
                                   ]),
                                 ));
                           }

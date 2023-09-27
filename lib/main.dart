@@ -2,29 +2,37 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+
+
+
+
 import 'package:provider/provider.dart';
 import './screens/landing_screen.dart';
 import './screens/postad.dart';
 import './utils/custom_theme.dart';
 import './models/item.dart';
 import './routes/route.dart' as route;
-
+import 'package:device_preview/device_preview.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+//DevicePreview(enabled: true,builder: (context) =>  
+//                    useInheritedMediaQuery: true,
 
   runApp(EasyLocalization(
-    supportedLocales: const [
-      Locale('en', 'US'),
-      Locale('am', 'ET'),
-      Locale('en', 'ER')
-    ],
-    path: "assets/translations",
-    saveLocale: true,
-    fallbackLocale: const Locale('en', 'US'),
-    child: MyApp(),
-  ));
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('am', 'ET'),
+        Locale('en', 'ER'),
+        Locale('en', 'KE'),
+      ],
+      path: "assets/translations",
+      saveLocale: true,
+      fallbackLocale: const Locale('en', 'US'),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -38,6 +46,7 @@ class MyApp extends StatelessWidget {
           final customTheme = CustomTheme(constraints);
           return MaterialApp(
               title: 'Desta Ecommerce app',
+
               theme: ThemeData(
                 primarySwatch: Colors.green,
                 textTheme: customTheme.nunito(),
@@ -51,6 +60,7 @@ class MyApp extends StatelessWidget {
               supportedLocales: context.supportedLocales,
               locale: context.locale,
               builder: EasyLoading.init(), 
+              //Nahom221
            
               home: LandingScreen(),
               // home: MyNewApp(),

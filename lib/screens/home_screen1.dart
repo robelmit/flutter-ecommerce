@@ -714,7 +714,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
         'assets/images/new/babies/baby.svg',
         kAccentGreen,
       ),
-            Category(
+      Category(
         'foodandagri'.tr(),
         'assets/images/new/foodandagri/food.svg',
         kAccentGreen,
@@ -852,55 +852,55 @@ class _HomeScreen1State extends State<HomeScreen1> {
                   icon: Icon(Icons.search),
                   onPressed: () {},
                 ),
-                suffixIcon: IconButton(
-                  icon: Icon(Icons.filter_alt),
-                  onPressed: () async {
-                    // ignore: unnecessary_null_comparison
-                    _showForm();
+                // suffixIcon: IconButton(
+                //   icon: Icon(Icons.filter_alt),
+                //   onPressed: () async {
+                //     // ignore: unnecessary_null_comparison
+                //     _showForm();
 
-                    if (!(latitude == null)) {
-                      print('location');
-                      _showForm();
-                    } else {
-                      print('location b');
+                //     if (!(latitude == null)) {
+                //       print('location');
+                //       _showForm();
+                //     } else {
+                //       print('location b');
 
-                      Location location = new Location();
+                //       Location location = new Location();
 
-                      bool _serviceEnabled;
-                      PermissionStatus _permissionGranted;
-                      LocationData _locationData;
+                //       bool _serviceEnabled;
+                //       PermissionStatus _permissionGranted;
+                //       LocationData _locationData;
 
-                      _serviceEnabled = await location.serviceEnabled();
-                      if (!_serviceEnabled) {
-                        _serviceEnabled = await location.requestService();
-                        if (!_serviceEnabled) {
-                          return;
-                        }
-                      }
+                //       _serviceEnabled = await location.serviceEnabled();
+                //       if (!_serviceEnabled) {
+                //         _serviceEnabled = await location.requestService();
+                //         if (!_serviceEnabled) {
+                //           return;
+                //         }
+                //       }
 
-                      _permissionGranted = await location.hasPermission();
-                      if (_permissionGranted == PermissionStatus.denied) {
-                        _permissionGranted = await location.requestPermission();
-                        if (_permissionGranted != PermissionStatus.granted) {
-                          return;
-                        }
-                      }
+                //       _permissionGranted = await location.hasPermission();
+                //       if (_permissionGranted == PermissionStatus.denied) {
+                //         _permissionGranted = await location.requestPermission();
+                //         if (_permissionGranted != PermissionStatus.granted) {
+                //           return;
+                //         }
+                //       }
 
-                      _locationData = await location.getLocation();
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      prefs.setString(
-                          'latitude', _locationData.latitude.toString());
-                      prefs.setString(
-                          'longitude', _locationData.longitude.toString());
-                      latitude = _locationData.latitude.toString();
-                      longitude = _locationData.longitude.toString();
-                      setState(() {});
+                //       _locationData = await location.getLocation();
+                //       SharedPreferences prefs =
+                //           await SharedPreferences.getInstance();
+                //       prefs.setString(
+                //           'latitude', _locationData.latitude.toString());
+                //       prefs.setString(
+                //           'longitude', _locationData.longitude.toString());
+                //       latitude = _locationData.latitude.toString();
+                //       longitude = _locationData.longitude.toString();
+                //       setState(() {});
 
-                      //_showForm();
-                    }
-                  },
-                ),
+                //       //_showForm();
+                //     }
+                //   },
+                // ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(
                     getProportionateScreenWidth(4),

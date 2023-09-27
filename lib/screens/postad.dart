@@ -39,6 +39,7 @@ class _MyNewAppState extends State<MyNewApp> {
   TextEditingController kilometr = new TextEditingController();
   List<String> items = [];
   List<String> details = [];
+  List<String> Brand = [];
   List<String> itemsmain = [];
   Status status = Status.newer;
 
@@ -105,8 +106,11 @@ class _MyNewAppState extends State<MyNewApp> {
   String? selectedValue1;
   String? selectedValue2;
   String? transmission;
+  String? colorvalue;
+  String? yearvalue;
   String? engineSize;
   String? fuel;
+  String? brand;
   String? tobesent;
   String? detailsent;
   String? tobesentmain;
@@ -179,14 +183,40 @@ class _MyNewAppState extends State<MyNewApp> {
       items = construction;
       setState(() {});
       print('animals');
-    }
-    else if (selectedValue == 'job'.tr()) {
+    } else if (selectedValue == 'job'.tr()) {
       items = jobs;
       setState(() {});
       print('animals');
     }
   }
 
+  checkerbro() {
+    print(brand);
+    brand = null;
+    print('brand');
+    if (selectedValue2 == 'Toyota'.tr()) {
+      Brand = toyota;
+      setState(() {});
+    } else if (selectedValue2 == 'Hyundai'.tr()) {
+      Brand = hyundai;
+      setState(() {});
+    } else if (selectedValue2 == 'Suzuki'.tr()) {
+      Brand = suzuki;
+      setState(() {});
+    } else if (selectedValue2 == 'Nissan'.tr()) {
+      Brand = Nissan;
+      setState(() {});
+    } else if (selectedValue2 == 'Ford'.tr()) {
+      Brand = ford;
+      setState(() {});
+    } else if (selectedValue2 == 'Volkswagen'.tr()) {
+      Brand = volswagen;
+      setState(() {});
+    } else if (selectedValue2 == 'Mercedes Benz'.tr()) {
+      Brand = Mercedes;
+      setState(() {});
+    }
+  }
 
   checkerpro() {
     if (selectedValue1 == 'phone'.tr()) {
@@ -618,10 +648,10 @@ class _MyNewAppState extends State<MyNewApp> {
                       validator: (val) {
                         var nameRegExp = new RegExp(
                             r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$");
-                        if (val!.length > 5) {
-                        } else {
-                          return "entervalidtitle".tr();
-                        }
+                        // if (val!.length > 5) {
+                        // } else {
+                        //   return "entervalidtitle".tr();
+                        // }
                       },
                     ),
                   ),
@@ -638,10 +668,10 @@ class _MyNewAppState extends State<MyNewApp> {
                       validator: (val) {
                         var nameRegExp = new RegExp(
                             r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$");
-                        if (val!.length > 5) {
-                        } else {
-                          return "Enter valid description";
-                        }
+                     //   if (val!.length > 5) {
+                      //  } else {
+                      //    return "Enter valid description";
+                      //  }
                       },
                     ),
                   ),
@@ -763,6 +793,7 @@ class _MyNewAppState extends State<MyNewApp> {
                           setState(() {
                             selectedValue2 = value as String;
                           });
+                          checkerbro();
                         },
                         validator: (value) {
                           if (value == null) {
@@ -812,6 +843,52 @@ class _MyNewAppState extends State<MyNewApp> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('Enter car details below'.tr()),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Container(
+                                margin: EdgeInsets.symmetric(horizontal: 20),
+                                padding: EdgeInsets.symmetric(vertical: 4),
+                                child: DropdownButtonFormField2(
+                                  isExpanded: true,
+                                  hint: Text(
+                                    'Brand'.tr(),
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Theme.of(context).hintColor,
+                                    ),
+                                  ),
+                                  items: Brand.map(
+                                      (item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          )).toList(),
+                                  value: brand,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      brand = value as String;
+                                    });
+                                  },
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return 'pleaseentertransmission'.tr();
+                                    }
+                                    return null;
+                                  },
+                                  buttonStyleData: const ButtonStyleData(
+                                    height: 40,
+                                    width: 140,
+                                  ),
+                                  menuItemStyleData: const MenuItemStyleData(
+                                    height: 40,
+                                  ),
+                                ),
+                              ),
                             ),
                             Align(
                               alignment: Alignment.centerLeft,
@@ -938,6 +1015,110 @@ class _MyNewAppState extends State<MyNewApp> {
                                   validator: (value) {
                                     if (value == null) {
                                       return 'pleaseenterfuel'.tr();
+                                    }
+                                    return null;
+                                  },
+                                  buttonStyleData: const ButtonStyleData(
+                                    height: 40,
+                                    width: 140,
+                                  ),
+                                  menuItemStyleData: const MenuItemStyleData(
+                                    height: 40,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Container(
+                                margin: EdgeInsets.symmetric(horizontal: 20),
+                                padding: EdgeInsets.symmetric(vertical: 4),
+                                child: DropdownButtonFormField2(
+                                  isExpanded: true,
+                                  hint: Text(
+                                    'color'.tr(),
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Theme.of(context).hintColor,
+                                    ),
+                                  ),
+                                  items: color
+                                      .map((item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Row(
+                                              children: [
+                                                SizedBox(width: 5,),
+                                                CircleAvatar(
+                                                    radius: 6,
+                                                    backgroundColor:
+                                                        getcolor(item)),
+                                                        SizedBox(width: 5,),
+                                                Text(
+                                                  item,
+                                                  style: const TextStyle(
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ))
+                                      .toList(),
+                                  value: colorvalue,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      colorvalue = value as String;
+                                    });
+                                  },
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return 'pleaseentercolor'.tr();
+                                    }
+                                    return null;
+                                  },
+                                  buttonStyleData: const ButtonStyleData(
+                                    height: 40,
+                                    width: 140,
+                                  ),
+                                  menuItemStyleData: const MenuItemStyleData(
+                                    height: 40,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Container(
+                                margin: EdgeInsets.symmetric(horizontal: 20),
+                                padding: EdgeInsets.symmetric(vertical: 4),
+                                child: DropdownButtonFormField2(
+                                  isExpanded: true,
+                                  hint: Text(
+                                    'Manifacturingyear'.tr(),
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Theme.of(context).hintColor,
+                                    ),
+                                  ),
+                                  items: year
+                                      .map((item) => DropdownMenuItem<String>(
+                                            value: item,
+                                            child: Text(
+                                              item,
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ))
+                                      .toList(),
+                                  value: yearvalue,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      yearvalue = value as String;
+                                    });
+                                  },
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return 'pleaseentercolor'.tr();
                                     }
                                     return null;
                                   },
@@ -1315,6 +1496,27 @@ class _MyNewAppState extends State<MyNewApp> {
             ),
           ),
         ));
+  }
+
+  Color getcolor(item) {
+    if (item == "Grey".tr())
+      return Colors.grey;
+    else if (item == "Black".tr())
+      return Colors.black;
+    else if (item == "White".tr())
+      return Colors.white;
+    else if (item == "Blue".tr())
+      return Colors.blue;
+    else if (item == "Red".tr())
+      return Colors.red;
+    else if (item == "Silver".tr())
+      return Color.fromARGB(246, 185, 180, 180);
+    else if (item == "Green".tr())
+      return Colors.green;
+    else if (item == "Orange".tr())
+      return Colors.orange;
+    else if (item == "Yellow".tr()) return Colors.yellow;
+    return Colors.green;
   }
 }
 //   bool get isValidName {

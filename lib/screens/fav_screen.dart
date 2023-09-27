@@ -24,8 +24,6 @@ import 'dart:collection';
 
 // import 'package:webview_flutter/webview_flutter.dart';
 
-var api = Api();
-
 class FavScreen extends StatefulWidget {
   final Function setstateCallback;
 
@@ -37,7 +35,7 @@ class FavScreen extends StatefulWidget {
 
 class _FavScreenState extends State<FavScreen> {
   var api = Api();
-  String firsttime='';
+  String firsttime = '';
 
   @override
   void initState() {
@@ -79,8 +77,6 @@ class _FavScreenState extends State<FavScreen> {
     }
 
     // initalizing chapa payment sdk
-
-  
   }
 
   @override
@@ -139,6 +135,8 @@ class _FavScreenState extends State<FavScreen> {
             future: api.getfavourites(),
             //future: api.getaddsbycatagory(),
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+              print('calling');
+              print(snapshot.data);
               if (snapshot.hasData) {
                 if (snapshot.data!.length < 1) {
                   return Center(

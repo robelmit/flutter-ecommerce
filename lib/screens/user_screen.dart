@@ -323,13 +323,14 @@ class _ProfileCardState extends State<ProfileCard> {
               SizedBox(height: 10),
               ToggleSwitch(
                 initialLabelIndex: 0,
-                totalSwitches: 3,
+                totalSwitches: 4,
                 changeOnTap: true,
                 inactiveBgColor: const Color.fromARGB(79, 158, 158, 158),
                 labels: [
                   'english',
                   'ትግርኛ',
                   'አማርኛ',
+                  'Oromifaa'
                 ],
                 onToggle: (index) {
                   print(index);
@@ -339,6 +340,9 @@ class _ProfileCardState extends State<ProfileCard> {
                     context.setLocale(Locale('en', 'ER'));
                   } else if (index == 2) {
                     context.setLocale(Locale('am', 'ET'));
+                  }
+                  else if (index == 3) {
+                    context.setLocale(Locale('en', 'KE'));
                   }
                 },
               ),

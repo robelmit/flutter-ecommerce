@@ -141,7 +141,7 @@ class CategoryScreen extends StatelessWidget {
         kAccentYellow,
       ),
             Categorypro(
-        'construction'.tr(),
+        'construction',
         'assets/images/new/construction/cutter.svg',
         kAccentYellow,
       ),

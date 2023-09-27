@@ -13,11 +13,12 @@ class Api {
   //     isLeft: false,
   ///   isSelected: true,
   // ),
-  var baseURL = "http://robel.eu-4.evennode.com";
+  // var baseURL = "http://robel.eu-4.evennode.com";
   // var baseURL = "http://10.0.2.2:5000";
   // var baseURL = "http://localhost:5000";
 
-  // var baseURL = "http://192.168.43.34:5000";
+  var baseURL = "http://192.168.43.34:5000";
+  // var baseURL = "http://192.168.101.8:5000";
   // var baseURL = "http://192.168.137.1:5000";
   static var isnowdistributed = false;
   static var isnowverified = false;
@@ -114,21 +115,27 @@ class Api {
     if (filters['region'] != 'all' && filters['region'] != null) {
       finalfilters['region'] = filters['region'];
     }
-     if (filters['city'] !=null) {
+    if (filters['city'] != null) {
       finalfilters['city'] = filters['city'];
     }
-     if (filters['fuel'] != null) {
+    if (filters['color'] != null) {
+      finalfilters['color'] = filters['color'];
+    }
+    if (filters['model'] != null) {
+      finalfilters['model'] = filters['model'];
+    }
+    if (filters['year'] != null) {
+      finalfilters['year'] = filters['year'];
+    }
+    if (filters['fuel'] != null) {
       finalfilters['fuel'] = filters['fuel'];
     }
-     if (filters['engineSize']  != null) {
+    if (filters['engineSize'] != null) {
       finalfilters['EngineSize'] = filters['engineSize'];
     }
-     if (filters['transmission'] != null) {
+    if (filters['transmission'] != null) {
       finalfilters['transmission'] = filters['transmission'];
     }
-
-
-
 
     if (filters['catagory'] != '' && filters['catagory'] != null) {
       finalfilters['catagory'] = filters['catagory'];
@@ -469,11 +476,19 @@ class Api {
         'authorization': 'Bearer ' + token!
       },
     );
-    if (response.statusCode == 200) {
-      print('bbb');
+    if (response.statusCode == 200 || response.statusCode == 304) {
+      print('clean');
+
+      var res = jsonDecode(response.body);
+      print(res);
+      print('cool');
+      // print(res['adds']);
+
+      // var ads = AdsPro(jsonEncode(res['adds']));
 
       //var ads = AdsPro(response.body);
       var ads = AdsPro(response.body);
+      print('ads');
       print(ads);
 
       return ads;
@@ -584,8 +599,8 @@ class Api {
     // }
   }
 
-  Future<dynamic> uploadadd(title, description, catagory, maincatagory, detailcatagory,price,
-      images, status, Map map) async {
+  Future<dynamic> uploadadd(title, description, catagory, maincatagory,
+      detailcatagory, price, images, status, Map map) async {
     print('maincatagory');
     print(maincatagory);
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -595,21 +610,21 @@ class Api {
       'description': description,
       'catagory': catagory,
       "maincatagory": maincatagory,
-      "detailcatagory":detailcatagory,
+      "detailcatagory": detailcatagory,
       'price': price,
       'status': status,
       'images': images,
     };
-    if (map['transmission']!=null) {
+    if (map['transmission'] != null) {
       body['transmission'] = map['transmission'];
     }
-    if (map['engineSize']!=null) {
+    if (map['engineSize'] != null) {
       body['engineSize'] = map['engineSize'];
     }
-    if (map['fuel']!=null) {
+    if (map['fuel'] != null) {
       body['fuel'] = map['fuel'];
     }
-    if (map['mileAge']!=null) {
+    if (map['mileAge'] != null) {
       body['mileAge'] = map['mileAge'];
     }
     final response = await http.post(Uri.parse(baseURL + '/api/adds'),
@@ -652,6 +667,7 @@ class Api {
       print('bbb');
 
       var ads = AdsPro(response.body);
+      print('ads');
       print(ads);
 
       return ads;

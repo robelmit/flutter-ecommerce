@@ -9,12 +9,18 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
+// ignore: must_be_immutable
 class ChatDetail extends StatefulWidget {
   static const routeName = '/chatdetail';
 
   String id;
   String userto;
-  ChatDetail({required this.id, required this.userto});
+  String usertoid;
+  ChatDetail(
+      {super.key,
+      required this.id,
+      required this.userto,
+      required this.usertoid});
   @override
   State<ChatDetail> createState() => _ChatDetailState();
 }
@@ -31,7 +37,7 @@ class _ChatDetailState extends State<ChatDetail> {
   void initState() {
     // TODO: implement initState
 
-    print(widget.id);
+    // print(widget.id);
     getid();
     getmessages();
     initSocket();
@@ -68,6 +74,13 @@ class _ChatDetailState extends State<ChatDetail> {
       setState(() {
         messages.add(message);
       });
+      Future.delayed(const Duration(milliseconds: 300)).then((value) {
+        _controller.jumpTo(
+          _controller.position.maxScrollExtent,
+        );
+        //duration: Duration(milliseconds: 100),
+        // curve: Curves.easeInOut,
+      });
     });
     socket?.on('allChats', (messages) {
       print(messages);
@@ -82,10 +95,10 @@ class _ChatDetailState extends State<ChatDetail> {
       'roomid': widget.id,
       'textmessage': message,
       'userfrom': myid,
-      'userto': widget.userto
+      'userto': widget.usertoid
     };
     socket?.emit('chatroomMessage', content);
-    Future.delayed(const Duration(milliseconds: 1000)).then((value) {
+    Future.delayed(const Duration(milliseconds: 300)).then((value) {
       _controller.jumpTo(
         _controller.position.maxScrollExtent,
       );
@@ -96,9 +109,18 @@ class _ChatDetailState extends State<ChatDetail> {
 
   getmessages() {
     api.getroommessage(widget.id).then((value) => {
+          print('cool'),
           messages = value,
+
           setState(() {}),
-          print('logging as such ,' + messages[1]['usefrom'])
+          Future.delayed(const Duration(milliseconds: 1000)).then((value) {
+            _controller.jumpTo(
+              _controller.position.maxScrollExtent,
+            );
+            //duration: Duration(milliseconds: 100),
+            // curve: Curves.easeInOut,
+          })
+          // print('logging as such ,' + messages[1]['usefrom'])
         });
   }
 
@@ -114,28 +136,27 @@ class _ChatDetailState extends State<ChatDetail> {
           height: MediaQuery.of(context).size.height),
       Scaffold(
           appBar: AppBar(
-            leading: messages.isNotEmpty
-                ? IconButton(
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context, rootNavigator: true).pop(context);
-                    },
-                  )
-                // ? CircleAvatar(
-                //     radius: 1,
-                //     backgroundImage: AssetImage('assets/images/guy.png'))
-                : SizedBox(),
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop(context);
+              },
+            )
+            // ? CircleAvatar(
+            //     radius: 1,
+            //     backgroundImage: AssetImage('assets/images/guy.png'))
+            ,
             title: Column(
               children: [
                 Text(
                   // '${messages[0]['userfrom']['name']}',
-                  'Hi there',
+                  '${widget.userto}',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                Text('last seen on today', style: TextStyle(fontSize: 13))
+                // Text('last seen on today', style: TextStyle(fontSize: 13))
               ],
             ),
           ),
@@ -145,6 +166,7 @@ class _ChatDetailState extends State<ChatDetail> {
             child: Stack(
               children: [
                 Container(
+                  color: Colors.transparent,
                   margin: EdgeInsets.only(bottom: 100),
                   child: ListView.builder(
 
@@ -169,6 +191,7 @@ class _ChatDetailState extends State<ChatDetail> {
                                 : Color(0xFFE8E8EE),
                             tail: true,
                             sent: true,
+                            delivered: true,
                           ),
                         );
                         // return Align(

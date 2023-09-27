@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../utils/screen_utils.dart';
+
 class ChatScreenPro extends StatefulWidget {
   const ChatScreenPro({super.key});
 
@@ -17,6 +19,9 @@ class ChatScreenPro extends StatefulWidget {
 class _ChatScreenProState extends State<ChatScreenPro> {
   var api = Api();
   String firsttime = '';
+  String userid = '';
+  String? name;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -29,6 +34,7 @@ class _ChatScreenProState extends State<ChatScreenPro> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var isloggedin = prefs.getString('id');
+    name = prefs.getString('name');
     print(isloggedin);
     if (isloggedin != null) {
       setState(() {
@@ -90,11 +96,32 @@ class _ChatScreenProState extends State<ChatScreenPro> {
         : SafeArea(
             child: Column(
               children: [
-                CustomAppBar(
-                  'chatscreen'.tr(),
-                  [Icon(Icons.chat_rounded)],
-                  () {},
+                Container(
+                  margin:
+                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  child: Row(
+                    children: [
+                      // IconButton(
+                      //   icon: Icon(Icons.arrow_back_ios_new),
+                      //   onPressed: (){},
+                      // ),
+                      Text(
+                        'chatscreen'.tr(),
+                        style: TextStyle(
+                          fontSize: getProportionateScreenWidth(17),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Expanded(
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [Icon(Icons.messenger_outline)]),
+                      ),
+                    ],
+                  ),
                 ),
+
                 // ListView.builder(
                 //     // physics: ScrollPhysics(),
                 //     itemCount: robi.length,
@@ -137,15 +164,36 @@ class _ChatScreenProState extends State<ChatScreenPro> {
                                 itemBuilder: (context, index) {
                                   return GestureDetector(
                                     onTap: () {
+                                      // print(snapshot.data[index]);
+                                      print('hey');
+                                      String tosend = '';
+                                      if (name ==
+                                          snapshot.data[index]['userto']
+                                              ['name']) {
+                                        print('a');
+                                        tosend = snapshot.data[index]
+                                            ['userfrom']['name'];
+                                        userid = snapshot.data[index]
+                                            ['userfrom']['_id'];
+                                      } else if (name ==
+                                          snapshot.data[index]['userfrom']
+                                              ['name']) {
+                                        print('b');
+                                        tosend = snapshot.data[index]['userto']
+                                            ['name'];
+                                        print(snapshot.data[index]['userto']);
+                                        userid = snapshot.data[index]['userto']
+                                            ['_id'];
+                                      }
+
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (BuildContext context) =>
                                                   ChatDetail(
                                                       id: snapshot.data[index]
                                                           ['roomid'],
-                                                      userto: snapshot
-                                                              .data[index]
-                                                          ['userto']['_id'])));
+                                                      usertoid: userid,
+                                                      userto: tosend)));
                                     },
                                     child: ListTile(
                                       leading: const CircleAvatar(
@@ -153,11 +201,17 @@ class _ChatScreenProState extends State<ChatScreenPro> {
                                         backgroundColor:
                                             Color.fromARGB(255, 82, 112, 83),
                                         backgroundImage: AssetImage(
-                                            'assets/images/person4.jpg'),
+                                            'assets/images/user.png'),
                                       ),
-                                      title: Text(snapshot.data[index]['userto']
-                                              ['name']
-                                          .toString()),
+                                      title: name ==
+                                              snapshot.data[index]['userto']
+                                                  ['name']
+                                          ? Text(snapshot.data[index]
+                                                  ['userfrom']['name']
+                                              .toString())
+                                          : Text(snapshot.data[index]['userto']
+                                                  ['name']
+                                              .toString()),
                                       // subtitle: Text('nice'),
                                       trailing: Icon(Icons.bubble_chart_sharp),
                                     ),

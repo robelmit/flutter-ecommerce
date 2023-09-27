@@ -10,6 +10,9 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../models/Categorypro.dart';
+import 'package:location/location.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../models/category.dart';
 import '../models/chip_data_model.dart';
 import '../services/api.dart';
@@ -48,6 +51,9 @@ String region = '';
 String catagory = '';
 String status = 'all';
 String filter = 'newest';
+String yearvalue = '';
+String colorvalue = '';
+String modelvalue = '';
 String city = '';
 String fuel = '';
 String selectedadd = '';
@@ -56,7 +62,8 @@ String transmission = '';
 String mileage = '';
 int? minprice;
 int? maxprice;
-
+String? latitude = '';
+String? longitude = "";
 String catname = '';
 List<String> tags = [];
 String distancevalue = '0.0';
@@ -68,15 +75,33 @@ Map allfilters = {
   "detailcatagory": tags,
   "status": status,
   "filter": filter,
+  "latitude": latitude,
+  "longitude": longitude,
   "distance": distancevalue,
   "minprice": minprice,
   "maxprice": maxprice,
+  "color": colorvalue,
+  "year": yearvalue,
+  "model": modelvalue,
   "city": "",
   "transmission": "",
   "engineSize": "",
   "fuel": "",
   "mileAge": "",
 };
+List<S2Choice<String>> statusoptions = [
+  S2Choice<String>(
+    value: 'all',
+    title: 'All'.tr(),
+  ),
+  S2Choice<String>(value: 'new', title: 'Brand New'.tr()),
+  S2Choice<String>(value: 'old', title: 'Old'),
+];
+List<S2Choice<String>> filters = [
+  S2Choice<String>(value: 'newest', title: 'Newest'.tr()),
+  S2Choice<String>(value: 'pricelow', title: 'Price low'.tr()),
+  S2Choice<String>(value: 'pricemax', title: 'Highest price'.tr()),
+];
 
 class Subcatagorypro extends StatefulWidget {
   late List<Category> catagories;
@@ -109,8 +134,21 @@ class _SubcatagoryproState extends State<Subcatagorypro> {
     allfilters['catagory'] = catname;
 
     getadds();
+    getlocation();
 
     super.initState();
+  }
+
+  getlocation() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    latitude = prefs.getString('latitude');
+    longitude = prefs.getString('longitude');
+    print(latitude);
+    print(longitude);
+    //  await prefs.setString('latitude', '14.10567');
+    //  await prefs.setString('longitude', '38.284945');
+    print('hey yo');
+    setState(() {});
   }
 
   @override
@@ -183,14 +221,7 @@ class _SubcatagoryproState extends State<Subcatagorypro> {
             children: [
               IconButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) => TabScreen(
-                        tab: '0',
-                      ),
-                    ),
-                  );
+                  Navigator.pop(context);
                 },
                 icon: Icon(Icons.arrow_back_ios),
               ),
@@ -333,6 +364,8 @@ class _CategoryTabState extends State<CategoryTab> {
     'Scientific'
   ];
 
+  List<Map<String, String>> model = [];
+
   List<String> _sortOption = [
     'Popular',
     'Most Reviews',
@@ -367,21 +400,6 @@ class _CategoryTabState extends State<CategoryTab> {
     );
   }
 
-  String status = 'all';
-  List<S2Choice<String>> statusoptions = [
-    S2Choice<String>(
-      value: 'all',
-      title: 'All'.tr(),
-    ),
-    S2Choice<String>(value: 'new', title: 'Brand New'.tr()),
-    S2Choice<String>(value: 'old', title: 'Old'),
-  ];
-  String filter = 'newest';
-  List<S2Choice<String>> filters = [
-    S2Choice<String>(value: 'newest', title: 'Newest'.tr()),
-    S2Choice<String>(value: 'pricelow', title: 'Price low'.tr()),
-    S2Choice<String>(value: 'pricemax', title: 'Highest price'.tr()),
-  ];
   final _chipData = ChipData.getChips();
   List<MultiSelectCard<Cat>> robel = [];
   Future scroll() async {
@@ -500,10 +518,64 @@ class _CategoryTabState extends State<CategoryTab> {
 
                       if (found) {
                         tags.remove(founditem);
+                        if (founditem == 'Toyota') {
+                          // model
+                          //     .map((e) => e['brand']?.contains('toyota'))
+                          //     .toList();
+                          model.removeWhere(
+                              (data) => data['brand']!.contains('toyota'));
+                        }
+                        if (founditem == 'Hyundai') {
+                          model.removeWhere(
+                              (data) => data['brand']!.contains('hyundai'));
+                        }
+                        if (founditem == 'Suzuki') {
+                          model.removeWhere(
+                              (data) => data['brand']!.contains('suzuki'));
+                        }
+                        if (founditem == 'Nissan') {
+                          model.removeWhere(
+                              (data) => data['brand']!.contains('nissan'));
+                        }
+                        if (founditem == 'Ford') {
+                          model.removeWhere(
+                              (data) => data['brand']!.contains('ford'));
+                        }
+                        if (founditem == 'Volkswagen') {
+                          model.removeWhere(
+                              (data) => data['brand']!.contains('volkswagen'));
+                        }
+                        if (founditem == 'Mercedes Benz') {
+                          model.removeWhere(
+                              (data) => data['brand']!.contains('mercedes'));
+                        }
                       } else {
                         tags.add(founditem);
+                        if (founditem == 'Toyota') {
+                          model.addAll(choices.toyota);
+                        }
+                        if (founditem == 'Hyundai') {
+                          model.addAll(choices.hyundai);
+                        }
+                        if (founditem == 'Suzuki') {
+                          model.addAll(choices.suzuki);
+                        }
+                        if (founditem == 'Nissan') {
+                          model.addAll(choices.nissan);
+                        }
+                        if (founditem == 'Ford') {
+                          model.addAll(choices.ford);
+                        }
+                        if (founditem == 'Volkswagen') {
+                          model.addAll(choices.volswagen);
+                        }
+                        if (founditem == 'Mercedes Benz') {
+                          model.addAll(choices.mercedes);
+                        }
                       }
                       setState(() => {});
+                      print('allfilters checking');
+                      print(tags);
                     }),
               );
             } else
@@ -543,56 +615,115 @@ class _CategoryTabState extends State<CategoryTab> {
                         },
                       ),
                     ),
-                    Expanded(
-                      child: SmartSelect<String>.single(
-                        title: 'Status'.tr(),
-                        placeholder: 'Choose one'.tr(),
+                    catname == 'cars'
+                        ? Expanded(
+                            child: SmartSelect<String?>.single(
+                              title: 'Model'.tr(),
+                              placeholder: 'Choose one'.tr(),
+                              selectedValue: modelvalue,
+                              onChange: (selected) => setState(()
+                                  // _car = selected.value
+                                  {
+                                modelvalue = selected.value!;
+                                allfilters['model'] = modelvalue;
+                                setState(() => {});
+                              }),
+                              choiceItems: S2Choice.listFrom<String,
+                                  Map<String, String>>(
+                                source: model,
+                                value: (index, item) => item['value'] ?? '',
+                                title: (index, item) => item['title'] ?? '',
+                                group: (index, item) => item['brand'] ?? '',
+                              ),
+                              choiceGrouped: true,
+                              modalFilter: true,
+                              modalFilterAuto: true,
+                              tileBuilder: (context, state) {
+                                return S2Tile.fromState(
+                                  state,
+                                  trailing: const Icon(Icons.arrow_drop_down),
+                                  isTwoLine: true,
+                                );
+                              },
+                            ),
+                          )
+                        : Expanded(
+                            child: SmartSelect<String>.single(
+                              title: 'Status'.tr(),
+                              placeholder: 'Choose one'.tr(),
 
-                        selectedValue: status,
-                        onChange: (selected) {
-                          status = selected.value;
-                          allfilters['status'] = status;
-                          setState(() => {});
-                        },
-                        choiceItems: statusoptions,
-                        modalType: S2ModalType.bottomSheet,
+                              selectedValue: status,
+                              onChange: (selected) {
+                                status = selected.value;
+                                allfilters['status'] = status;
+                                setState(() => {});
+                              },
+                              choiceItems: statusoptions,
+                              modalType: S2ModalType.bottomSheet,
 
-                        // modalHeader: false,
-                        tileBuilder: (context, state) {
-                          return S2Tile.fromState(
-                            state,
-                            trailing: const Icon(Icons.arrow_drop_down),
-                            isTwoLine: true,
-                          );
-                        },
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: SmartSelect<String>.single(
-                        title: 'filter by'.tr(),
-                        placeholder: 'Choose one'.tr(),
+                              // modalHeader: false,
+                              tileBuilder: (context, state) {
+                                return S2Tile.fromState(
+                                  state,
+                                  trailing: const Icon(Icons.arrow_drop_down),
+                                  isTwoLine: true,
+                                );
+                              },
+                            ),
+                          ),
+                    catname == 'cars'
+                        ? Expanded(
+                            flex: 1,
+                            child: SmartSelect<String>.single(
+                              title: 'year'.tr(),
+                              placeholder: 'Choose one'.tr(),
 
-                        selectedValue: filter,
-                        onChange: (selected) {
-                          filter = selected.value;
-                          allfilters['filter'] = filter;
-                          setState(() => {});
-                        },
-                        choiceItems: filters,
-                        modalType: S2ModalType.bottomSheet,
+                              selectedValue: yearvalue,
+                              onChange: (selected) {
+                                yearvalue = selected.value;
+                                allfilters['year'] = yearvalue;
+                                setState(() => {});
+                              },
+                              choiceItems: choices.year,
+                              modalType: S2ModalType.bottomSheet,
 
-                        // modalHeader: false,
-                        tileBuilder: (context, state) {
-                          return S2Tile.fromState(
-                            state,
-                            trailing: const Icon(Icons.arrow_drop_down),
-                            isTwoLine: true,
-                            enabled: true,
-                          );
-                        },
-                      ),
-                    ),
+                              // modalHeader: false,
+                              tileBuilder: (context, state) {
+                                return S2Tile.fromState(
+                                  state,
+                                  trailing: const Icon(Icons.arrow_drop_down),
+                                  isTwoLine: true,
+                                  enabled: true,
+                                );
+                              },
+                            ),
+                          )
+                        : Expanded(
+                            flex: 1,
+                            child: SmartSelect<String>.single(
+                              title: 'filter by'.tr(),
+                              placeholder: 'Choose one'.tr(),
+
+                              selectedValue: filter,
+                              onChange: (selected) {
+                                filter = selected.value;
+                                allfilters['filter'] = filter;
+                                setState(() => {});
+                              },
+                              choiceItems: filters,
+                              modalType: S2ModalType.bottomSheet,
+
+                              // modalHeader: false,
+                              tileBuilder: (context, state) {
+                                return S2Tile.fromState(
+                                  state,
+                                  trailing: const Icon(Icons.arrow_drop_down),
+                                  isTwoLine: true,
+                                  enabled: true,
+                                );
+                              },
+                            ),
+                          ),
                   ],
                 ),
               ),
@@ -612,8 +743,65 @@ class _CategoryTabState extends State<CategoryTab> {
                       Expanded(
                           flex: 1,
                           child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(FullScreenDistance());
+                            onTap: () async {
+                              if (!(latitude == null)) {
+                                print('location');
+                                Navigator.of(context)
+                                    .push(FullScreenDistance());
+                              } else {
+                                print('location b');
+
+                                Location location = new Location();
+
+                                bool _serviceEnabled;
+                                PermissionStatus _permissionGranted;
+                                LocationData _locationData;
+
+                                _serviceEnabled =
+                                    await location.serviceEnabled();
+                                if (!_serviceEnabled) {
+                                  _serviceEnabled =
+                                      await location.requestService();
+                                  if (!_serviceEnabled) {
+                                    return;
+                                  }
+                                }
+
+                                _permissionGranted =
+                                    await location.hasPermission();
+                                if (_permissionGranted ==
+                                    PermissionStatus.denied) {
+                                  _permissionGranted =
+                                      await location.requestPermission();
+                                  if (_permissionGranted !=
+                                      PermissionStatus.granted) {
+                                    return;
+                                  }
+                                }
+
+                                _locationData = await location.getLocation();
+                                if (_locationData.latitude != null &&
+                                    _locationData.latitude! > 0.0) {
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString('latitude',
+                                      _locationData.latitude.toString());
+                                  prefs.setString('longitude',
+                                      _locationData.longitude.toString());
+                                  latitude = _locationData.latitude.toString();
+                                  longitude =
+                                      _locationData.longitude.toString();
+                                  allfilters['latitude'] = latitude;
+                                  allfilters['longitude'] = latitude;
+                                  setState(() {});
+                                  Navigator.of(context)
+                                      .push(FullScreenDistance());
+                                }
+                                print(latitude);
+                                print(longitude);
+
+                                //_showForm();
+                              }
                             },
                             child: Container(
                               margin: EdgeInsets.only(right: 5.0),
@@ -642,35 +830,41 @@ class _CategoryTabState extends State<CategoryTab> {
                           ),
                         ),
                       ),
-                      MaterialButton(
-                          color: Color.fromARGB(255, 202, 201, 201),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 4.5,
+                        child: MaterialButton(
+                            color: Color.fromARGB(255, 202, 201, 201),
+                            onPressed: () {
+                              Navigator.of(context).push(MoreFilters());
+                            },
+                            child: Row(
+                              children: [
+                                Text('More'.tr(),
+                                    style: TextStyle(color: Colors.black))
+                              ],
+                            )),
+                      ),
+                      SizedBox(width: 2),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 4.5,
+                        child: MaterialButton(
+                          color: Color(0xFF54B175),
                           onPressed: () {
-                            Navigator.of(context).push(MoreFilters());
+                            print('allfilters clean');
+                            print(allfilters);
+                            getadds();
                           },
                           child: Row(
                             children: [
-                              Text('More'.tr(),
-                                  style: TextStyle(color: Colors.black)),
-                              Icon(Icons.more_vert_rounded, size: 14),
+                              Text('Filter'.tr(),
+                                  style: TextStyle(color: Colors.white)),
+                              SizedBox(
+                                width: 1,
+                              ),
+                              Icon(Icons.filter_list_outlined,
+                                  color: Colors.white),
                             ],
-                          )),
-                      SizedBox(width: 2),
-                      MaterialButton(
-                        color: Color(0xFF54B175),
-                        onPressed: () {
-                          print(allfilters);
-                          getadds();
-                        },
-                        child: Row(
-                          children: [
-                            Text('Filter'.tr(),
-                                style: TextStyle(color: Colors.white)),
-                            SizedBox(
-                              width: 3,
-                            ),
-                            Icon(Icons.filter_list_outlined,
-                                color: Colors.white),
-                          ],
+                          ),
                         ),
                       ),
                     ],
@@ -687,37 +881,35 @@ class _CategoryTabState extends State<CategoryTab> {
               if (adds!.length > 0) {
                 print('alingo');
                 print(adds);
-                return Expanded(
-                  child: Column(
-                    children: [
-                      GridView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: adds!.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2),
-                        itemBuilder: (BuildContext context, int index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      DragonFruitScreen(id: adds![index].id!)));
-                            },
-                            child: IndiDealCard(
-                                noPadding: true,
-                                isLeft: false,
-                                isSelected: true,
-                                title: adds![index].title!,
-                                id: adds![index].id!,
-                                catagory: adds![index].catagory!,
-                                price: adds![index].price!,
-                                imageurl: adds![index].images!.first.url),
-                            //onTap: () => {},
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+                return Column(
+                  children: [
+                    GridView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: adds!.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2),
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    DragonFruitScreen(id: adds![index].id!)));
+                          },
+                          child: IndiDealCard(
+                              noPadding: true,
+                              isLeft: false,
+                              isSelected: true,
+                              title: adds![index].title!,
+                              id: adds![index].id!,
+                              catagory: adds![index].catagory!,
+                              price: adds![index].price!,
+                              imageurl: adds![index].images!.first.url),
+                          //onTap: () => {},
+                        );
+                      },
+                    ),
+                  ],
                 );
               } else if (adds!.length == 0) {
                 return Center(
@@ -745,10 +937,14 @@ class _CategoryTabState extends State<CategoryTab> {
                               engineSize = '';
                               transmission = '';
                               mileage = '';
+                              colorvalue = '';
+                              modelvalue = '';
+                              yearvalue = '';
                               minprice = null;
                               maxprice = null;
                               search = null;
                               allfilters = {};
+                              distancevalue = '0.0';
                               allfilters['catagory'] = catname;
                               setState(() {});
                               adds = await api.getaddsbyfilters(
@@ -1057,6 +1253,51 @@ class MoreFilters extends ModalRoute {
                   return Column(
                     children: [
                       SmartSelect<String>.single(
+                        title: 'Status'.tr(),
+                        placeholder: 'Choose one'.tr(),
+
+                        selectedValue: status,
+                        onChange: (selected) {
+                          status = selected.value;
+                          allfilters['status'] = status;
+                          setState(() => {});
+                        },
+                        choiceItems: statusoptions,
+                        modalType: S2ModalType.bottomSheet,
+
+                        // modalHeader: false,
+                        tileBuilder: (context, state) {
+                          return S2Tile.fromState(
+                            state,
+                            trailing: const Icon(Icons.arrow_drop_down),
+                            isTwoLine: true,
+                          );
+                        },
+                      ),
+                      SmartSelect<String>.single(
+                        title: 'filter by'.tr(),
+                        placeholder: 'Choose one'.tr(),
+
+                        selectedValue: filter,
+                        onChange: (selected) {
+                          filter = selected.value;
+                          allfilters['filter'] = filter;
+                          setState(() => {});
+                        },
+                        choiceItems: filters,
+                        modalType: S2ModalType.bottomSheet,
+
+                        // modalHeader: false,
+                        tileBuilder: (context, state) {
+                          return S2Tile.fromState(
+                            state,
+                            trailing: const Icon(Icons.arrow_drop_down),
+                            isTwoLine: true,
+                            enabled: true,
+                          );
+                        },
+                      ),
+                      SmartSelect<String>.single(
                         title: 'Transmission'.tr(),
                         placeholder: 'Choose one'.tr(),
 
@@ -1088,7 +1329,7 @@ class MoreFilters extends ModalRoute {
                       ),
                       SmartSelect<String>.single(
                         title: 'fuel'.tr(),
-                        placeholder: 'Choose one'.tr(),
+                        placeholder: 'Chooseone'.tr(),
 
                         selectedValue: fuel,
                         onChange: (selected) {
@@ -1097,6 +1338,47 @@ class MoreFilters extends ModalRoute {
                           setState(() => {});
                         },
                         choiceItems: choices.Fuel,
+                        modalType: S2ModalType.bottomSheet,
+
+                        // modalHeader: false,
+                      ),
+                      SmartSelect<String>.single(
+                        title: 'color'.tr(),
+                        placeholder: 'Chooseone'.tr(),
+
+                        selectedValue: colorvalue,
+                        onChange: (selected) {
+                          colorvalue = selected.value;
+                          allfilters['color'] = colorvalue;
+                          setState(() => {});
+                        },
+                        choiceBuilder: (context, state, choice) {
+                          print('choice is making sure ');
+                          print(choice.title);
+                          return InkWell(
+                            onTap: () {
+                              choice.select!(true);
+                            },
+                            child: ListTile(
+                              leading: SizedBox(
+                                width: MediaQuery.of(context).size.width / 3,
+                                child: Row(
+                                  children: [
+                                    SizedBox(width: 10),
+                                    CircleAvatar(
+                                        radius: 8,
+                                        backgroundColor:
+                                            getcolor(choice.title)),
+                                    SizedBox(width: 10),
+                                    Text(choice.title.toString()),
+                                  ],
+                                ),
+                              ),
+                              trailing: Icon(Icons.arrow_forward_ios),
+                            ),
+                          );
+                        },
+                        choiceItems: choices.color,
                         modalType: S2ModalType.bottomSheet,
 
                         // modalHeader: false,
@@ -1122,5 +1404,26 @@ class MoreFilters extends ModalRoute {
         ),
       ),
     );
+  }
+
+  Color getcolor(item) {
+    if (item == "Grey".tr())
+      return Colors.grey;
+    else if (item == "Black".tr())
+      return Colors.black;
+    else if (item == "White".tr())
+      return Colors.white;
+    else if (item == "Blue".tr())
+      return Colors.blue;
+    else if (item == "Red".tr())
+      return Colors.red;
+    else if (item == "Silver".tr())
+      return Color.fromARGB(246, 185, 180, 180);
+    else if (item == "Green".tr())
+      return Colors.green;
+    else if (item == "Orange".tr())
+      return Colors.orange;
+    else if (item == "Yellow".tr()) return Colors.yellow;
+    return Colors.green;
   }
 }

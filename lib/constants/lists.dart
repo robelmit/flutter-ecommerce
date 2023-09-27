@@ -326,38 +326,38 @@ final List<Category> vehiclesfinal = [
   ),
 
 ];
-final List<Category> vehiclesfinalpro = [
-  Category(
+final List<Categorypro> vehiclesfinalpro = [
+  Categorypro(
     'cars',
     'assets/images/toyota.svg',
     kAccentGreen,
   ),
-  Category(
-    'vehiclepartsandaccessories'.tr(),
+  Categorypro(
+    'vehiclepartsandaccessories',
     'assets/images/hyundai.svg',
     kAccentPurple,
   ),
-  Category(
+  Categorypro(
     'motorcycles',
     'assets/images/suzuki.svg',
     kAccentPurple,
   ),
-  Category(
+  Categorypro(
     'trucks',
     'assets/images/nissan.svg',
     kAccentPurple,
   ),
-  Category(
+  Categorypro(
     'buses',
     'assets/images/ford.svg',
     kAccentPurple,
   ),
-  Category(
+  Categorypro(
     'heavyequipment',
     'assets/images/buses.svg',
     kAccentPurple,
   ),
-  Category(
+  Categorypro(
     'boats',
     'assets/images/buses.svg',
     kAccentPurple,

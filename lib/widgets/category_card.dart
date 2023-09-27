@@ -89,8 +89,8 @@ class CategoryCard extends StatelessWidget {
                   } else if (category.catIcon == 'assets/images/car.svg') {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) => DetailedList(
-                            catagories: vehicles,
-                            catagoriestosend: vehiclespro,
+                            catagories: vehiclesfinal,
+                            catagoriestosend: vehiclesfinalpro,
                             title: 'Vehicles'.tr())));
                   } else if (category.catIcon == 'assets/images/house.svg') {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -99,7 +99,9 @@ class CategoryCard extends StatelessWidget {
                             catagoriestosend: propertypro,
                             title: 'property'.tr())));
                   } else if (category.catIcon ==
-                      'assets/images/new/babies/baby.svg') {
+                      'assets/images/babe.svg') {
+                              
+
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) => DetailedList(
                             catagories: babies,

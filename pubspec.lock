@@ -217,6 +217,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.8"
+  device_frame:
+    dependency: transitive
+    description:
+      name: device_frame
+      sha256: afe76182aec178d171953d9b4a50a43c57c7cf3c77d8b09a48bf30c8fa04dd9d
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
+  device_preview:
+    dependency: "direct main"
+    description:
+      name: device_preview
+      sha256: "2f097bf31b929e15e6756dbe0ec1bcb63952ab9ed51c25dc5a2c722d2b21fdaf"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   dio:
     dependency: transitive
     description:
@@ -493,6 +509,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: c3fd9336eb55a38cc1bbd79ab17573113a8deccd0ecbbf926cca3c62803b5c2d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.1"
   google_fonts:
     dependency: "direct main"
     description:
@@ -597,6 +621,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.7"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.8.1"
   lints:
     dependency: transitive
     description:
@@ -817,10 +849,10 @@ packages:
     dependency: "direct main"
     description:
       name: provider
-      sha256: "59471e0a4595e264625d3496af567ac85bdae1148ec985aff1e0555786f53ecf"
+      sha256: cdbe7530b12ecd9eb455bdaa2fcb8d4dad22e80b8afb4798b41479d5ce26847f
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.0"
+    version: "6.0.5"
   rive:
     dependency: transitive
     description:
