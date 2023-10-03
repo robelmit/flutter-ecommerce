@@ -92,7 +92,24 @@ class TextView extends StatelessWidget {
           'desc': 'የሚፈሉግትን ዕቃ ሞባይልዎን በመጠቀም በቀላሉ ይግዙ',
         },
       ];
-    } else {
+    } 
+    else if (context.locale == Locale('en', 'KE')) {
+      data = [
+       {
+    'title': 'Salphaa', 
+    'desc': 'Appii kana fayyadamuun oomishaalee irra deebiin itti fayyadamtan salphaatti bitachuu dandeessu',
+  }, 
+  {
+    'title': 'Wal-qunnamtii', 
+    'desc': 'Gurgurtoota naannoo kee jiran waliin walqunnamtiidhaan wal qunnami',
+  }, 
+  {
+    'title': 'Ammayyaa', 
+    'desc': 'oomishaalee bilbila keessan keessaa barbaaddan hunda argadhaa',
+  }, 
+      ];
+    }
+    else {
       data = [
         {
           'title': 'Easy',

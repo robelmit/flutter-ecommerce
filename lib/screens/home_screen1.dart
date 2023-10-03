@@ -3,7 +3,7 @@
 import 'dart:async';
 
 import 'package:app/models/Categorypro.dart';
-import 'package:app/screens/dragon_fruit_screen.dart';
+import 'package:app/screens/addview.dart';
 import 'package:app/screens/postad.dart';
 import 'package:app/services/api.dart';
 import 'package:app/widgets/search_bar.dart';
@@ -20,6 +20,7 @@ import 'package:awesome_select/awesome_select.dart';
 
 import '../constants/colors.dart';
 import '../constants/dropdown.dart';
+import '../constants/suggestion.dart';
 import '../models/category.dart';
 import '../utils/screen_utils.dart';
 import '../widgets/custom_nav_bar.dart';
@@ -100,7 +101,8 @@ class _HomeScreen1State extends State<HomeScreen1> {
 
   Timer? _debounce;
   GroupController controller = GroupController();
-  List<String> suggestons = [
+  List<String> suggestons = suggestionspro;
+  List<String> suggestonsa = [
     "house",
     "ቤት",
     "ገዛ",
@@ -326,8 +328,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
                         Container(
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  width: 1.5, color: Color(0xFFE4E4E6))
-                                  ),
+                                  width: 1.5, color: Color(0xFFE4E4E6))),
                           child: SizedBox(
                             height: 50,
                             child: Align(
@@ -514,8 +515,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
                                 choiceItems: statusoptions,
                                 // modalType: ,
                                 onChange: (state) =>
-                                    setStatehere(() => status = state.value)
-                                    ),
+                                    setStatehere(() => status = state.value)),
                           ),
                         ),
                         SizedBox(
@@ -704,12 +704,12 @@ class _HomeScreen1State extends State<HomeScreen1> {
         'assets/images/house.svg',
         kAccentGreen,
       ),
-            Category(
+      Category(
         'beautyandhealth'.tr(),
         'assets/images/new/beautyandhealth/hair.svg',
         kAccentGreen,
       ),
-            Category(
+      Category(
         'babies'.tr(),
         'assets/images/new/babies/baby.svg',
         kAccentGreen,
@@ -734,25 +734,24 @@ class _HomeScreen1State extends State<HomeScreen1> {
         'assets/images/dog.svg',
         kAccentYellow,
       ),
-            Category(
+      Category(
         'jobs'.tr(),
         'assets/images/new/jobs/jab1.svg',
         kAccentYellow,
       ),
-            Category(
+      Category(
         'commercialequipment'.tr(),
         'assets/images/new/commercialequipment/factory.svg',
         kAccentYellow,
       ),
-            Category(
+      Category(
         'construction'.tr(),
         'assets/images/new/construction/metr.svg',
         kAccentYellow,
       ),
-       
     ];
     final List<Categorypro> categoriestosend = [
-       Categorypro(
+      Categorypro(
         'mobileandtablets',
         'assets/images/phone.svg',
         kAccentGreen,
@@ -772,17 +771,17 @@ class _HomeScreen1State extends State<HomeScreen1> {
         'assets/images/house.svg',
         kAccentGreen,
       ),
-            Categorypro(
+      Categorypro(
         'beautyandhealth',
         'assets/images/new/beautyandhealth/hair.svg',
         kAccentGreen,
       ),
-            Categorypro(
+      Categorypro(
         'babies',
         'assets/images/new/babies/baby.svg',
         kAccentGreen,
       ),
-            Categorypro(
+      Categorypro(
         'foodandagri',
         'assets/images/new/foodandagri/food.svg',
         kAccentGreen,
@@ -802,36 +801,34 @@ class _HomeScreen1State extends State<HomeScreen1> {
         'assets/images/dog.svg',
         kAccentYellow,
       ),
-            Categorypro(
+      Categorypro(
         'jobs',
         'assets/images/new/jobs/jab1.svg',
         kAccentYellow,
       ),
-            Categorypro(
+      Categorypro(
         'commercialequipment',
         'assets/images/new/commercialequipment/dog.svg',
         kAccentYellow,
       ),
-            Categorypro(
+      Categorypro(
         'construction',
         'assets/images/new/construction/cutter.svg',
         kAccentYellow,
       ),
-       
     ];
     ScreenUtils().init(context);
 
     return SafeArea(
       child: Column(
         children: [
- 
           TypeAheadField(
             minCharsForSuggestions: 2,
             hideOnEmpty: true,
             hideOnLoading: true,
             keepSuggestionsOnLoading: false,
-            animationStart: 0,
-            animationDuration: Duration.zero,
+            animationStart: 0.25,
+            animationDuration: Duration(seconds: 1),
             textFieldConfiguration: TextFieldConfiguration(
               focusNode: myfocus,
               autofocus: false,
@@ -945,157 +942,347 @@ class _HomeScreen1State extends State<HomeScreen1> {
               matches.retainWhere((s) {
                 return s.toLowerCase().contains(pattern.toLowerCase());
               });
-              return matches;
+              return matches.length > 4 ? matches.sublist(0, 4) : matches;
             },
             itemBuilder: (context, sone) {
+              final items = sone.split('.');
+
               return Container(
                 padding: EdgeInsets.all(10),
-                child: Text(sone.toString()),
+                child: Row(
+                  children: [
+                    Text(items[0].toString(), style: TextStyle(fontSize: 14)),
+                    SizedBox(width: 10),
+                    Text('in'.tr()),
+                    SizedBox(width: 10),
+                    Text(items[1].toString(),
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 14)),
+                  ],
+                ),
               );
             },
             onSuggestionSelected: (suggestion) async {
+              filtersbro = {};
               bool condition = true;
-              print(suggestion);
+              page = 1;
+              textcontroller.text = '';
+              // search = suggestion;
               if (suggestion == "house" ||
                   suggestion == "ቤት" ||
-                  suggestion == "ገዛ") {
-                filtersbro = {"catagory": "property"};
-              } else if (suggestion == "car" || suggestion == "መኪና") {
-                filtersbro = {"catagory": "vehicles"};
-              } else if (suggestion == "samsung" || suggestion == "ሳምሰንግ") {
-                filtersbro = {
-                  "subcatagory": ["Samsung"]
-                };
-              } else if (suggestion == "nokia" || suggestion == "ኖክያ") {
-                filtersbro = {
-                  "subcatagory": ["Nokia"]
-                };
-              } else if (suggestion == "iphone" || suggestion == "ኣይፎን") {
-                filtersbro = {
-                  "subcatagory": ["iphone"]
-                };
-              } else if (suggestion == "ቴሌቪዝን" || suggestion == "television") {
-                filtersbro = {
-                  "subcatagory": ["Tv"]
-                };
-              } else if (suggestion == "camera" || suggestion == "ካሜራ") {
-                filtersbro = {
-                  "subcatagory": ["Video Cameras"]
-                };
-              } else if (suggestion == "laptop" || suggestion == "ላፕቶፕ") {
-                filtersbro = {
-                  "subcatagory": ["Laptops"]
-                };
-              } else if (suggestion == "desktop" || suggestion == "ዴስክቶፕ") {
-                filtersbro = {
-                  "subcatagory": ["Desktop"]
-                };
-              } else if (suggestion == "ሄድ ፎን" || suggestion == "headphone") {
-                filtersbro = {
-                  "subcatagory": ["Headphones"]
-                };
-              } else if (suggestion == "sofa" || suggestion == "ሶፋ") {
-                filtersbro = {
-                  "subcatagory": ["Sofa"]
-                };
-              } else if (suggestion == "fridge" || suggestion == "ፍሪጅ") {
-                filtersbro = {
-                  "subcatagory": ["Fridge"]
-                };
-              } else if (suggestion == "bed" ||
-                  suggestion == "ኣልጋ" ||
-                  suggestion == "ዓራት") {
-                filtersbro = {
-                  "subcatagory": ["Bed"]
-                };
-              } else if (suggestion == "microwave" || suggestion == "ማይክሮዌቭ") {
-                filtersbro = {
-                  "subcatagory": ["Microwave"]
-                };
-              } else if (suggestion == "table" || suggestion == "ጠረቤዛ") {
-                filtersbro = {
-                  "subcatagory": ["Table"]
-                };
-              } else if (suggestion == "chair" || suggestion == "ወንበር") {
-                filtersbro = {
-                  "subcatagory": ["Chair"]
-                };
-              } else if (suggestion == "cloth" || suggestion == "ልብስ") {
-                filtersbro = {
-                  "subcatagory": ["Cloths"]
-                };
-              } else if (suggestion == "shoe" || suggestion == "ጫማ") {
-                filtersbro = {
-                  "subcatagory": ["Shoe"]
-                };
-              } else if (suggestion == "watch" || suggestion == "ሰዓት") {
-                filtersbro = {
-                  "subcatagory": ["Watch"]
-                };
-              } else if (suggestion == "bags" || suggestion == "ቦርሳ") {
-                filtersbro = {
-                  "subcatagory": ["Bags"]
-                };
-              } else if (suggestion == "toyota" || suggestion == "ቶዮታ") {
-                filtersbro = {
-                  "subcatagory": ["Toyota"]
-                };
-              } else if (suggestion == "hyundai" || suggestion == "ሃዩንዳይ") {
-                filtersbro = {
-                  "subcatagory": ["Hyundai"]
-                };
-              } else if (suggestion == "suzuki" || suggestion == "ሱዙኪ") {
-                filtersbro = {
-                  "subcatagory": ["Suzuki"]
-                };
-              } else if (suggestion == "nissan" || suggestion == "ኒሳን") {
-                filtersbro = {
-                  "subcatagory": ["Nissan"]
-                };
-              } else if (suggestion == "ford" || suggestion == "ፎርድ") {
-                filtersbro = {
-                  "subcatagory": ["Ford"]
-                };
-              } else if (suggestion == "volswagen" || suggestion == "ቮልስዋገን") {
-                filtersbro = {
-                  "subcatagory": ["Volswagen"]
-                };
-              } else if (suggestion == "buses" || suggestion == "ባስ") {
-                filtersbro = {
-                  "subcatagory": ["Buses"]
-                };
-              } else if (suggestion == "truck" ||
-                  suggestion == "የጭነት መኪና" ||
-                  suggestion == "ናይ ፅዕነት መኪና") {
-                filtersbro = {
-                  "subcatagory": ["Truck"]
-                };
-              } else if (suggestion == "apartment" || suggestion == "አፓርታመንት") {
-                filtersbro = {
-                  "subcatagory": ["Apartment"]
-                };
-              } else if (suggestion == "condominium" ||
-                  suggestion == "ኮንዶሚየም") {
-                filtersbro = {
-                  "subcatagory": ["Condominium"]
-                };
-              } else if (suggestion == "villa" || suggestion == "ቪላ") {
-                print('hey bro');
-                filtersbro = {
-                  "subcatagory": ["Villa"]
-                };
-              } else if (suggestion == "dogs" || suggestion == "ውሻ") {
-                filtersbro = {
-                  "subcatagory": ["Dogs"]
-                };
-              } else if (suggestion == "birds" || suggestion == "አዕዋፍ") {
-                filtersbro = {
-                  "subcatagory": ["Birds"]
-                };
-              } else if (suggestion == "cats" || suggestion == "ድመት") {
-                filtersbro = {
-                  "subcatagory": ["Cats"]
-                };
+                  suggestion == "ገዛ" ||
+                  suggestion == "houseandapartmentforsale".tr()) {
+                filtersbro = {"catagory": "houseandapartmentforsale"};
+              } else if (suggestion ==
+                  'mobileandtablets'.tr() + '.' + 'mobileandtablets'.tr()) {
+                filtersbro = {"maincatagory": "mobileandtablets"};
+              } else if (suggestion ==
+                  'electronics'.tr() + '.' + "electronics".tr()) {
+                filtersbro = {"maincatagory": "electronics"};
+              } else if (suggestion ==
+                  'vehicles'.tr() + "." + 'vehicles'.tr()) {
+                filtersbro = {"maincatagory": "vehicles"};
+              } else if (suggestion ==
+                  'property'.tr() + "." + "property".tr()) {
+                filtersbro = {"maincatagory": "property"};
+              } else if (suggestion ==
+                  'beautyandhealth'.tr() + '.' + 'beautyandhealth'.tr()) {
+                filtersbro = {"maincatagory": "beautyandhealth"};
+              } else if (suggestion == 'babies'.tr() + '.' + 'babies'.tr()) {
+                filtersbro = {"maincatagory": "babies"};
+              } else if (suggestion ==
+                  'foodandagri'.tr() + '.' + 'foodandagri'.tr()) {
+                filtersbro = {"maincatagory": "foodandagri"};
+              } else if (suggestion ==
+                  'homesupplies'.tr() + '.' + 'homesupplies'.tr()) {
+                filtersbro = {"maincatagory": "homesupplies"};
+              } else if (suggestion == 'fashion'.tr() + '.' + 'fashion'.tr()) {
+                filtersbro = {"maincatagory": "fashion"};
+              } else if (suggestion == 'animals'.tr() + '.' + 'animals'.tr()) {
+                filtersbro = {"maincatagory": "animals"};
+              } else if (suggestion == 'jobs'.tr() + '.' + 'jobs'.tr()) {
+                filtersbro = {"maincatagory": "jobs"};
+              } else if (suggestion ==
+                  'commercialequipment'.tr() +
+                      '.' +
+                      'commercialequipment'.tr()) {
+                filtersbro = {"maincatagory": "commercialequipment"};
+              } else if (suggestion ==
+                  "phone".tr() + '.' + "mobileandtablets".tr()) {
+                filtersbro = {"catagory": "phone"};
+              } else if (suggestion ==
+                  'tablets'.tr() + '.' + "mobileandtablets".tr()) {
+                filtersbro = {"catagory": "tablets"};
+              } else if (suggestion ==
+                  'smartwatches'.tr() + '.' + "mobileandtablets".tr()) {
+                filtersbro = {"catagory": "smartwatches"};
+              } else if (suggestion ==
+                  'mobileaccessory'.tr() + '.' + "mobileandtablets".tr()) {
+                filtersbro = {"catagory": "mobileaccessory"};
+              } else if (suggestion ==
+                  'laptopsandcomputers'.tr() + '.' + "electronics".tr()) {
+                filtersbro = {"catagory": "laptopsandcomputers"};
+              } else if (suggestion ==
+                  'computeraccessory'.tr() + '.' + "electronics".tr()) {
+                filtersbro = {"catagory": "computeraccessory"};
+              } else if (suggestion ==
+                  'securityandsurvelliance'.tr() + '.' + "electronics".tr()) {
+                filtersbro = {"catagory": "securityandsurvelliance"};
+              } else if (suggestion ==
+                  'Networkingproducts'.tr() + '.' + "electronics".tr()) {
+                filtersbro = {"catagory": "Networkingproducts"};
+              } else if (suggestion ==
+                  'softwares'.tr() + '.' + "electronics".tr()) {
+                filtersbro = {"catagory": "softwares"};
+              } else if (suggestion ==
+                  'headphones'.tr() + '.' + "electronics".tr()) {
+                filtersbro = {"catagory": "headphones"};
+              } else if (suggestion ==
+                  'printersandscanners'.tr() + '.' + "electronics".tr()) {
+                filtersbro = {"catagory": "printersandscanners"};
+              } else if (suggestion == 'Tv'.tr() + '.' + "electronics".tr()) {
+                filtersbro = {"catagory": "Tv"};
+              } else if (suggestion ==
+                  'videogames'.tr() + '.' + "electronics".tr()) {
+                filtersbro = {"catagory": "videogames"};
+              } else if (suggestion ==
+                  'photoandvideocameras'.tr() + '.' + "electronics".tr()) {
+                filtersbro = {"catagory": "photoandvideocameras"};
+              } else if (suggestion == 'cars'.tr() + '.' + "vehicles".tr()) {
+                filtersbro = {"catagory": "cars"};
+              } else if (suggestion ==
+                  'vehiclepartsandaccessories'.tr() + '.' + "vehicles".tr()) {
+                filtersbro = {"catagory": "vehiclepartsandaccessories"};
+              } else if (suggestion ==
+                  'motorcycles'.tr() + '.' + "vehicles".tr()) {
+                filtersbro = {"catagory": "motorcycles"};
+              } else if (suggestion == 'trucks'.tr() + '.' + "vehicles".tr()) {
+                filtersbro = {"catagory": "trucks"};
+              } else if (suggestion == 'buses'.tr() + '.' + "vehicles".tr()) {
+                filtersbro = {"catagory": "buses"};
+              } else if (suggestion ==
+                  'heavyequipment'.tr() + '.' + "vehicles".tr()) {
+                filtersbro = {"catagory": "heavyequipment"};
+              } else if (suggestion == 'boats'.tr() + '.' + "vehicles".tr()) {
+                filtersbro = {"catagory": "boats"};
+              } else if (suggestion ==
+                  'houseandapartmentforrent'.tr() + '.' + "property".tr()) {
+                filtersbro = {"catagory": "houseandapartmentforrent"};
+              } else if (suggestion ==
+                  'houseandapartmentforsale'.tr() + '.' + "property".tr()) {
+                filtersbro = {"catagory": "houseandapartmentforsale"};
+              } else if (suggestion ==
+                  'landandplotsforsale'.tr() + '.' + "property".tr()) {
+                filtersbro = {"catagory": "landandplotsforsale"};
+              } else if (suggestion ==
+                  'landandplotsforrent'.tr() + '.' + "property".tr()) {
+                filtersbro = {"catagory": "landandplotsforrent"};
+              } else if (suggestion ==
+                  'commercialpropertyforsale'.tr() + '.' + "property".tr()) {
+                filtersbro = {"catagory": "commercialpropertyforsale"};
+              } else if (suggestion ==
+                  'commercialpropertyforrent'.tr() + '.' + "property".tr()) {
+                filtersbro = {"catagory": "commercialpropertyforrent"};
+              } else if (suggestion ==
+                  'furniture'.tr() + '.' + "homesupplies".tr()) {
+                filtersbro = {"catagory": "furniture"};
+              } else if (suggestion ==
+                  'homeappliances'.tr() + '.' + "homesupplies".tr()) {
+                filtersbro = {"catagory": "homeappliances"};
+              } else if (suggestion ==
+                  'kitchensupplies'.tr() + '.' + "homesupplies".tr()) {
+                filtersbro = {"catagory": "kitchensupplies"};
+              } else if (suggestion ==
+                  'gardensupplies'.tr() + '.' + "homesupplies".tr()) {
+                filtersbro = {"catagory": "gardensupplies"};
+              } else if (suggestion ==
+                  'householdchemicals'.tr() + '.' + "homesupplies".tr()) {
+                filtersbro = {"catagory": "householdchemicals"};
+              } else if (suggestion ==
+                  'homeaccessories'.tr() + '.' + "homesupplies".tr()) {
+                filtersbro = {"catagory": "homeaccessories"};
+              } else if (suggestion ==
+                  'dogsandpuppies'.tr() + '.' + "animals".tr()) {
+                filtersbro = {"catagory": "dogsandpuppies"};
+              } else if (suggestion == 'birds'.tr() + '.' + "animals".tr()) {
+                filtersbro = {"catagory": "birds"};
+              } else if (suggestion == 'cats'.tr() + '.' + "animals".tr()) {
+                filtersbro = {"catagory": "cats"};
+              } else if (suggestion == 'reptiles'.tr() + '.' + "animals".tr()) {
+                filtersbro = {"catagory": "reptiles;"};
+              } else if (suggestion == "Corolla".tr() + '.' + "Toyota".tr()) {
+                filtersbro = {"model": "Corolla"};
+              } else if (suggestion == "Hiace".tr() + '.' + "Toyota".tr()) {
+                filtersbro = {"model": "Hiace"};
+              } else if (suggestion == "Hilux".tr() + '.' + "Toyota".tr()) {
+                filtersbro = {"model": "Hilux"};
+              } else if (suggestion ==
+                  "Land Cruiser".tr() + '.' + "Toyota".tr()) {
+                filtersbro = {"model": "Land Cruiser"};
+              } else if (suggestion == "Previa".tr() + '.' + "Toyota".tr()) {
+                filtersbro = {"model": "Previa"};
+              } else if (suggestion == "Prius".tr() + '.' + "Toyota".tr()) {
+                filtersbro = {"model": "Prius"};
+              } else if (suggestion == "RAV4".tr() + '.' + "Toyota".tr()) {
+                filtersbro = {"model": "RAV4"};
+              } else if (suggestion == "Starlet".tr() + '.' + "Toyota".tr()) {
+                filtersbro = {"model": "Starlet"};
+              } else if (suggestion == "Supra".tr() + '.' + "Toyota".tr()) {
+                filtersbro = {"model": "Supra"};
+              } else if (suggestion == "Tundra".tr() + '.' + "Toyota".tr()) {
+                filtersbro = {"model": "Tundra"};
+              } else if (suggestion == "Yaris".tr() + '.' + "Toyota".tr()) {
+                filtersbro = {"model": "Yaris"};
+              } else if (suggestion == "Vitz".tr() + '.' + "Toyota".tr()) {
+                filtersbro = {"model": "Vitz"};
+              } else if (suggestion == "Amarok".tr() + "." + "Volswagen".tr()) {
+                filtersbro = {"model": "Amarok"};
+              } else if (suggestion == "Arteon".tr() + "." + "Volswagen".tr()) {
+                filtersbro = {"model": "Arteon"};
+              } else if (suggestion == "Beetle".tr() + "." + "Volswagen".tr()) {
+                filtersbro = {"model": "Beetle"};
+              } else if (suggestion == "Bora".tr() + "." + "Volswagen".tr()) {
+                filtersbro = {"model": ""};
+              } else if (suggestion == "bubble".tr() + "." + "Volswagen".tr()) {
+                filtersbro = {"model": "bubble"};
+              } else if (suggestion == "Caddy".tr() + "." + "Volswagen".tr()) {
+                filtersbro = {"model": "Caddy"};
+              } else if (suggestion == "Jetta".tr() + '.' + "Volswagen".tr()) {
+                filtersbro = {"model": ""};
+              } else if (suggestion == "Alto".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": "Alto"};
+              } else if (suggestion == "Baleno".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": "Baleno"};
+              } else if (suggestion ==
+                  "Grand Vitara".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": "Grand Vitara"};
+              } else if (suggestion == "Ignis".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": "Ignis"};
+              } else if (suggestion == "Jimny".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": "Jimny"};
+              } else if (suggestion == "Kizashi".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": "Kizashi"};
+              } else if (suggestion == "Liana".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": "Liana"};
+              } else if (suggestion == "S-Cross".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": "S-Cross"};
+              } else if (suggestion == "Splash".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": "Splash"};
+              } else if (suggestion == "Swace".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": "Swace"};
+              } else if (suggestion == "Swift".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": "Swift"};
+              } else if (suggestion == "SX4".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": ""};
+              } else if (suggestion == "Vitaire".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": "Vitaire"};
+              } else if (suggestion == "Wagon R +".tr() + '.' + "Suzuki".tr()) {
+                filtersbro = {"model": "Wagon R +"};
+              } else if (suggestion == "200 SX".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "200 SX"};
+              } else if (suggestion == "300 ZX".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "300 ZX"};
+              } else if (suggestion == "370 Z".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "370 Z"};
+              } else if (suggestion == "Almera".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Almera"};
+              } else if (suggestion == "Ariya".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Ariya"};
+              } else if (suggestion == "e-NV200".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "e-NV200"};
+              } else if (suggestion == "GT-R".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "GT-R"};
+              } else if (suggestion == "Interstar".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Interstar"};
+              } else if (suggestion == "Juke".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Juke"};
+              } else if (suggestion ==
+                  "King Cab / Navara".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "King Cab / Navara"};
+              } else if (suggestion == "Cubists".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Cubists"};
+              } else if (suggestion == "Leaf".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Leaf"};
+              } else if (suggestion == "Maxima".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Maxima"};
+              } else if (suggestion == "Micra".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Micra"};
+              } else if (suggestion == "Murano".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Murano"};
+              } else if (suggestion == "Note".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Note"};
+              } else if (suggestion == "NV200".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "NV200"};
+              } else if (suggestion == "NV250".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "NV250"};
+              } else if (suggestion == "NV300".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "NV300"};
+              } else if (suggestion == "NV400".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "NV400"};
+              } else if (suggestion ==
+                  "Pathfinder".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Pathfinder"};
+              } else if (suggestion == "Patrol".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Patrol"};
+              } else if (suggestion == "primastar".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "primastar"};
+              } else if (suggestion == "Primera".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Primera"};
+              } else if (suggestion == "pulses".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "pulses"};
+              } else if (suggestion == "Qashqai".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Qashqai"};
+              } else if (suggestion == "Sunny".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Sunny"};
+              } else if (suggestion == "Terrano".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": ""};
+              } else if (suggestion == "Titanium".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Titanium"};
+              } else if (suggestion == "Townstar".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "Townstar"};
+              } else if (suggestion == "X Trail".tr() + '.' + "Nissan".tr()) {
+                filtersbro = {"model": "X Trail"};
+              } else if (suggestion == "Accent" + '.' + "Hyundai") {
+                filtersbro = {"model": "Accent"};
+              } else if (suggestion == "Atos" + '.' + "Hyundai") {
+                filtersbro = {"model": "Atos"};
+              } else if (suggestion == "Bayon" + '.' + "Hyundai") {
+                filtersbro = {"model": "Bayon"};
+              } else if (suggestion == "Coupé" + '.' + "Hyundai") {
+                filtersbro = {"model": "Coupé"};
+              } else if (suggestion == "Elantra" + '.' + "Hyundai") {
+                filtersbro = {"model": "Elantra"};
+              } else if (suggestion == "Getz" + '.' + "Hyundai") {
+                filtersbro = {"model": "Getz"};
+              } else if (suggestion == "Grandeur" + '.' + "Hyundai") {
+                filtersbro = {"model": "Grandeur"};
+              } else if (suggestion == "Terracan" + '.' + "Hyundai") {
+                filtersbro = {"model": "Terracan"};
+              } else if (suggestion == "Trajet" + '.' + "Hyundai") {
+                filtersbro = {"model": "Trajet"};
+              } else if (suggestion == "Tucson" + '.' + "Hyundai") {
+                filtersbro = {"model": "Tucson"};
+              } else if (suggestion == "Thunderbird".tr() + '.' + "ford".tr()) {
+                filtersbro = {"model": "Thunderbird"};
+              } else if (suggestion == "Ranger".tr() + '.' + "Ford".tr()) {
+                filtersbro = {"model": "Ranger"};
+              } else if (suggestion == "Bronco".tr() + '.' + "Ford".tr()) {
+                filtersbro = {"model": ""};
+              } else if (suggestion == "C-Max".tr() + '.' + "Ford".tr()) {
+                filtersbro = {"model": "C-Max"};
+              } else if (suggestion == "Connect".tr() + '.' + "Ford".tr()) {
+                filtersbro = {"model": "Connect"};
+              } else if (suggestion == "Cougar".tr() + '.' + "Ford".tr()) {
+                filtersbro = {"model": "Cougar"};
+              } else if (suggestion == "Courier".tr() + '.' + "Ford".tr()) {
+                filtersbro = {"model": "Courier"};
+              } else if (suggestion == "Custom".tr() + '.' + "Ford".tr()) {
+                filtersbro = {"model": "Custom"};
+              } else if (suggestion == "Ecosport".tr() + '.' + "Ford".tr()) {
+                filtersbro = {"model": "Ecosport"};
+              } else if (suggestion == "Edge".tr() + '.' + "Ford".tr()) {
+                filtersbro = {"model": "Edge"};
               } else {
                 condition = false;
                 print('opps');
@@ -1225,7 +1412,7 @@ class _PopularDealTabState extends State<PopularDealTab> {
     return Expanded(
       child: Column(children: [
         TabTitle(
-            title: 'New Ads  ',
+            title: 'New Ads'.tr(),
             seeAll: () {
               Navigator.of(context).pushNamed(PopularDealsScreen.routeName);
             }),

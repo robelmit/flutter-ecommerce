@@ -1,8 +1,10 @@
 import 'package:app/screens/login_screen.dart';
 import 'package:app/screens/map_screen.dart';
+import 'package:app/screens/myadds.dart';
 import 'package:app/screens/postad.dart';
 import 'package:app/screens/signup_screen.dart';
 import 'package:app/screens/tab_screen.dart';
+import 'package:app/screens/profilescreen.dart';
 import 'package:chapasdk/chapa_payment%20initializer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import '../services/api.dart';
+import 'checkpayment.dart';
+import 'postupdate.dart';
 
 var location;
 var islocationsaved;
@@ -112,98 +116,111 @@ class _UserScreenState extends State<UserScreen> {
                     ))),
           )
         : Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(16.0),
-              ),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: getProportionateScreenHeight(8.0),
-                  ),
-                  ImageContainer(),
-                  SizedBox(
-                    height: getProportionateScreenHeight(8.0),
-                  ),
-                  Text(
-                    '$name',
-                    style: Theme.of(context).textTheme.headline3!.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
-                  ),
-                  Text(
-                    '$phone',
-                    style: Theme.of(context).textTheme.headline4!.copyWith(
-                          color: kTextColorAccent,
-                        ),
-                  ),
-                  Divider(
-                    height: getProportionateScreenHeight(32.0),
-                  ),
-                  // ProfileCard(
-                  //   image: 'assets/images/profile_user.png',
-                  //   color: kAccentGreen,
-                  //   title: 'My profile',
-                  //   tapHandler: () {
-                  //     Navigator.of(context).pushNamed(MyProfileScreen.routeName);
-                  //   },
-                  // ),
-                  GestureDetector(
-                    onDoubleTap: () {
-                      print('hi there');
-                    },
-                    onTap: () {
-                      print('hi there');
-                    },
-                    child: ProfileCard(
-                      image: 'assets/images/profile_user.png',
-                      color: kAccentGreen,
-                      title: 'postanadd'.tr(),
+            child: SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(16.0),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: getProportionateScreenHeight(8.0),
                     ),
-                  ),
-                  SizedBox(
-                    height: getProportionateScreenHeight(8.0),
-                  ),
-                  ProfileCard(
-                    image: 'assets/images/map_user.png',
-                    color: kAccentTosca,
-                    title: 'myaddress'.tr(),
-                  ),
-                  SizedBox(
-                    height: getProportionateScreenHeight(8.0),
-                  ),
-                  ProfileCard(
-                    image: 'assets/images/egg.png',
-                    color: kAccentYellow,
-                    title: 'setting'.tr(),
-                  ),
-                  SizedBox(
-                    height: getProportionateScreenHeight(8.0),
-                  ),
-                  ProfileCard(
-                    image: 'assets/images/check_user.png',
-                    color: kAccentPurple,
-                    title: 'helpcenter'.tr(),
-                  ),
-                  SizedBox(
-                    height: getProportionateScreenHeight(8.0),
-                  ),
-                  ProfileCard(
-                    image: 'assets/images/arrow_user.png',
-                    color: kAccentRed,
-                    title: 'logout'.tr(),
-                  ),
-                  Spacer(),
-                  Text(
-                    'Developed by Robel Tsegay',
-                    style: Theme.of(context).textTheme.headline6!.copyWith(
-                          color: kTextColorAccent,
-                        ),
-                  ),
-                  SizedBox(
-                    height: getProportionateScreenHeight(8.0),
-                  )
-                ],
+                    ImageContainer(),
+                    SizedBox(
+                      height: getProportionateScreenHeight(8.0),
+                    ),
+                    Text(
+                      '$name',
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
+                    ),
+                    Text(
+                      '$phone',
+                      style: Theme.of(context).textTheme.headline4!.copyWith(
+                            color: kTextColorAccent,
+                          ),
+                    ),
+                    Divider(
+                      height: getProportionateScreenHeight(32.0),
+                    ),
+                    // ProfileCard(
+                    //   image: 'assets/images/profile_user.png',
+                    //   color: kAccentGreen,
+                    //   title: 'My profile',
+                    //   tapHandler: () {
+                    //     Navigator.of(context).pushNamed(MyProfileScreen.routeName);
+                    //   },
+                    // ),
+                    GestureDetector(
+                      onDoubleTap: () {
+                        print('hi there');
+                      },
+                      onTap: () {
+                        print('hi there');
+                      },
+                      child: ProfileCard(
+                        image: 'assets/images/profile_user.png',
+                        color: kAccentGreen,
+                        title: 'postanadd'.tr(),
+                      ),
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(8.0),
+                    ),
+                    ProfileCard(
+                      image: 'assets/images/map_user.png',
+                      color: kAccentTosca,
+                      title: 'My Adds'.tr(),
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(8.0),
+                    ),
+                    ProfileCard(
+                      image: 'assets/images/egg.png',
+                      color: kAccentYellow,
+                      title: 'setting'.tr(),
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(8.0),
+                    ),
+                    ProfileCard(
+                      image: 'assets/images/check_user.png',
+                      color: kAccentPurple,
+                      title: 'helpcenter'.tr(),
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(8.0),
+                    ),
+                    ProfileCard(
+                      image: 'assets/images/userpro.png',
+                      color: kAccentTosca,
+                      title: 'Profile'.tr(),
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(8.0),
+                    ),
+
+                    ProfileCard(
+                      image: 'assets/images/arrow_user.png',
+                      color: kAccentRed,
+                      title: 'logout'.tr(),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      'Developed by Robel Tsegay',
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            color: kTextColorAccent,
+                          ),
+                    ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(8.0),
+                    )
+                  ],
+                ),
               ),
             ),
           );
@@ -241,77 +258,72 @@ class _ProfileCardState extends State<ProfileCard> {
             api
                 .islocationsaved()
                 .then((value) async => {
-                     print('value'),
-                     print(value['message']),
+                      print('value'),
+                      print(value['message']),
                       await prefs.setString('islocationsaved', 'true'),
                       islocationsaved = 'true',
-                      if(value['message']=="error"){
-                           Navigator.pushReplacementNamed(
-                          context, MapScreen.routeName)
-                      }
-                      else if(value['message']=="Location is saved successfully"){
-
-
-                      }
-
+                      if (value['message'] == "error")
+                        {
+                          Navigator.pushReplacementNamed(
+                              context, MapScreen.routeName)
+                        }
+                      else if (value['message'] ==
+                          "Location is saved successfully")
+                        {}
                     })
                 .onError((error, stackTrace) => {
-                    // add internet connection error
-
-
-                   
+                      // add internet connection error
                     });
           } else {
             var uuid = Uuid();
             int amount;
             api.getsetting().then((value) => {
-                 amount = int.parse(value['payment']),
+                  amount = int.parse(value['payment']),
 
-              if(value['paymentenabled']==true){
-                Chapa.paymentParameters(
-                        context: context, // context
-                        publicKey: 'CHASECK_TEST-Mkp2ETiF5AgbdcHYOubHdihacubwUlhP',
-                        currency: 'ETB',
-                        amount: amount.toString(),
-                        email: 'xyz@gmail.com',
-                        firstName: 'fullName',
-                        lastName: 'lastName',
-                        txRef: uuid.v1(),
-                        title: 'title',
-                        desc: 'desc',
-                        namedRouteFallBack: '/checker', // fall back route name
-                      )
-              }
-              else if (value['paymentenabled']==false){
-                     Navigator.of(context).pushReplacementNamed(MyNewApp.routeName)
-              }
-              // print(value['paymentenabled']),
-              
-              // print(value['paymentenabled']==false),
-    //             Chapa.paymentParameters(
-    //   context: context, // context
-    //   publicKey: 'CHASECK_TEST-Mkp2ETiF5AgbdcHYOubHdihacubwUlhP',
-    //   currency: 'ETB',
-    //   amount: '200',
-    //   email: 'xyz@gmail.com',
-    //   firstName: 'fullName',
-    //   lastName: 'lastName',
-    //   txRef: '34TXc15bdsf459058c012320567293234200wefsdf0017826ui091010233789',
-    //   title: 'title',
-    //   desc: 'desc',
-    //   namedRouteFallBack: '/checker', // fall back route name
-    // );
-    //           if(value){
-    //              //payment call will go over here
-    //           }
-    //           else {
-    //  Navigator.of(context).pushReplacement(MaterialPageRoute(
-    //             builder: (BuildContext context) => MyNewApp()));
-    //           }
-            });
-       
+                  // Chapa.paymentParameters(
+                  //   context: context, // context
+                  //   publicKey:
+                  //       'CHASECK_TEST-Mkp2ETiF5AgbdcHYOubHdihacubwUlhP',
+                  //   currency: 'ETB',
+                  //   amount: amount.toString(),
+                  //   email: 'xyz@gmail.com',
+                  //   firstName: 'fullName',
+                  //   lastName: 'lastName',
+                  //   txRef: uuid.v1(),
+                  //   title: 'title',
+                  //   desc: 'desc',
+                  //   namedRouteFallBack: '/checker', // fall back route name
+                  // )
+
+                  Navigator.of(context).pushReplacementNamed(MyNewApp.routeName)
+
+                  // print(value['paymentenabled']),
+
+                  // print(value['paymentenabled']==false),
+                  //             Chapa.paymentParameters(
+                  //   context: context, // context
+                  //   publicKey: 'CHASECK_TEST-Mkp2ETiF5AgbdcHYOubHdihacubwUlhP',
+                  //   currency: 'ETB',
+                  //   amount: '200',
+                  //   email: 'xyz@gmail.com',
+                  //   firstName: 'fullName',
+                  //   lastName: 'lastName',
+                  //   txRef: '34TXc15bdsf459058c012320567293234200wefsdf0017826ui091010233789',
+                  //   title: 'title',
+                  //   desc: 'desc',
+                  //   namedRouteFallBack: '/checker', // fall back route name
+                  // );
+                  //           if(value){
+                  //              //payment call will go over here
+                  //           }
+                  //           else {
+                  //  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  //             builder: (BuildContext context) => MyNewApp()));
+                  //           }
+                });
           }
         } else if (widget.image == "assets/images/egg.png") {
+          var width = MediaQuery.of(context).size.width / 6;
           AwesomeDialog(
             context: context,
             animType: AnimType.scale,
@@ -324,14 +336,11 @@ class _ProfileCardState extends State<ProfileCard> {
               ToggleSwitch(
                 initialLabelIndex: 0,
                 totalSwitches: 4,
+                fontSize: 10,
+                customWidths: [width, width, width, width],
                 changeOnTap: true,
                 inactiveBgColor: const Color.fromARGB(79, 158, 158, 158),
-                labels: [
-                  'english',
-                  'ትግርኛ',
-                  'አማርኛ',
-                  'Oromifaa'
-                ],
+                labels: ['english', 'ትግርኛ', 'አማርኛ', 'Oromifaa'],
                 onToggle: (index) {
                   print(index);
                   if (index == 0) {
@@ -340,8 +349,7 @@ class _ProfileCardState extends State<ProfileCard> {
                     context.setLocale(Locale('en', 'ER'));
                   } else if (index == 2) {
                     context.setLocale(Locale('am', 'ET'));
-                  }
-                  else if (index == 3) {
+                  } else if (index == 3) {
                     context.setLocale(Locale('en', 'KE'));
                   }
                 },
@@ -349,12 +357,47 @@ class _ProfileCardState extends State<ProfileCard> {
             ])),
             title: 'This is Ignored',
             desc: 'This is also Ignored',
-            btnOkOnPress: () {},
-          )..show();
+            btnOkOnPress: () {
+              Navigator.of(context, rootNavigator: 
+true).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => 
+TabScreen(tab: "0")), (route) => false);
+              //  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+              //     TabScreen(tab: "0")), (Route<dynamic> route) => false);
+            },
+          ).show();
         } else if (widget.image == "assets/images/arrow_user.png") {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.clear();
           Navigator.pushReplacementNamed(context, TabScreen.routeName);
+        } else if (widget.image == "assets/images/map_user.png") {
+          Navigator.push(
+            context,
+            MaterialPageRoute<void>(
+              builder: (BuildContext context) => MyAdds(),
+            ),
+          );
+          //  Navigator.push(
+          //   context,
+          //   MaterialPageRoute<void>(
+          //     builder: (BuildContext context) => PostUpdate(id: "64a96a556e5d79355c649e64",),
+          //   ),
+          // );
+        } else if (widget.image == "assets/images/userpro.png") {     
+          // Navigator.push<void>(
+          //   context,
+          //   MaterialPageRoute<void>(
+          //     builder: (BuildContext context) => const Checker(
+          //       argument: {
+          //         'message': "paymentSuccessful",
+          //         'transactionReference': 'transactionReference',
+          //         'paidAmount': '20',
+          //         'idofadd': '64a96a556e5d79355c649e64',
+          //       },
+          //     ),
+          //   ),
+          // );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ProfileScreen()));
         }
 
         //Navigator.of(context).pushNamed(MyNewApp.routeName);

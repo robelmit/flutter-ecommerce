@@ -117,6 +117,7 @@ dependencies:
   flutter_webview_pro: ^3.0.1+4
   avatar_glow: ^2.0.2
   device_preview: ^1.1.0
+  line_awesome_flutter: ^2.0.0
   # confetti: ^0.7.0
   # device_preview: any
 

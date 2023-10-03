@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:app/models/Categorypro.dart';
 import 'package:app/models/ads.dart';
-import 'package:app/screens/dragon_fruit_screen.dart';
+import 'package:app/screens/addview.dart';
 import 'package:app/screens/postad.dart';
 import 'package:app/services/api.dart';
 import 'package:app/widgets/search_bar.dart';
@@ -391,9 +391,9 @@ class _PopularDealTabState extends State<PopularDealTab> {
                 else if(snapshot.hasError){
                           return Center(
                             child: Column(children: [
-                              Text('Error occured'),
+                              Text('Error occured'.tr()),
                               // const AssetImage('bro1.png'),
-                              ElevatedButton(onPressed: (){}, child: Text('Retry again'))
+                              ElevatedButton(onPressed: (){}, child: Text('Retry again'.tr()))
                             ]),
                           );
                          }

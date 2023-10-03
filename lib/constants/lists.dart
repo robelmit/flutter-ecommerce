@@ -288,81 +288,84 @@ final List<Category> vehicles = [
     kAccentPurple,
   ),
 ];
-final List<Category> vehiclesfinal = [
-  Category(
-    'cars'.tr(),
-    'assets/images/toyota.svg',
-    kAccentGreen,
-  ),
-  Category(
-    'vehiclepartsandaccessories'.tr(),
-    'assets/images/hyundai.svg',
-    kAccentPurple,
-  ),
-  Category(
-    'motorcycles'.tr(),
-    'assets/images/suzuki.svg',
-    kAccentPurple,
-  ),
-  Category(
-    'trucks'.tr(),
-    'assets/images/nissan.svg',
-    kAccentPurple,
-  ),
-  Category(
-    'buses'.tr(),
-    'assets/images/ford.svg',
-    kAccentPurple,
-  ),
-  Category(
-    'heavyequipment'.tr(),
-    'assets/images/buses.svg',
-    kAccentPurple,
-  ),
-  Category(
-    'boats'.tr(),
-    'assets/images/buses.svg',
-    kAccentPurple,
-  ),
-
-];
 final List<Categorypro> vehiclesfinalpro = [
   Categorypro(
     'cars',
-    'assets/images/toyota.svg',
+    'assets/images/new/vehicles/car.svg',
     kAccentGreen,
   ),
   Categorypro(
     'vehiclepartsandaccessories',
-    'assets/images/hyundai.svg',
-    kAccentPurple,
+    'assets/images/wheel.svg',
+    kAccentGreen,
   ),
   Categorypro(
     'motorcycles',
-    'assets/images/suzuki.svg',
+    'assets/images/new/motorbike.svg',
     kAccentPurple,
   ),
   Categorypro(
     'trucks',
-    'assets/images/nissan.svg',
+    'assets/images/truck.svg',
     kAccentPurple,
   ),
-  Categorypro(
+    Categorypro(
     'buses',
-    'assets/images/ford.svg',
+    'assets/images/bus.svg',
     kAccentPurple,
   ),
-  Categorypro(
+    Categorypro(
     'heavyequipment',
-    'assets/images/buses.svg',
-    kAccentPurple,
-  ),
-  Categorypro(
-    'boats',
-    'assets/images/buses.svg',
+    'assets/images/excavator.svg',
     kAccentPurple,
   ),
 
+    Categorypro(
+    'boats',
+    'assets/images/new/vehicles/boat.svg',
+    kAccentPurple,
+  ),  
+  
+];
+
+final List<Category> vehiclesfinal = [
+ Category(
+    'cars'.tr(),
+    'assets/images/new/vehicles/car.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'vehiclepartsandaccessories'.tr(),
+    'assets/images/wheel.svg',
+    kAccentGreen,
+  ),
+  Category(
+    'motorcycles'.tr(),
+    'assets/images/new/motorbike.svg',
+    kAccentPurple,
+  ),
+  Category(
+    'trucks'.tr(),
+    'assets/images/truck.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'buses'.tr(),
+    'assets/images/bus.svg',
+    kAccentPurple,
+  ),
+    Category(
+    'heavyequipment'.tr(),
+    'assets/images/excavator.svg',
+    kAccentPurple,
+  ),
+
+    Category(
+    'boats'.tr(),
+    'assets/images/new/vehicles/boat.svg', 
+    kAccentPurple,
+  ),  
+  
 ];
 final List<Categorypro> vehiclespro = [
   Categorypro(

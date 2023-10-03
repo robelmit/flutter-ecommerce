@@ -34,21 +34,9 @@ class CategoryCardhome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //color: Colors.red,
-      margin: EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            radius: getProportionateScreenWidth(15),
-            backgroundColor: category.color,
-            child: SizedBox(
-              width: getProportionateScreenWidth(40),
-              child: GestureDetector(
-                onTap: () {
-                  var ph = 'phones';
+    return InkWell(
+      onTap:(){
+         var ph = 'phones';
                   var ele = 'electronics';
                   var veh = 'vehicles';
                   var pro = 'property';
@@ -145,32 +133,44 @@ class CategoryCardhome extends StatelessWidget {
                               )),
                     );
                   }
-                },
+      },
+      child: Container(
+        //color: Colors.red,
+        margin: EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: getProportionateScreenWidth(15),
+              backgroundColor: category.color,
+              child: SizedBox(
+                width: getProportionateScreenWidth(40),
                 child: SvgPicture.asset(
                   category.catIcon,
                   //colorFilter: ColorFilter.mode(Colors.red, BlendMode.srcIn),
                   width: getProportionateScreenWidth(40),
-
+    
                   // fit: BoxFit.contain,
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5.0),
-            child: Align(
-                alignment: Alignment.center,
-
-                child: Container(
-              width: getProportionateScreenWidth(70),
-
-                  child: Text(
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      category.catName),
-                )),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0),
+              child: Align(
+                  alignment: Alignment.center,
+    
+                  child: Container(
+                width: getProportionateScreenWidth(70),
+    
+                    child: Text(
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        category.catName),
+                  )),
+            )
+          ],
+        ),
       ),
     );
   }

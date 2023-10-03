@@ -25,7 +25,7 @@ import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:flutter_multi_select_items/flutter_multi_select_items.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-import 'dragon_fruit_screen.dart';
+import 'addview.dart';
 import 'home_screen1.dart';
 
 class Cat {
@@ -91,11 +91,11 @@ Map allfilters = {
 };
 List<S2Choice<String>> statusoptions = [
   S2Choice<String>(
-    value: 'all',
+    value: 'all'.tr(),
     title: 'All'.tr(),
   ),
   S2Choice<String>(value: 'new', title: 'Brand New'.tr()),
-  S2Choice<String>(value: 'old', title: 'Old'),
+  S2Choice<String>(value: 'old', title: 'Old'.tr()),
 ];
 List<S2Choice<String>> filters = [
   S2Choice<String>(value: 'newest', title: 'Newest'.tr()),
@@ -573,9 +573,10 @@ class _CategoryTabState extends State<CategoryTab> {
                           model.addAll(choices.mercedes);
                         }
                       }
-                      setState(() => {});
                       print('allfilters checking');
                       print(tags);
+                      allfilters['detailcatagory'] = tags;
+                      setState(() => {});
                     }),
               );
             } else
@@ -1241,6 +1242,103 @@ class MoreFilters extends ModalRoute {
                 modalFilter: true,
                 modalFilterAuto: true,
               ),
+              Builder(builder: (context) {
+                print('robani');
+                print(catname);
+                if (catname == 'cars') {
+                  return Column(
+                    children: [
+                       SmartSelect<String>.single(
+                        title: 'Transmission'.tr(),
+                        placeholder: 'Choose one'.tr(),
+
+                        selectedValue: transmission,
+                        onChange: (selected) {
+                          status = selected.value;
+                          allfilters['transmission'] = status;
+                          setState(() => {});
+                        },
+                        choiceItems: choices.Transmission,
+                        modalType: S2ModalType.bottomSheet,
+
+                        // modalHeader: false,
+                      ),
+                      SmartSelect<String>.single(
+                        title: 'EngineSize'.tr(),
+                        placeholder: 'Choose one'.tr(),
+
+                        selectedValue: engineSize,
+                        onChange: (selected) {
+                          status = selected.value;
+                          allfilters['engineSize'] = status;
+                          setState(() => {});
+                        },
+                        choiceItems: choices.EngineSize,
+                        modalType: S2ModalType.bottomSheet,
+
+                        // modalHeader: false,
+                      ),
+                      SmartSelect<String>.single(
+                        title: 'fuel'.tr(),
+                        placeholder: 'Choose one'.tr(),
+
+                        selectedValue: fuel,
+                        onChange: (selected) {
+                          status = selected.value;
+                          allfilters['Fuel'] = status;
+                          setState(() => {});
+                        },
+                        choiceItems: choices.Fuel,
+                        modalType: S2ModalType.bottomSheet,
+
+                        // modalHeader: false,
+                      ),
+                      SmartSelect<String>.single(
+                        title: 'color'.tr(),
+                        placeholder: 'Choose one'.tr(),
+
+                        selectedValue: colorvalue,
+                        onChange: (selected) {
+                          colorvalue = selected.value;
+                          allfilters['color'] = colorvalue;
+                          setState(() => {});
+                        },
+                        choiceBuilder: (context, state, choice) {
+                          print('choice is making sure ');
+                          print(choice.title);
+                          return InkWell(
+                            onTap: () {
+                              choice.select!(true);
+                            },
+                            child: ListTile(
+                              leading: SizedBox(
+                                width: MediaQuery.of(context).size.width / 3,
+                                child: Row(
+                                  children: [
+                                    SizedBox(width: 10),
+                                    CircleAvatar(
+                                        radius: 8,
+                                        backgroundColor:
+                                            getcolor(choice.title)),
+                                    SizedBox(width: 10),
+                                    Text(choice.title.toString()),
+                                  ],
+                                ),
+                              ),
+                              trailing: Icon(Icons.arrow_forward_ios),
+                            ),
+                          );
+                        },
+                        choiceItems: choices.color,
+                        modalType: S2ModalType.bottomSheet,
+
+                        // modalHeader: false,
+                      ),
+                    ],
+                  );
+                }
+                return Container();
+              }),
 
               //a
               Builder(builder: (context) {
@@ -1296,92 +1394,6 @@ class MoreFilters extends ModalRoute {
                             enabled: true,
                           );
                         },
-                      ),
-                      SmartSelect<String>.single(
-                        title: 'Transmission'.tr(),
-                        placeholder: 'Choose one'.tr(),
-
-                        selectedValue: transmission,
-                        onChange: (selected) {
-                          status = selected.value;
-                          allfilters['transmission'] = status;
-                          setState(() => {});
-                        },
-                        choiceItems: choices.Transmission,
-                        modalType: S2ModalType.bottomSheet,
-
-                        // modalHeader: false,
-                      ),
-                      SmartSelect<String>.single(
-                        title: 'EngineSize'.tr(),
-                        placeholder: 'Choose one'.tr(),
-
-                        selectedValue: engineSize,
-                        onChange: (selected) {
-                          status = selected.value;
-                          allfilters['engineSize'] = status;
-                          setState(() => {});
-                        },
-                        choiceItems: choices.EngineSize,
-                        modalType: S2ModalType.bottomSheet,
-
-                        // modalHeader: false,
-                      ),
-                      SmartSelect<String>.single(
-                        title: 'fuel'.tr(),
-                        placeholder: 'Chooseone'.tr(),
-
-                        selectedValue: fuel,
-                        onChange: (selected) {
-                          status = selected.value;
-                          allfilters['Fuel'] = status;
-                          setState(() => {});
-                        },
-                        choiceItems: choices.Fuel,
-                        modalType: S2ModalType.bottomSheet,
-
-                        // modalHeader: false,
-                      ),
-                      SmartSelect<String>.single(
-                        title: 'color'.tr(),
-                        placeholder: 'Chooseone'.tr(),
-
-                        selectedValue: colorvalue,
-                        onChange: (selected) {
-                          colorvalue = selected.value;
-                          allfilters['color'] = colorvalue;
-                          setState(() => {});
-                        },
-                        choiceBuilder: (context, state, choice) {
-                          print('choice is making sure ');
-                          print(choice.title);
-                          return InkWell(
-                            onTap: () {
-                              choice.select!(true);
-                            },
-                            child: ListTile(
-                              leading: SizedBox(
-                                width: MediaQuery.of(context).size.width / 3,
-                                child: Row(
-                                  children: [
-                                    SizedBox(width: 10),
-                                    CircleAvatar(
-                                        radius: 8,
-                                        backgroundColor:
-                                            getcolor(choice.title)),
-                                    SizedBox(width: 10),
-                                    Text(choice.title.toString()),
-                                  ],
-                                ),
-                              ),
-                              trailing: Icon(Icons.arrow_forward_ios),
-                            ),
-                          );
-                        },
-                        choiceItems: choices.color,
-                        modalType: S2ModalType.bottomSheet,
-
-                        // modalHeader: false,
                       ),
                     ],
                   );

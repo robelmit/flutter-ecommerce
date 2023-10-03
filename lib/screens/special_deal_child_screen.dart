@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_flushbar/flutter_flushbar.dart';
-import '../screens/dragon_fruit_screen.dart';
+import 'addview.dart';
 
 import '../constants/colors.dart';
 import '../screens/search_fruit_screen.dart';

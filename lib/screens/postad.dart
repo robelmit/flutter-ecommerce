@@ -5,6 +5,7 @@ import 'package:app/screens/home_screen1.dart';
 import 'package:app/screens/tab_screen.dart';
 import 'package:app/services/api.dart';
 import 'package:app/widgets/custom_text_field.dart';
+import 'package:chapasdk/chapasdk.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:app/constants/dropdown.dart';
 
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:uuid/uuid.dart';
+
+import 'rediret_payment.dart';
 
 enum Status { older, newer }
 
@@ -134,7 +138,9 @@ class _MyNewAppState extends State<MyNewApp> {
   }
 
   checker() {
-    print(selectedValue);
+    selectedValue1 = null;
+    items = [];
+
     if (selectedValue == 'mobileandtablets'.tr()) {
       items = mobileandtablets;
       setState(() {});
@@ -188,6 +194,7 @@ class _MyNewAppState extends State<MyNewApp> {
       setState(() {});
       print('animals');
     }
+    checkerpro();
   }
 
   checkerbro() {
@@ -219,6 +226,8 @@ class _MyNewAppState extends State<MyNewApp> {
   }
 
   checkerpro() {
+    selectedValue2 = null;
+    details = [];
     if (selectedValue1 == 'phone'.tr()) {
       details = phone;
       setState(() {});
@@ -305,6 +314,10 @@ class _MyNewAppState extends State<MyNewApp> {
       print('vehicles');
     } else if (selectedValue1 == 'houseandapartmentforrent'.tr()) {
       details = houseandapartmentforrent;
+      setState(() {});
+      print('property');
+    } else if (selectedValue1 == 'houseandapartmentforsale'.tr()) {
+      details = houseandapartmentforsale;
       setState(() {});
       print('property');
     } else if (selectedValue1 == 'landandplotsforsale'.tr()) {
@@ -427,19 +440,19 @@ class _MyNewAppState extends State<MyNewApp> {
       details = watches;
       setState(() {});
       print('fashion');
-    } else if (selectedValue == 'dogsandpuppies'.tr()) {
+    } else if (selectedValue1 == 'dogsandpuppies'.tr()) {
       details = dogsandpuppies;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'birds'.tr()) {
+    } else if (selectedValue1 == 'birds'.tr()) {
       details = birds;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'cats'.tr()) {
+    } else if (selectedValue1 == 'cats'.tr()) {
       details = cats;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'reptiles'.tr()) {
+    } else if (selectedValue1 == 'reptiles'.tr()) {
       details = reptiles;
       setState(() {});
       print('animals');
@@ -519,47 +532,47 @@ class _MyNewAppState extends State<MyNewApp> {
       details = solarenergy;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'technologyjobs'.tr()) {
+    } else if (selectedValue1 == 'technologyjobs'.tr()) {
       details = technologyjobs;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'healthandbeautyjobs'.tr()) {
+    } else if (selectedValue1 == 'healthandbeautyjobs'.tr()) {
       details = healthandbeautyjobs;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'artandentertainmentjobs'.tr()) {
+    } else if (selectedValue1 == 'artandentertainmentjobs'.tr()) {
       details = artandentertainmentjobs;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'securityjobs'.tr()) {
+    } else if (selectedValue1 == 'securityjobs'.tr()) {
       details = securityjobs;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'teachingjobs'.tr()) {
-      items = teachingjobs;
+    } else if (selectedValue1 == 'teachingjobs'.tr()) {
+      details = teachingjobs;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'travelandtourismjobs'.tr()) {
+    } else if (selectedValue1 == 'travelandtourismjobs'.tr()) {
       details = travelandtourismjobs;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'reaurantandsurveyjobs'.tr()) {
+    } else if (selectedValue1 == 'reaurantandsurveyjobs'.tr()) {
       details = reaurantandsurveyjobs;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'customerservicesjobs'.tr()) {
+    } else if (selectedValue1 == 'customerservicesjobs'.tr()) {
       details = customerservicesjobs;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'hoteljobs'.tr()) {
-      items = hoteljobs;
+    } else if (selectedValue1 == 'hoteljobs'.tr()) {
+      details = hoteljobs;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'engineeringjobs'.tr()) {
+    } else if (selectedValue1 == 'engineeringjobs'.tr()) {
       details = engineeringjobs;
       setState(() {});
       print('animals');
-    } else if (selectedValue == 'otherjobs'.tr()) {
+    } else if (selectedValue1 == 'otherjobs'.tr()) {
       details = otherjobs;
       setState(() {});
       print('animals');
@@ -668,10 +681,10 @@ class _MyNewAppState extends State<MyNewApp> {
                       validator: (val) {
                         var nameRegExp = new RegExp(
                             r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$");
-                     //   if (val!.length > 5) {
-                      //  } else {
-                      //    return "Enter valid description";
-                      //  }
+                        //   if (val!.length > 5) {
+                        //  } else {
+                        //    return "Enter valid description";
+                        //  }
                       },
                     ),
                   ),
@@ -763,54 +776,58 @@ class _MyNewAppState extends State<MyNewApp> {
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20),
-                      padding: EdgeInsets.symmetric(vertical: 4),
-                      child: DropdownButtonFormField2(
-                        isExpanded: true,
-                        hint: Text(
-                          'details'.tr(),
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).hintColor,
-                          ),
-                        ),
-                        items: details
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ))
-                            .toList(),
-                        value: selectedValue2,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedValue2 = value as String;
-                          });
-                          checkerbro();
-                        },
-                        validator: (value) {
-                          if (value == null) {
-                            return 'Pleaseenterdetails';
-                          }
-                          return null;
-                        },
-                        buttonStyleData: const ButtonStyleData(
-                          height: 40,
-                          width: 140,
-                        ),
-                        menuItemStyleData: const MenuItemStyleData(
-                          height: 40,
-                        ),
-                      ),
-                    ),
-                  ),
+                  Builder(builder: (context) {
+                    if (details.length > 0) {
+                      return Align(
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            margin: EdgeInsets.symmetric(horizontal: 20),
+                            padding: EdgeInsets.symmetric(vertical: 4),
+                            child: DropdownButtonFormField2(
+                              isExpanded: true,
+                              hint: Text(
+                                'details'.tr(),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).hintColor,
+                                ),
+                              ),
+                              items: details
+                                  .map((item) => DropdownMenuItem<String>(
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ))
+                                  .toList(),
+                              value: selectedValue2,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue2 = value as String;
+                                });
+                                checkerbro();
+                              },
+                              validator: (value) {
+                                if (value == null) {
+                                  return 'Pleaseenterdetails';
+                                }
+                                return null;
+                              },
+                              buttonStyleData: const ButtonStyleData(
+                                height: 40,
+                                width: 140,
+                              ),
+                              menuItemStyleData: const MenuItemStyleData(
+                                height: 40,
+                              ),
+                            ),
+                          ));
+                    }
+                    return Container();
+                  }),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 20),
                     padding: EdgeInsets.symmetric(vertical: 6),
@@ -876,7 +893,7 @@ class _MyNewAppState extends State<MyNewApp> {
                                   },
                                   validator: (value) {
                                     if (value == null) {
-                                      return 'pleaseentertransmission'.tr();
+                                      return 'pleaseenterbrand'.tr();
                                     }
                                     return null;
                                   },
@@ -1047,12 +1064,16 @@ class _MyNewAppState extends State<MyNewApp> {
                                             value: item,
                                             child: Row(
                                               children: [
-                                                SizedBox(width: 5,),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
                                                 CircleAvatar(
                                                     radius: 6,
                                                     backgroundColor:
                                                         getcolor(item)),
-                                                        SizedBox(width: 5,),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
                                                 Text(
                                                   item,
                                                   style: const TextStyle(
@@ -1118,7 +1139,7 @@ class _MyNewAppState extends State<MyNewApp> {
                                   },
                                   validator: (value) {
                                     if (value == null) {
-                                      return 'pleaseentercolor'.tr();
+                                      return 'pleaseenteryear'.tr();
                                     }
                                     return null;
                                   },
@@ -1421,71 +1442,204 @@ class _MyNewAppState extends State<MyNewApp> {
                           if (detailsent == null) {
                             detailsent = '';
                           }
+                        }
+                        String? transmission1;
+                        String? engineSize1;
+                        String? fuel1;
+                        String? colorvalue1;
+                        String? brand1;
 
-                          print('hi');
-                          // print(index);
+                        if (selectedValue1 == 'cars'.tr()) {
+                          print('stuck in the car category');
+                          var transmindex = Transmission.indexOf(transmission!);
+                          var engineindex = EngineSize.indexOf(engineSize!);
+                          var fuelindex = Fuel.indexOf(fuel!);
+                          var modelindex = Brand.indexOf(brand!);
+                          var colorindex = color.indexOf(colorvalue!);
+                          // if (items == phone) {
+                          //   tobesent = phonepro[index];
+                          //   setState(() {});
 
-                          // Map<dynamic, dynamic>? robel;
-                          //                for (int i = 0; i < value.length; i++)
-                          //         {
-                          //           robel!.addAll({
-                          //             "url": value[i].url,
-                          //             "isprimary": value[i].url
-                          //           })
-                          //         },
-                          if (myimages.length == 0) {
-                            Fluttertoast.showToast(
-                                msg: "please add at least one image".tr(),
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.SNACKBAR,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.red,
-                                textColor: Colors.white,
-                                fontSize: 16.0);
+                          // }
+                          transmission1 = Transmissionpro[transmindex];
+                          engineSize1 = EngineSizepro[engineindex];
+                          fuel1 = Fuelpro[fuelindex];
+                          // brand = Brandpro[modelindex];
+                          colorvalue1 = colorpro[colorindex];
+
+                          if (selectedValue2 == 'Toyota'.tr()) {
+                            var brandindex = toyota.indexOf(brand!);
+                            brand1 = toyotapro[brandindex];
+                          } else if (selectedValue2 == 'Hyundai'.tr()) {
+                            var brandindex = hyundai.indexOf(brand!);
+                            brand1 = hyundaipro[brandindex];
+                          } else if (selectedValue2 == 'Suzuki'.tr()) {
+                            var brandindex = suzuki.indexOf(brand!);
+                            brand1 = suzukipro[brandindex];
+                          } else if (selectedValue2 == 'Nissan'.tr()) {
+                            var brandindex = Nissan.indexOf(brand!);
+                            brand1 = Nissanpro[brandindex];
+                          } else if (selectedValue2 == 'Ford'.tr()) {
+                            var brandindex = ford.indexOf(brand!);
+                            brand1 = fordpro[brandindex];
+                          } else if (selectedValue2 == 'Volkswagen'.tr()) {
+                            var brandindex = volswagen.indexOf(brand!);
+                            brand1 = volswagenpro[brandindex];
+                          } else if (selectedValue2 == 'Mercedes Benz'.tr()) {
+                            var brandindex = Mercedes.indexOf(brand!);
+                            brand1 = Mercedespro[brandindex];
+                          }
+                        }
+
+                        print('hi');
+                        // print(index);
+
+                        // Map<dynamic, dynamic>? robel;
+                        //                for (int i = 0; i < value.length; i++)
+                        //         {
+                        //           robel!.addAll({
+                        //             "url": value[i].url,
+                        //             "isprimary": value[i].url
+                        //           })
+                        //         },
+                        if (myimages.length == 0) {
+                          Fluttertoast.showToast(
+                              msg: "please add at least one image".tr(),
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.SNACKBAR,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                        } else {
+                          EasyLoading.show(status: 'loading'.tr());
+                          var finalstatus = 'new';
+                          if (status.toString() == "Status.newer") {
+                            finalstatus = "new";
+                          } else if (status.toString() == "Status.newer") {
+                            finalstatus = 'old';
                           } else {
-                            EasyLoading.show(status: 'loading'.tr());
-                            var finalstatus = 'new';
-                            if (status.toString() == "Status.newer") {
-                              finalstatus = "new";
-                            } else if (status.toString() == "Status.newer") {
-                              finalstatus = 'old';
-                            } else {
-                              finalstatus = "new";
-                            }
-                            Map map = {
+                            finalstatus = "new";
+                          }
+                          Map map;
+                          if (transmission1 == null) {
+                             map = {
                               'transmission': transmission,
                               'engineSize': engineSize,
                               'fuel': fuel,
+                              'model': brand,
+                              'color': colorvalue,
+                              'year': yearvalue,
                               'mileAge': kilometr.text
                             };
-
-                            api
-                                .uploadphotos(myimages)
-                                .then((value) => {
-                                      api.uploadadd(
-                                          title.text,
-                                          description.text,
-                                          tobesent,
-                                          tobesentmain,
-                                          detailsent,
-                                          price.text,
-                                          jsonDecode(value),
-                                          finalstatus,
-                                          map),
-                                    })
-                                .then((value) => {
-                                      EasyLoading.dismiss(),
-                                      _formKey.currentState!.dispose(),
-                                      myimages.clear(),
-                                      setState(() {})
-
-                                      // Navigator.of(context)
-                                      //     .pushNamed(HomeScreen1.routeName)
-                                    })
-                                .onError((error, stackTrace) => {
-                                      EasyLoading.dismiss(),
-                                    });
+                          } else {
+                             map = {
+                              'transmission': transmission1,
+                              'engineSize': engineSize1,
+                              'fuel': fuel1,
+                              'model': brand1,
+                              'color': colorvalue1,
+                              'year': yearvalue,
+                              'mileAge': kilometr.text
+                            };
                           }
+
+                          api.uploadphotos(myimages).then((value) {
+                            print('photo uploaded');
+                            print(value);
+                            api
+                                .uploadadd(
+                                    title.text,
+                                    description.text,
+                                    tobesent,
+                                    tobesentmain,
+                                    detailsent,
+                                    price.text,
+                                    jsonDecode(value),
+                                    finalstatus,
+                                    map)
+                                .then((add) {
+                              var myid = add['_id'];
+
+                              _formKey.currentState!.reset();
+                              title.clear();
+                              name.clear();
+                              description.clear();
+                              price.clear();
+                              kilometr.clear();
+                              myimages = [];
+                              setState(() {});
+
+                              api.getsetting().then((setting) {
+                                print("this setting working fine");
+
+                                bool ispaymentenabled =
+                                    setting['paymentenabled'] as bool;
+                                int amount = int.parse(setting['payment']);
+                                int amountforbigitems =
+                                    int.parse(setting['paymentforbigitems']);
+
+                                String chapaurl = setting['chapaurl'];
+                                print(ispaymentenabled);
+                                print(amount);
+                                print(amountforbigitems);
+                                print(chapaurl);
+                                int amounttopay = amount;
+                                if (selectedValue == 'vehicles'.tr() ||
+                                    selectedValue == 'property'.tr()) {
+                                  amounttopay = amountforbigitems;
+                                }
+                                EasyLoading.dismiss();
+
+                                if (ispaymentenabled == true) {
+                                  print("this is working fine");
+
+                                  // Chapa.paymentParameters(
+                                  //   context: context, // context
+                                  //   publicKey: chapaurl,
+                                  //   currency: 'ETB',
+                                  //   amount: amounttopay.toString(),
+                                  //   email: 'xyz@gmail.com',
+                                  //   firstName: 'fullName',
+                                  //   lastName: 'lastName',
+                                  //   txRef: uuid.v1(),
+                                  //   title: 'title',
+                                  //   desc: 'desc',
+                                  //   idofadd: myid,
+                                  //   namedRouteFallBack:
+                                  //       '/checker', // fall back route name
+                                  // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute<void>(
+                                      builder: (BuildContext context) =>
+                                          Redirect(
+                                        amounttopay: amounttopay.toString(),
+                                        chapaurl: chapaurl,
+                                        myid: myid,
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  Fluttertoast.showToast(
+                                      msg: "addppostedsuccessfully".tr(),
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.SNACKBAR,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.green,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                  Navigator.pushReplacementNamed(
+                                      context, TabScreen.routeName);
+                                }
+                              });
+
+                              // Navigator.of(context)
+                              //     .pushNamed(HomeScreen1.routeName)
+                            }).onError((error, stackTrace) {
+                              EasyLoading.dismiss();
+                            });
+                          });
                         }
                       },
                       child: Text('postanadd'.tr()),

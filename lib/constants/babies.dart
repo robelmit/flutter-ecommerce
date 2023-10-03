@@ -15,7 +15,7 @@ final List<Category> toyspro = [];
 final List<Category> babies = [
   Category(
     'babyandchildcare'.tr(),
-    'assets/images/new/babies/baby.svg',
+    'assets/images/babe.svg',
     kAccentGreen,
   ),
   Category(

@@ -242,7 +242,7 @@ class _ChatScreenProState extends State<ChatScreenPro> {
                       else if (snapshot.hasError) {
                         return Center(
                           child: Column(children: [
-                            Text('an arror occured'),
+                            Text('an arror occured'.tr()),
                             Image.asset(
                               'assets/images/errorpage.png',
                               height: 200,
@@ -253,7 +253,7 @@ class _ChatScreenProState extends State<ChatScreenPro> {
                                     api.getrooms();
                                   });
                                 },
-                                child: Text('Retry again'))
+                                child: Text('Retry again'.tr()))
                           ]),
                         );
                       } else {

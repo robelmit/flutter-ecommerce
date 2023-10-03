@@ -85,7 +85,7 @@ class _DetailedListState extends State<DetailedList> {
                           
                           );
                 } else if (widget.catagoriestosend[index].catName ==
-                    'mobile accessory') {
+                    'mobileaccessory') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
                           catagories: mobileaccessory,
@@ -144,7 +144,7 @@ class _DetailedListState extends State<DetailedList> {
                           catagories: Networkingproducts,
                           catagoriestosend: Networkingproductspro,
                           name: 'Networking products',
-                          title: 'Networking products'.tr()
+                          title: 'Networkingproducts'.tr()
                           
                           ))
                           );
@@ -502,8 +502,8 @@ class _DetailedListState extends State<DetailedList> {
                       builder: (BuildContext context) => Subcatagorypro(
                           catagories: houseandapartmentforsale,
                           catagoriestosend: houseandapartmentforsalepro,
-                          name: 'vitaminsandsupplements',
-                          title: 'vitaminsandsupplements'.tr()
+                          name: 'houseandapartmentforsale',
+                          title: 'houseandapartmentforsale'.tr()
                           
                           ))
                           
@@ -1065,13 +1065,13 @@ class _DetailedListState extends State<DetailedList> {
                           
                           );
                 } else if (widget.catagoriestosend[index].catName ==
-                    'plumpingandwatersupply') {
+                    'plumbingandwatersupply') {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => Subcatagorypro(
                           catagories: [],
                           catagoriestosend: [],
-                          name: 'plumpingandwatersupply',
-                          title: "plumpingandwatersupply".tr()))
+                          name: 'plumbingandwatersupply',
+                          title: "plumbingandwatersupply".tr()))
                           
                           );
                 } else if (widget.catagoriestosend[index].catName ==

@@ -1,19 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg height="800px" width="800px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	 viewBox="0 0 512 512"  xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#000000;}
-</style>
-<g>
-	<path class="st0" d="M481.324,476.05l-112.8-221.283c-9.841-19.324-11.676-41.751-5.1-62.418l17.506-55.009
-		c2.508-7.892,9.785-13.296,18.065-13.4l34.578-0.454c8.422-0.104,15.794-5.687,18.188-13.759l17.478-58.993
-		c2.98-10.04-2.631-20.61-12.605-23.79l-72.581-23.08c-24.254-7.712-50.722-3.378-71.248,11.678l-56.807,41.656l-56.958-41.77
-		c-20.44-14.99-46.785-19.362-70.963-11.772L53.718,26.991C43.697,30.142,38.057,40.732,41.037,50.8l17.45,58.917
-		c2.394,8.082,9.766,13.665,18.188,13.769l36.319,0.454c8.28,0.114,15.567,5.508,18.084,13.4l17.507,55.018
-		c6.567,20.658,4.731,43.085-5.11,62.4L30.676,476.05c-3.898,7.665-3.548,16.806,0.947,24.14C36.117,507.524,44.103,512,52.705,512
-		h406.588c8.602,0,16.588-4.476,21.084-11.81C484.873,492.856,485.223,483.714,481.324,476.05z"/>
+<svg width="800px" height="800px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>clo-polo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+
+</defs>
+    <g id="General" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="SLICES-64px" transform="translate(0.000000, -200.000000)">
+
 </g>
+        <g id="ICONS" transform="translate(5.000000, -195.000000)">
+            <g id="clo-polo" transform="translate(0.000000, 202.000000)">
+                <polygon id="Fill-616" fill="#E9EFFA" points="20 0 17 3 22 10 26 6">
+
+</polygon>
+                <polygon id="Fill-617" fill="#E9EFFA" points="32 0 26 6 30 10 35 3">
+
+</polygon>
+                <polygon id="Fill-618" fill="#67C1B6" points="20 0 26 6 32 0">
+
+</polygon>
+                <path d="M45.7227,8.5845 C44.6007,6.9005 42.9947,5.5975 41.1167,4.8465 L34.9997,3.0005 L29.9997,10.0005 L25.9997,6.0005 L21.9997,10.0005 L16.9997,3.0005 L10.8837,4.8465 C9.0057,5.5975 7.3997,6.9005 6.2777,8.5845 L-0.0003,18.0005 L8.9997,24.0005 L11.9997,20.0005 L11.9997,50.0005 L39.9997,50.0005 L39.9997,20.0005 L42.9997,24.0005 L51.9997,18.0005 L45.7227,8.5845 Z" id="Fill-619" fill="#87D6CD">
+
+</path>
+                <path d="M17,3 L10.884,4.847 C9.005,5.598 7.399,6.901 6.277,8.584 L0,18 L9,24 L12,20 L12,50 L40,50 L40,20 L43,24 L52,18 L45.723,8.584 C44.601,6.901 42.995,5.598 41.116,4.847 L35,3" id="Stroke-620" stroke="#4AA598" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+</path>
+                <path d="M26,18 L26,6" id="Stroke-621" stroke="#4AA598" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+</path>
+                <polygon id="Stroke-622" stroke="#4AA598" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="26 6 22 10 17 3 20 0 32 0 35 3 30 10">
+
+</polygon>
+                <path d="M26,6 L20,0" id="Stroke-623" stroke="#4AA598" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+</path>
+                <path d="M32,0 L26,6" id="Stroke-624" stroke="#4AA598" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+</path>
+                <path d="M36,16 L32,16" id="Stroke-625" stroke="#358779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+</path>
+            </g>
+        </g>
+    </g>
 </svg>

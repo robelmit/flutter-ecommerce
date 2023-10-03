@@ -20,7 +20,7 @@ import '../screens/popular_deals_screen.dart';
 import '../screens/special_deal_screen.dart';
 import '../screens/special_deal_child_screen.dart';
 import '../screens/search_fruit_screen.dart';
-import '../screens/dragon_fruit_screen.dart';
+import '../screens/addview.dart';
 import '../screens/order_summary_screen.dart';
 import '../screens/checkout_screen.dart';
 import '../screens/order_success_screen.dart';

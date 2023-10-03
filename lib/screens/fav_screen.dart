@@ -1,5 +1,5 @@
 import 'package:app/screens/checkpayment.dart';
-import 'package:app/screens/dragon_fruit_screen.dart';
+import 'package:app/screens/addview.dart';
 import 'package:app/screens/login_screen.dart';
 import 'package:app/screens/signup_screen.dart';
 import 'package:app/services/api.dart';
@@ -152,18 +152,21 @@ class _FavScreenState extends State<FavScreen> {
                 } else if (snapshot.hasError) {
                   return Center(
                     child: Column(children: [
-                      Text('Error occured'),
+                      Text('Error occured'.tr()),
                       Image.asset(
                         'assets/images/errorpage.png',
                         height: 200,
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              api.getfavourites();
-                            });
-                          },
-                          child: Text('Retry again'))
+                       SizedBox(
+                            width:120,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                api.getfavourites();
+                              });
+                            },
+                            child: Text('Retry again'.tr())),
+                      )
                     ]),
                   );
                 } else {

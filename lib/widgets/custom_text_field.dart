@@ -6,22 +6,25 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     required this.hint,
     required this.icon,
-    required this.controller1, required this.validator,
-
+    required this.controller1,
+    required this.validator,
+    this.shouldobscure
   });
   final String hint;
   final Widget icon;
   final TextEditingController controller1;
- final String? Function(String?) validator;
+  final String? Function(String?) validator;
+  final bool? shouldobscure;
 //static String? (String? value) validator
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller1,
-       validator:validator,
-
+      obscureText: shouldobscure ?? false,
+      validator: validator,
       decoration: InputDecoration(
+        
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
             getProportionateScreenWidth(0.1),
@@ -30,6 +33,7 @@ class CustomTextField extends StatelessWidget {
             color: kGreyShade3,
           ),
         ),
+        
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
             getProportionateScreenWidth(0.1),
@@ -39,7 +43,6 @@ class CustomTextField extends StatelessWidget {
           ),
         ),
         hintText: hint,
-        
         hintStyle: Theme.of(context).textTheme.headline6!.copyWith(
               color: kGreyShade3,
             ),

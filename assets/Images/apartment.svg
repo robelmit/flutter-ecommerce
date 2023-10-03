@@ -1,2 +1,42 @@
-<?xml version="1.0" ?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 200 200" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1,.cls-3{fill:#ffc861;}.cls-1,.cls-4,.cls-6{stroke:#2f4360;stroke-width:6px;}.cls-1{stroke-miterlimit:10;}.cls-2,.cls-4{fill:#ffffff;}.cls-4,.cls-6{stroke-linecap:round;stroke-linejoin:round;}.cls-5{fill:#2f4360;}.cls-6{fill:none;}</style></defs><title/><rect class="cls-1" height="117" rx="9.25" ry="9.25" width="134" x="33" y="38"/><path class="cls-1" d="M25.18,135.33H174.82a0.91,0.91,0,0,1,.91.91V194.5a0,0,0,0,1,0,0H24.28a0,0,0,0,1,0,0V136.24A0.91,0.91,0,0,1,25.18,135.33Z"/><rect class="cls-2" height="180" width="112" x="44" y="14.5"/><rect class="cls-3" height="180" rx="7.47" ry="7.47" width="101" x="54.79" y="14.5"/><rect class="cls-4" height="22.33" width="22" x="89" y="24.5"/><rect class="cls-4" height="22.33" width="22" x="122.17" y="24.5"/><rect class="cls-4" height="22.33" width="22" x="55.83" y="24.5"/><rect class="cls-4" height="22.33" width="22" x="89" y="55.83"/><rect class="cls-4" height="22.33" width="22" x="122.17" y="55.83"/><rect class="cls-4" height="22.33" width="22" x="55.83" y="55.83"/><rect class="cls-4" height="22.33" width="22" x="89" y="87.17"/><rect class="cls-4" height="22.33" width="22" x="122.17" y="87.17"/><rect class="cls-4" height="22.33" width="22" x="55.83" y="87.17"/><rect class="cls-4" height="22.33" width="22" x="122.17" y="118.5"/><rect class="cls-4" height="22.33" width="22" x="89" y="118.5"/><rect class="cls-4" height="22.33" width="22" x="55.83" y="118.5"/><rect class="cls-4" height="22.33" width="22" x="89" y="149.83"/><rect class="cls-4" height="22.33" width="22" x="122.17" y="149.83"/><rect class="cls-4" height="22.33" width="22" x="55.83" y="149.83"/><rect class="cls-2" height="40.67" rx="0.94" ry="0.94" width="22" x="89" y="150.83"/><path class="cls-5" d="M108,153.83V188.5H92V153.83h16m2.06-6H89.94A3.94,3.94,0,0,0,86,151.77v38.79a3.94,3.94,0,0,0,3.94,3.94h20.12a3.94,3.94,0,0,0,3.94-3.94V151.77a3.94,3.94,0,0,0-3.94-3.94h0Z"/><path class="cls-6" d="M46.87,5.5H153.13A2.87,2.87,0,0,1,156,8.37V194.5a0,0,0,0,1,0,0H44a0,0,0,0,1,0,0V8.37A2.87,2.87,0,0,1,46.87,5.5Z"/></svg>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 512 512" xml:space="preserve">
+<polygon style="fill:#CAD3DB;" points="0,512 512,512 512,459.034 0,459.034 "/>
+<g>
+	<polygon style="fill:#E6EEF3;" points="8.828,459.034 158.897,459.034 158.897,105.931 8.828,105.931 	"/>
+	<polygon style="fill:#E6EEF3;" points="353.103,459.034 503.172,459.034 503.172,176.552 353.103,176.552 	"/>
+</g>
+<polygon style="fill:#A7B1B6;" points="158.897,459.034 353.103,459.034 353.103,35.31 158.897,35.31 "/>
+<g>
+	<polygon style="fill:#E6EEF3;" points="194.207,105.931 238.345,105.931 238.345,70.621 194.207,70.621 	"/>
+	<polygon style="fill:#E6EEF3;" points="273.655,105.931 317.793,105.931 317.793,70.621 273.655,70.621 	"/>
+	<polygon style="fill:#E6EEF3;" points="194.207,176.552 238.345,176.552 238.345,141.241 194.207,141.241 	"/>
+	<polygon style="fill:#E6EEF3;" points="273.655,176.552 317.793,176.552 317.793,141.241 273.655,141.241 	"/>
+	<polygon style="fill:#E6EEF3;" points="194.207,247.172 238.345,247.172 238.345,211.862 194.207,211.862 	"/>
+	<polygon style="fill:#E6EEF3;" points="273.655,247.172 317.793,247.172 317.793,211.862 273.655,211.862 	"/>
+	<polygon style="fill:#E6EEF3;" points="194.207,317.793 238.345,317.793 238.345,282.483 194.207,282.483 	"/>
+	<polygon style="fill:#E6EEF3;" points="273.655,317.793 317.793,317.793 317.793,282.483 273.655,282.483 	"/>
+	<polygon style="fill:#E6EEF3;" points="194.207,388.414 238.345,388.414 238.345,353.103 194.207,353.103 	"/>
+	<polygon style="fill:#E6EEF3;" points="273.655,388.414 317.793,388.414 317.793,353.103 273.655,353.103 	"/>
+</g>
+<g>
+	<polygon style="fill:#CAD3DB;" points="44.138,176.552 88.276,176.552 88.276,141.241 44.138,141.241 	"/>
+	<polygon style="fill:#CAD3DB;" points="123.586,176.552 158.897,176.552 158.897,141.241 123.586,141.241 	"/>
+	<polygon style="fill:#CAD3DB;" points="44.138,247.172 88.276,247.172 88.276,211.862 44.138,211.862 	"/>
+	<polygon style="fill:#CAD3DB;" points="123.586,247.172 158.897,247.172 158.897,211.862 123.586,211.862 	"/>
+	<polygon style="fill:#CAD3DB;" points="44.138,317.793 88.276,317.793 88.276,282.483 44.138,282.483 	"/>
+	<polygon style="fill:#CAD3DB;" points="123.586,317.793 158.897,317.793 158.897,282.483 123.586,282.483 	"/>
+	<polygon style="fill:#CAD3DB;" points="44.138,388.414 88.276,388.414 88.276,353.103 44.138,353.103 	"/>
+	<polygon style="fill:#CAD3DB;" points="123.586,388.414 158.897,388.414 158.897,353.103 123.586,353.103 	"/>
+	<polygon style="fill:#CAD3DB;" points="353.103,247.172 388.414,247.172 388.414,211.862 353.103,211.862 	"/>
+	<polygon style="fill:#CAD3DB;" points="423.724,247.172 467.862,247.172 467.862,211.862 423.724,211.862 	"/>
+	<polygon style="fill:#CAD3DB;" points="353.103,317.793 388.414,317.793 388.414,282.483 353.103,282.483 	"/>
+	<polygon style="fill:#CAD3DB;" points="423.724,317.793 467.862,317.793 467.862,282.483 423.724,282.483 	"/>
+	<polygon style="fill:#CAD3DB;" points="353.103,388.414 388.414,388.414 388.414,353.103 353.103,353.103 	"/>
+	<polygon style="fill:#CAD3DB;" points="423.724,388.414 467.862,388.414 467.862,353.103 423.724,353.103 	"/>
+	<polygon style="fill:#CAD3DB;" points="0,105.931 158.897,105.931 158.897,70.621 0,70.621 	"/>
+	<polygon style="fill:#CAD3DB;" points="150.069,35.31 361.931,35.31 361.931,0 150.069,0 	"/>
+	<polygon style="fill:#CAD3DB;" points="353.103,176.552 512,176.552 512,141.241 353.103,141.241 	"/>
+</g>
+</svg>

@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  mountask(token, name, phonenumber, id) async {
+  mountask(token, name, phonenumber, id,email) async {
     print('check');
     print(id);
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -53,6 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
     prefs.setString('name', name);
     prefs.setString('phone', phonenumber);
     prefs.setString('id', id);
+    prefs.setString('email', email);
   }
 
   @override
@@ -126,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     print('value'),
                                     print(value['_id']),
                                     mountask(value['token'], value['name'],
-                                        value['phoneNumber'], value['_id']),
+                                        value['phoneNumber'], value['_id'],value['email']),
                                     Navigator.of(context).pushReplacementNamed(
                                         TabScreen.routeName),
                                     EasyLoading.dismiss()

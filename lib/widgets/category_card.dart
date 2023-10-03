@@ -9,18 +9,19 @@ import '../constants/babies.dart';
 import '../constants/beautyandhealth.dart';
 import '../constants/commercialequipment.dart';
 import '../constants/construction.dart';
+import '../constants/electronics.dart';
 import '../constants/fashion.dart';
 import '../constants/foodandagri.dart';
 import '../constants/homesupplies.dart';
 import '../constants/jobs.dart';
 import '../constants/mobileandtablets.dart';
 import '../constants/property.dart';
+import '../constants/vehicles.dart';
 import '../screens/detailedlist.dart';
 import '../utils/screen_utils.dart';
 import '../models/category.dart';
 import '../constants/colors.dart';
 import '../models/category.dart';
-import '../constants/lists.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category category;
@@ -32,27 +33,16 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //color: Colors.red,
-      margin: EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            radius: getProportionateScreenWidth(30),
-            backgroundColor: category.color,
-            child: SizedBox(
-              width: getProportionateScreenWidth(60),
-              child: GestureDetector(
-                onTap: () {
-                  var ph = 'phones';
+    return InkWell(
+      onTap: ()  {
+            var ph = 'phones';
                   var ele = 'electronics';
                   var veh = 'vehicles';
                   var pro = 'property';
                   var hom = 'homesupplies';
                   var fas = 'fashion';
                   var ani = 'animals';
+                  print(category.catIcon);
                   if (category.catIcon == 'assets/images/phone.svg') {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) => DetailedList(
@@ -87,10 +77,11 @@ class CategoryCard extends StatelessWidget {
                             catagoriestosend: fashionpro,
                             title: 'fashion'.tr())));
                   } else if (category.catIcon == 'assets/images/car.svg') {
+                    print('what the hell');
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) => DetailedList(
-                            catagories: vehiclesfinal,
-                            catagoriestosend: vehiclesfinalpro,
+                            catagories: vehicles,
+                            catagoriestosend: vehiclespro,
                             title: 'Vehicles'.tr())));
                   } else if (category.catIcon == 'assets/images/house.svg') {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -98,10 +89,7 @@ class CategoryCard extends StatelessWidget {
                             catagories: property,
                             catagoriestosend: propertypro,
                             title: 'property'.tr())));
-                  } else if (category.catIcon ==
-                      'assets/images/babe.svg') {
-                              
-
+                  } else if (category.catIcon == 'assets/images/babe.svg') {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) => DetailedList(
                             catagories: babies,
@@ -114,8 +102,7 @@ class CategoryCard extends StatelessWidget {
                             catagories: foodandagri,
                             catagoriestosend: foodandagripro,
                             title: 'Food and agri'.tr())));
-                  } else if (category.catIcon ==
-                      'assets/images/job1.svg') {
+                  } else if (category.catIcon == 'assets/images/job1.svg') {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) => DetailedList(
                             catagories: jobs,
@@ -145,28 +132,39 @@ class CategoryCard extends StatelessWidget {
                               title: "beautyandhealth".tr())),
                     );
                   }
-                  print(category.catIcon);
-                },
+      },
+      child: Container(
+        //color: Colors.red,
+        margin: EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: getProportionateScreenWidth(30),
+              backgroundColor: category.color,
+              child: SizedBox(
+                width: getProportionateScreenWidth(60),
                 child: SvgPicture.asset(
                   category.catIcon,
                   //colorFilter: ColorFilter.mode(Colors.red, BlendMode.srcIn),
                   width: getProportionateScreenWidth(40),
-
+    
                   // fit: BoxFit.contain,
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5.0),
-            child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.visible,
-                    category.catName)),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0),
+              child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.visible,
+                      category.catName)),
+            )
+          ],
+        ),
       ),
     );
   }

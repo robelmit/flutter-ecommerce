@@ -43,7 +43,26 @@ filter by
              then when tags change brands will be added 
              if tags added add that tag list to the make 
              if tags deleted remove tag list from the make 
+
+
+
+      today todo 
+           - language and page navigation check 
+           - language 
+                 - post page 
+                 - filter page 
+                 - addview page        
              
+
+
+apartment and condominium svg check 
+cat svg black 
+babies and baby cloth svg not working well
+industrial oven svg
+ 
+
+
+
 
 
 
@@ -70,8 +89,8 @@ Today Todo
  - addign color , manifaturing year to add model 
  - addign color , year  filter to getadd add route 
  - filtering color and year in filter screen flutter
-
-
+- fullscreen dialog with   scroll and zoom 
+- ads page of a  user with status 
 
  - checking all language 
  - post add birds  , cats  and checking others along side adding builder to the detaillist  and making null selected values on change items 
@@ -465,3 +484,62 @@ Today Todo
      "Addis":"Addis",
      "Kibba":"Kibbaa",
      "Afaar":"Afaar"
+
+
+
+
+   tommorrow todos 
+
+    - completing all language related staff
+    - translating to tgrigna brother  
+    - creating account screen with features 
+        - to view your adds 
+        - to update your password 
+        - to delete your account
+         =>algorithm to implement that 
+             - create account screen 
+                 - my adds 
+                 - change password 
+                 - delete account 
+    - adding payment page after posting page 
+    - adding password change and account deletion process
+    - adding the updated database to the mongo db server 
+    -  security messages to the server helmet 
+    - password reset route 
+    
+
+    enviromental variables 
+     - bcrypt secret key 
+     - url of the saved images 
+     
+     mobile variables 
+     - socket connection url
+     - url of the api call 
+     -
+     addppostedsuccessfully
+     roomcreatedsuccessfully
+
+
+How should payement should be processed 
+    - user directly goes to post page  
+    - after uploading a post 
+     - user will be navigated to payment screen if payment if enabled and 
+     - to payment page we need to pass two items 
+     - price , isbigitem 
+     - once payment if done navigate a user to home screen  with toast notification that 
+      payment is completed 
+      
+
+
+algorithm for the payment method
+   - creating islive on the add model 
+   - when every form is filled out 
+   - check setting for payment status and pricing category 
+   if payment if off makeislive on on flutter and backend and upload the add 
+   if payment is on upload add make isalive false and go to payment page with 
+        - payment options for big items and smallitems category
+        - after payment is successfull update isalive to true on server 
+   - now after uploading a post make islive false 
+
+   - go to payment screen and after payment make islive true 
+   - 

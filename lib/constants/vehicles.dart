@@ -9,7 +9,7 @@ final List<Categorypro> boatspro = [];
 final List<Category> heavyequipment = [
   Category(
     'excavatar'.tr(),
-    'assets/images/new/vehicles/excavator',
+    'assets/images/new/vehicles/excavator.svg',
     kAccentGreen,
   ),
   Category(

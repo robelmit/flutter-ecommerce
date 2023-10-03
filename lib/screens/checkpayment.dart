@@ -16,28 +16,47 @@ class Checker extends StatefulWidget {
 }
 
 class _CheckerState extends State<Checker> {
+  bool isactivated = false;
   @override
   void initState() {
     var api = Api();
     print('widget.argument.toString()');
     print('widget.argument.toString()');
     print(widget.argument.toString());
+    print('id of the add');
+    print('id of the add');
+    print(widget.argument['idofadd']);
     if (widget.argument['message'] == 'paymentSuccessful') {
-      Future.delayed(const Duration(seconds: 3), () {
-        //paidAmount
-        api.sendpayment(widget.argument['paidAmount']).then((value) => {
-              Navigator.pushAndRemoveUntil<void>(
-                context,
-                MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const MyNewApp()),
-                ModalRoute.withName('/post screen'),
-              )
-            });
-
-        // {Navigator.pushReplacementNamed(context, MyNewApp.routeName)});
-
-        // print('One second has passed.'); // Prints after 1 second.
+      //paidAmount
+      api
+          .sendpayment(
+              widget.argument['paidAmount'], widget.argument['idofadd'])
+          .then((value) {
+        isactivated = true;
+        setState(() {});
+        Fluttertoast.showToast(
+            msg: "addppostedsuccessfully".tr(),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.SNACKBAR,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
+        Future.delayed(const Duration(seconds: 3), () {
+          Navigator.pushAndRemoveUntil<void>(
+            context,
+            MaterialPageRoute<void>(
+                builder: (BuildContext context) => TabScreen(
+                      tab: '0',
+                    )),
+            ModalRoute.withName('/post screen'),
+          );
+        });
       });
+
+      // {Navigator.pushReplacementNamed(context, MyNewApp.routeName)});
+
+      // print('One second has passed.'); // Prints after 1 second.
     } else {
       Future.delayed(const Duration(seconds: 3), () {
         Navigator.push<void>(
@@ -82,13 +101,17 @@ class _CheckerState extends State<Checker> {
         ),
         Builder(builder: (context) {
           if (widget.argument['message'] == 'Connectivity Issue') {
-            return Text('Connectivity Issue'.tr(),style:TextStyle(fontSize:14,fontWeight:FontWeight.bold));
+            return Text('Connectivity Issue'.tr(),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold));
           } else if (widget.argument['message'] == 'paymentCancelled') {
-            return Text('paymentCancelled'.tr(),style:TextStyle(fontSize:14,fontWeight:FontWeight.bold));
+            return Text('paymentCancelled'.tr(),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold));
           } else if (widget.argument['message'] == 'paymentSuccessful') {
-            return Text('paymentSuccessful'.tr(),style:TextStyle(fontSize:14,fontWeight:FontWeight.bold));
+            return Text('paymentSuccessful'.tr(),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold));
           } else if (widget.argument['message'] == ' b') {
-            return Text('CancelbuttonClicked'.tr(),style:TextStyle(fontSize:14,fontWeight:FontWeight.bold));
+            return Text('CancelbuttonClicked'.tr(),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold));
           }
 
           return SizedBox();
@@ -105,7 +128,37 @@ class _CheckerState extends State<Checker> {
         SizedBox(height: 20),
 
         Center(
-          child: CircularProgressIndicator(),
+          child: isactivated
+              ? Column(
+                  children: [
+                    Text(
+                      'Congrats'.tr(),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Advertisement is now live '.tr(),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                )
+              : Column(
+                  children: [
+                    Text(
+                      'Activating your advertisement '.tr(),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    CircularProgressIndicator(),
+                  ],
+                ),
         )
       ]),
     );

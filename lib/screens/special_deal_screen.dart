@@ -8,7 +8,7 @@ import '../screens/special_deal_child_screen.dart';
 import '../utils/screen_utils.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/deal_card.dart';
-import 'package:app/screens/dragon_fruit_screen.dart';
+import 'package:app/screens/addview.dart';
 
 import '../widgets/fav_deal_card.dart';
 
